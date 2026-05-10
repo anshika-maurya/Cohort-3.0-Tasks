@@ -6,6 +6,10 @@ A simple frontend UI practice project built using HTML and CSS.
 
 ![Project Preview](./Images/preview.png)
 
+## Live Demo
+
+[View Project](https://cohort-3-0-tasks.vercel.app/)
+
 ## Built With
 
 - HTML5
