@@ -27,7 +27,7 @@ main {
   height: 100%;
   background: #f7f7f7;
   position: relative;
-  padding: 40px 50px;
+  padding: 2rem 0;
 }
 
 .right-container {
@@ -36,6 +36,7 @@ main {
   background: #b9332b;
   position: relative;
   overflow: hidden;
+  padding: 2.4rem 0;
 }
 
 .right-container::before {
@@ -54,19 +55,19 @@ main {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .logo {
-  font-size: 3rem;
+  font-size: 1.9rem;
   font-weight: 700;
   color: #08281f;
   letter-spacing: 2px;
 }
 
 .search-bar {
-  width: 350px;
-  height: 55px;
+  width: fit-content;
+  padding: 0.4rem 0.9rem;
   background: #ececec;
   border-radius: 40px;
 
@@ -74,12 +75,12 @@ main {
   align-items: center;
   gap: 15px;
 
-  padding: 0 22px;
+  /* padding: 0 22px; */
 }
 
 .search-bar i {
-  font-size: 1.4rem;
-  color: #444;
+  font-size: 1.3rem;
+  color: #808083;
 }
 
 .search-bar input {
@@ -91,12 +92,12 @@ main {
 }
 
 .search-bar input::placeholder {
-  color: #555;
+  color: #808083;
+  font-size: 1rem;
 }
 
 .menu {
   width: 100%;
-  padding: 50px 70px;
 
   display: flex;
   justify-content: center;
@@ -106,26 +107,26 @@ main {
 .menu a {
   text-decoration: none;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 300;
 }
 
 .vertical-text {
   position: absolute;
-  left: 20px;
-  top: 55%;
+  left: -3%;
+  top: 50%;
 
   transform: rotate(-90deg);
 
-  font-size: 5rem;
+  font-size: 3.5rem;
   font-family: "Cormorant Garamond", serif;
   color: #08281f;
   font-style: italic;
 }
 
 .info {
-  margin-top: 140px;
-  margin-left: 200px;
+  margin-top: 100px;
+  margin-left: 250px;
 
   display: flex;
   flex-direction: column;
@@ -169,7 +170,7 @@ main {
 
   transform: translate(-50%, -50%);
 
-  width: 500px;
+  width: 25rem;
 
   z-index: 10;
 }
@@ -180,50 +181,48 @@ main {
 }
 
 .content {
-  position: absolute;
-
-  right: 120px;
-  top: 220px;
-
-  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: #fef0ee;
+  padding: 4rem 0;
 }
 
 .content h1 {
-  font-size: 5rem;
+  font-size: 2.7rem;
   line-height: 0.9;
   font-family: "Cormorant Garamond", serif;
   font-weight: 400;
-
-  margin-bottom: 50px;
+  text-align: left;
 }
 
 .details {
   display: flex;
-  gap: 50px;
-
-  margin-bottom: 50px;
 }
 
 .left-detail {
   padding-right: 40px;
   border-right: 1px solid rgba(255, 255, 255, 0.5);
-
+  position: relative;
   text-align: center;
 }
 
-.left-detail i {
-  font-size: 4rem;
+.left-detail img {
+  height: 9rem;
+  width: 6.5rem;
+  position: relative;
 }
 
 .left-detail p {
-  margin-top: 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .right-detail {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 1.5rem;
 }
 
 .detail-box {
@@ -233,7 +232,7 @@ main {
 }
 
 .detail-box i {
-  font-size: 2rem;
+  font-size: 1.6rem;
 }
 
 .detail-box h4 {
@@ -246,19 +245,15 @@ main {
 }
 
 .price {
-  font-size: 4rem;
+  font-size: 1.7rem;
   font-weight: 700;
-  color: #f4d38d;
-
-  margin-bottom: 35px;
+  color: #f4d4ac;
 }
 
 .toggle-group {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-
-  margin-bottom: 40px;
+  gap: 1rem;
 }
 
 .toggle {
@@ -272,33 +267,26 @@ main {
   height: 24px;
   border-radius: 30px;
   background: white;
-
   position: relative;
 }
 
 .switch::before {
   content: "";
   position: absolute;
-
   width: 18px;
   height: 18px;
-
   border-radius: 50%;
   background: #d9b97f;
-
   top: 3px;
   left: 3px;
 }
 
 .btn {
-  width: 320px;
-  height: 70px;
-
+  width: fit-content;
   border: none;
-  border-radius: 18px;
-
-  background: #e4c990;
-
-  font-size: 1.6rem;
+  border-radius: 12px;
+  background: #dbbd93;
+  font-size: 1rem;
+  padding: 15px 30px;
   cursor: pointer;
 }
