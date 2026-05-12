@@ -188,13 +188,13 @@ h1 span {
 
 .product-info {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 .info {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
+  gap: 0.3rem;
 }
 .product-info .info img {
   height: 2.17rem;
@@ -240,14 +240,71 @@ h1 span {
   background: #f8f5ef;
   overflow: hidden;
 }
+#decrote-image-1 {
+  position: absolute;
+  height: 7rem;
+  width: 9rem;
+  top: 0;
+  left: 60%;
+}
+#decrote-image-2 {
+  position: absolute;
+  height: 5.3rem;
+  width: 8rem;
+  top: -4%;
+  left: 26%;
+}
+#decrote-image-3 {
+  position: absolute;
+  height: 3.9rem;
+  width: 5.5rem;
+  top: 4%;
+  left: -3%;
+  transform: rotate(240deg);
+}
+#decrote-image-4 {
+  position: absolute;
+  height: 5rem;
+  width: 6rem;
+  top: 48%;
+  left: 3%;
+  transform: rotate(180deg);
+  z-index: 9;
+}
+#decrote-image-5 {
+  position: absolute;
+  height: 3.5rem;
+  width: 5.5rem;
+  top: 66%;
+  left: 66%;
+  z-index: 2;
+}
+#decrote-image-6 {
+  position: absolute;
+  height: 3.5rem;
+  width: 5.5rem;
+  top: 66%;
+  left: 3%;
+  z-index: 2;
+  transform: rotate(120deg);
+}
+#decrote-image-7 {
+  position: absolute;
+  height: 3.9rem;
+  width: 5.5rem;
+  top: -5.7%;
+  left: 3%;
+  transform: rotate(120deg);
+}
 
 .bg-circle {
   position: absolute;
-  width: 430px;
-  height: 380px;
-  background: #dfe7c8;
+  width: 400px;
+  height: 320px;
+
+  background: #f0e4d5;
   border-radius: 50%;
-  left: 39%;
+  left: 40%;
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.9;
@@ -256,12 +313,25 @@ h1 span {
 .bg-circle::before {
   content: "";
   position: absolute;
-  width: 328px;
-  height: 280px;
-  background: #edf2df;
+  width: 400px;
+  height: 320px;
+  background: #dfe1bf;
   border-radius: 50%;
-  top: 60px;
-  left: 60px;
+  top: 7px;
+  left: -5px;
+  transform: rotate(160deg);
+}
+.dotted-line {
+  width: 2px;
+  height: 60px;
+  margin-left: 2rem;
+  background: repeating-linear-gradient(
+    to bottom,
+    #d8b98d 0px,
+    #d8b98d 6px,
+    transparent 6px,
+    transparent 12px
+  );
 }
 
 .packet {
@@ -275,9 +345,15 @@ h1 span {
 .flavour {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+
+  justify-content: center;
   margin-top: 10%;
-  gap: 3.5rem;
+  /* gap: 3.5rem; */
   width: fit-content;
+}
+.flavour .info {
+  gap: 1rem;
 }
 .flavour img {
   height: 4rem;
