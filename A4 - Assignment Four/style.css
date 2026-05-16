@@ -1,0 +1,255 @@
+@font-face {
+    font-family: causten;
+    src: url(./Assets/causten-bold.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+main{
+    height: 100%;
+    width: 100%;
+    background-color: #FEFEFE;
+    color: #060606;
+    padding: 1rem 4rem;
+    font-family: causten;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 200;
+    height: 8%;
+    background-color: red;
+}
+nav img{
+    height: 2rem;
+    width: 9.5rem;
+}
+nav .links{
+    display: flex;
+    gap: 2.5rem;
+}
+nav .links a{
+    text-decoration: none;
+    color: #060606;
+}
+nav .side-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 1rem;
+    font-size: 1.3rem;
+}
+nav .side-links button{
+    background-color: #060606;
+    color: #FEFEFE;
+    border: none;
+    border-radius: 50%;
+    padding: .76rem;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+    height: 22%;
+    background-color: royalblue;
+}
+header h1{
+   font-size: 3.5rem;
+   text-align: center;
+   max-width: 50%;
+}
+.container{
+    background-color: lightcoral;
+    max-height: calc(100% - 30%);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1 fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+/* row-1 */
+.top-left{
+    background-color: aqua;
+    grid-area: top-left;
+}
+.top-mid-1{
+    background-color: lightgreen;
+    grid-area: top-mid-1;
+}
+.top-mid-2{
+    background-color: aquamarine;
+    grid-area: top-mid-2;
+}
+.top-mid-3{
+    background-color: sandybrown;
+    grid-area: top-mid-3;
+}
+.top-right{
+    background-color: azure;
+    grid-area: top-right;
+}
+
+/* row-2 */
+.first-mid{
+    background-color: slateblue;
+    grid-area: first-mid;
+}
+.first-mid-mid-1{
+    background-color: sienna;
+    grid-area: first-mid-mid-1;
+}
+.first-mid-mid-2{
+    background-color: seagreen;
+    grid-area: first-mid-mid-2;
+}
+.first-mid-mid-3{
+    background-color: burlywood;
+    grid-area: first-mid-mid-3;
+}
+.first-mid-right{
+    background-color: lightgray;
+    grid-area: first-mid-mid-3;
+}
+
+/* row-3 */
+
+.second-mid{
+    background-color: rgb(180, 109, 109);
+    grid-area: second-mid;
+}
+.second-mid-mid-1{
+    background-color: aquamarine;
+    grid-area: second-mid-mid-1;
+}
+.second-mid-mid-2{
+    background-color: lightsalmon;
+    grid-area: second-mid-mid-2;
+}
+.second-mid-mid-3{
+    background-color: rgb(134, 201, 67);
+    grid-area: second-mid-mid-3;
+}
+.second-mid-right{
+    background-color: aquamarine;
+    grid-area: second-mid-right;
+}
+
+/* row-4 */
+
+.third-mid{
+    background-color: lightblue;
+    grid-area: third-mid;
+}
+.third-mid-mid-1{
+    background-color: lightseagreen;
+    grid-area: third-mid-mid-1;
+}
+.third-mid-mid-2{
+    background-color: blanchedalmond;
+    grid-area: third-mid-mid-2;
+}
+.third-mid-mid-3{
+    background-color: lightyellow;
+    grid-area: third-mid-mid-3;
+}
+.third-mid-right{
+    background-color: seagreen;
+    grid-area: third-mid-right;
+}
+
+/* row-5 */
+.fourth-mid{
+    background-color: slateblue;
+    grid-area: fourth-mid;
+}
+.fourth-mid-mid-1{
+    background-color: aquamarine;
+    grid-area: fourth-mid-mid-1;
+}
+.fourth-mid-mid-2{
+    background-color: azure;
+    grid-area: fourth-mid-mid-2;
+}
+.fourth-mid-mid-3{
+    background-color: burlywood;
+    grid-area: fourth-mid-mid-3;
+}
+.fourth-mid-right{
+    background-color: lightgreen;
+    grid-area: fourth-mid-right;
+}
+
+/* row-6 */
+
+.fifth-mid{
+    background-color: lightgoldenrodyellow;
+    grid-area: fifth-mid;
+}
+.fifth-mid-mid-1{
+    background-color: lightgray;
+    grid-area: fifth-mid-mid-1;
+}
+.fifth-mid-mid-2{
+    background-color: aqua;
+    grid-area: fifth-mid-mid-2;
+}
+.fifth-mid-mid-3{
+    background-color: aquamarine;
+    grid-area: fifth-mid-mid-3;
+}
+.fifth-mid-right{
+    background-color: rgb(221, 125, 125);
+    grid-area: fifth-mid-right;
+}
+
+/* row-7 */
+.sixth-mid{
+    background-color: lavender;
+    grid-area: sixth-mid;
+}
+.sixth-mid-mid-1{
+    background-color: aquamarine;
+    grid-area: sixth-mid-mid-1;
+}
+.sixth-mid-mid-2{
+    background-color: lightgreen;
+    grid-area: sixth-mid-mid-2;
+}
+.sixth-mid-mid-3{
+    background-color: rebeccapurple;
+    grid-area: sixth-mid-mid-3;
+}
+.sixth-mid-right{
+    background-color: blanchedalmond;
+    grid-area: sixth-mid-right;
+}
+
+/* row-last */
+
+.bottom-left{
+    background-color: lightblue;
+    grid-area: bottom-left;
+}
+.bottom-mid-1{
+    background-color: aquamarine;
+    grid-area: bottom-mid-1;
+}
+.bottom-mid-2{
+    background-color: rgb(143, 202, 85);
+    grid-area: bottom-mid-2;
+}
+.bottom-mid-3{
+    background-color: papayawhip;
+    grid-area: bottom-mid-3;
+}
+.bottom-right{
+    background-color: rgb(176, 35, 58);
+    grid-area: bottom-right;
+}
