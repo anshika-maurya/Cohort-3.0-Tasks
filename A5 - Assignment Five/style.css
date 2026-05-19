@@ -1,0 +1,60 @@
+:root{
+    --primary-color:#FFFFFF;
+    --primary-black-color:#000000;
+    --grey-color: #F3F3F6;
+    --dark-grey: #A1A1AA;
+    --btn-padding:10px 20px;
+    
+}
+@font-face {
+    font-family: geo;
+    src: url(./Assets/georgia.ttf);
+}
+@font-face {
+    font-family: noyh;
+    src: url(./Assets/noyh-geometric-slim-semilight.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+}
+main{
+    height: 100%;
+    width: 100%;
+    background-color: var(--primary-color);
+    font-family: noyh;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.links{
+    display: flex;
+   
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+.links img{
+    height: 70px;
+    width: 120px;
+}
+.links a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-family: noyh;
+    font-weight: 600;
+    color: #1c1c1c;
+    letter-spacing: 1px;
+   
+}
+.link i{
+    color: #070707;
+}
