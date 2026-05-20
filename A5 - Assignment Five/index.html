@@ -1,74 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
-    rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <main>
-        <nav>
-            <div class="links">
-                <img src="./Images/logo.webp" alt="logo-img">
+      <nav>
+        <div class="links">
+          <img src="./Images/logo.webp" alt="logo-img" />
 
-                <div class="link">
-                    <a href="#">Explore</a>
-                    <i class="ri-arrow-down-s-line"></i>
+          <div class="link">
+            <a href="#">Explore</a>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+
+          <div class="link">
+            <a href="#">Hire a Designer</a>
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+
+          <a href="#">Find Jobs</a>
+          <a href="#">Blog</a>
+        </div>
+
+        <div class="signIn">
+          <button>Sign up</button>
+          <button>Log in</button>
+        </div>
+      </nav>
+
+      <section class="Home-page">
+        <h1>Discover the world's top designers</h1>
+        <p>
+          Explore work from the most talented and accomplished designers ready
+          to take on your next project
+        </p>
+
+        <div class="search-bar">
+          <input type="text" placeholder="What are you looking for?" />
+
+          <div class="side-btn">
+            <div class="shots-options">
+              <button>Shots</button>
+              <i class="ri-arrow-down-s-line"></i>
+            </div>
+            <div class="search-icon"><i class="ri-search-line"></i></div>
+          </div>
+        </div>
+
+        <div class="products">
+          <button>Trending Searches</button>
+          <button>landing page</button>
+          <button>e-commerce</button>
+          <button>mobile app</button>
+          <button>logo design</button>
+          <button>dashboard</button>
+          <button>icons</button>
+        </div>
+      </section>
+
+      <section>
+        <div class="works">
+          <button>Popular <i class="ri-arrow-down-s-line"></i></button>
+
+          <div class="work-names">
+            <p>Discover</p>
+            <p>Animation</p>
+            <p>Branding</p>
+            <p>Illustration</p>
+            <p>Mobile</p>
+            <p>Print</p>
+            <p>Product Design</p>
+            <p>Typography</p>
+            <p>Web Design</p>
+          </div>
+
+          <button id="btn"><i class="ri-filter-3-fill"></i> Filters</button>
+        </div>
+
+        <div class="cards">
+          <div class="card-container">
+            <div class="card-image">
+              <img src="./Images/website-thumbnail/1.webp" alt="image-1" />
+
+              <div class="dribble-card-animation">
+                <p>Fitness and step coun..</p>
+                <div class="bookmark">
+                  <button><i class="ri-heart-3-line"></i></button>
+                  <button><i class="ri-bookmark-line"></i></button>
                 </div>
-
-                <div class="link">
-                    <a href="#">Hire a Designer</a>
-                    <i class="ri-arrow-down-s-line"></i>
-                </div>
-
-                <a href="#">Find Jobs</a>
-                <a href="#">Blog</a>
-                
+              </div>
             </div>
 
-            <div class="signIn">
-                <button>Sign up</button>
-                <button>Log in</button>
+            <div class="card-detail">
+              <div class="website-info">
+                <img src="./Images/website-logo/logo-1.webp" alt="logo-image" />
+                <p>Upnow Studio</p>
+                <div class="tag">PRO</div>
+              </div>
+
+              <div class="views">
+                <i class="ri-heart-3-fill"></i>
+                <p>31</p>
+                <i class="ri-eye-fill"></i>
+                <p>6.6k</p>
+              </div>
             </div>
-        </nav>
-
-        <section class="Home-page">
-            <h1>Discover the world's top designers</h1>
-            <p>Explore work from the most talented and accomplished designers ready to take on your next project</p>
-
-            <div class="search-bar">
-                <input type="text" placeholder="What are you looking for?">
-
-                <div class="side-btn">
-                    <div class="shots-options">
-                    <button>Shots</button>
-                    <i class="ri-arrow-down-s-line"></i>
-                </div>
-                <div class="search-icon"><i class="ri-search-line"></i></div>
-                </div>
-                
-            </div>
-
-            <div class="products">
-                <button>Trending Searches</button>
-                <button>landing page</button>
-                <button>e-commerce</button>
-                <button>mobile app</button>
-                <button>logo design</button>
-                <button>dashboard</button>
-                <button>icons</button>
-            </div>
-
-        </section>
-
-        <section>
-            
-        </section>
+          </div>
+        </div>
+      </section>
     </main>
-</body>
+  </body>
 </html>

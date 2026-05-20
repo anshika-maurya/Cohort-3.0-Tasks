@@ -164,3 +164,136 @@ nav{
     color: var(--dark-grey);    
 }
 
+.works{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.works button{
+    padding: 9px 13px;
+    border-radius: 10px;
+    font-size: .9rem;
+    border: 1px solid var(--primary-black-color);
+    background-color: var(--primary-color);
+}
+.works #btn{
+    border-radius: 25px;
+}
+
+.work-names{
+    display: flex;
+    gap: .7rem;
+}
+
+.work-names p{
+    padding: 12px 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+.work-names p:nth-child(1){
+    background-color: var(--grey-color);
+}
+
+.cards{
+    display: flex;
+    width: 100%;
+}
+.card-container{
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    
+}
+.card-image{
+position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    
+}
+.card-container .card-image img{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 20px;
+    
+}
+.card-container .card-detail{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.website-info , .views{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    
+}
+.website-info img{
+    height: 25px;
+    width: 25px;
+}
+.website-info p{
+    font-size: 1.1rem;
+    columns: var(--primary-black-color);
+    font-weight: 600;
+}
+.website-info .tag{
+    font-size: 1rem;
+    color: var(--primary-color);
+    background-color: var(--dark-grey);
+    padding: 1px 2px;
+}
+.views i{
+    color: var(--dark-grey);
+}
+.views i:nth-child(1):hover{
+    color: #DB2777;
+}
+
+.dribble-card-animation{
+    position: absolute;
+    background: linear-gradient(transparent , black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.75rem;
+    transform: translateY(100%);
+    transition: transform 0.6s ease,
+    box-shadow 0.35s ease;
+    
+    
+}
+.dribble-card-animation p{
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+.dribble-card-animation .bookmark{
+   display: flex;
+   gap: 1rem;
+}
+.dribble-card-animation .bookmark button{
+   border: none;
+   padding: 14px 15px;
+   background-color: var(--primary-color);
+   font-size: 1.1rem;
+   border-radius: 50%;
+   text-align: center;
+}
+
+.card-image:hover .dribble-card-animation{
+    /* position: absolute; */
+    bottom: 0;
+    overflow: hidden;
+    transform: translateY(0);
+    
+    box-shadow:
+    0 12px 30px rgba(0,0,0,0.15);
+    
+}
