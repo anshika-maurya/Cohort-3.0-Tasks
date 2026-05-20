@@ -3,7 +3,7 @@
     --primary-black-color:#000000;
     --grey-color: #F3F3F6;
     --dark-grey: #A1A1AA;
-    --btn-padding:10px 20px;
+    --btn-padding:17px 21px;
     
 }
 @font-face {
@@ -25,9 +25,11 @@ html, body{
 }
 main{
     height: 100%;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     background-color: var(--primary-color);
     font-family: noyh;
+
 }
 nav{
     display: flex;
@@ -40,15 +42,16 @@ nav{
     text-decoration: none;
     align-items: center;
     justify-content: center;
-    gap: 3rem;
+    gap: 1.5rem;
 }
 .links img{
-    height: 70px;
-    width: 120px;
+    height: 3.2rem;
+    width: 6.2rem;
+    margin-bottom: .5rem;
 }
 .links a{
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: noyh;
     font-weight: 600;
     color: #1c1c1c;
@@ -58,3 +61,106 @@ nav{
 .link i{
     color: #070707;
 }
+.signIn{
+    display: flex;
+    gap: 1rem;
+    
+    
+}
+.signIn button{
+    padding: var(--btn-padding);
+    font-size: .85rem;
+    font-weight: bold;
+    border: none;
+    background-color: var(--primary-color);
+}
+.signIn button:nth-child(2){
+    background-color: var(--primary-black-color);
+    color: var(--primary-color);
+    border-radius: 25px;
+}
+
+.Home-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2.7rem;
+    
+}
+.Home-page h1{
+    font-family: geo;
+    font-size: 4.2rem;
+    line-height: 1.2;
+    font-weight: 100;
+    max-width: 45%;
+    text-align: center;
+}
+.Home-page p{
+    font-size: 1.65rem;
+    max-width: 45%;
+    text-align: center;
+}
+.Home-page .search-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: fit-content;
+    background-color: var(--grey-color);
+    padding: var(--btn-padding);
+    border-radius: 25px;
+    gap: 25rem;
+
+}
+.Home-page .search-bar input{
+    border: none;
+    background-color: var(--grey-color);
+    font-size: .9rem;
+}
+.Home-page .search-bar input::placeholder{
+    color: var(--dark-grey);
+   
+    
+}
+.Home-page .search-bar .side-btn{
+    display: flex;
+    gap: .7rem;
+}
+.shots-options{
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-black-color);
+}
+.shots-options button{
+    border: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--primary-black-color);
+}
+.search-icon i{
+    border: none;
+    font-size: 1.05rem;
+    color:var(--primary-color);
+    background-color: #EC5E95;
+    padding: 12px 12px;
+    border-radius: 50%;
+}
+.products{
+    display: flex;
+    gap: 1.2rem;
+}
+.products button{
+    background-color: var(--grey-color);
+    padding: 12px 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: .87rem;
+    
+}
+
+.products button:hover{
+    color: var(--dark-grey);    
+}
+
