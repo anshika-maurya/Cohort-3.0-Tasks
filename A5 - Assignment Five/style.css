@@ -24,8 +24,7 @@ body {
   width: 100%;
 }
 main {
-  height: 100%;
-  width: 92%;
+  max-width: 95%;
   margin: 0 auto;
   background-color: var(--primary-color);
   font-family: noyh;
@@ -41,9 +40,9 @@ nav {
   text-decoration: none;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.9rem;
 }
-.links img {
+.logo-img img {
   height: 3.2rem;
   width: 6.2rem;
   margin-bottom: 0.5rem;
@@ -75,6 +74,23 @@ nav {
   color: var(--primary-color);
   border-radius: 25px;
 }
+.menu {
+  display: none;
+  color: var(--primary-black-color);
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .links {
+    display: none;
+  }
+  .signIn {
+    display: none;
+  }
+  .menu {
+    display: initial;
+  }
+}
 
 .Home-page {
   display: flex;
@@ -86,7 +102,7 @@ nav {
 }
 .Home-page h1 {
   font-family: geo;
-  font-size: 4.2rem;
+  font-size: clamp(3rem, 5vw, 4.2rem);
   line-height: 1.2;
   font-weight: 100;
   max-width: 45%;
@@ -155,6 +171,25 @@ nav {
   color: var(--dark-grey);
 }
 
+@media (max-width: 768px) {
+  .Home-page h1 {
+    max-width: 90%;
+    text-align: left;
+  }
+  .Home-page p {
+    font-size: 1.55rem;
+    max-width: 90%;
+    text-align: left;
+  }
+  .Home-page .search-bar {
+    gap: 1rem;
+  }
+  .products {
+    display: flex;
+    flex-flow: wrap;
+  }
+}
+
 .card-section {
   display: flex;
   flex-direction: column;
@@ -197,7 +232,7 @@ nav {
 
 .cards {
   display: flex;
-  width: 100%;
+  max-width: fit-content;
   flex-flow: wrap;
   gap: 1.5rem;
 }
@@ -251,6 +286,23 @@ nav {
   color: #db2777;
 }
 
+@media (max-width: 768px) {
+  .work-names {
+    display: none;
+  }
+  .cards {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2.1rem;
+  }
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
 .dribble-card-animation {
   position: absolute;
   background: linear-gradient(transparent, black);
@@ -282,7 +334,7 @@ nav {
 }
 
 .card-image:hover .dribble-card-animation {
-  /* position: absolute; */
+  
   bottom: 0;
   overflow: hidden;
   transform: translateY(0);
@@ -394,4 +446,17 @@ footer {
   gap: 1rem;
   color: var(--dark-grey);
   font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .terms {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1rem;
+  }
+  .terms .left,
+  .right {
+    gap: 1.1rem;
+  }
 }
