@@ -10,9 +10,12 @@
 html,
 body {
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   background-color: #f9f5f2;
-  overflow: hidden;
+}
+main {
+  width: 100%;
+  min-height: 100vh;
 }
 nav {
   display: flex;
@@ -25,7 +28,7 @@ nav {
 h2 {
   color: #2a2a2a;
   letter-spacing: 3px;
-  font-size: 2.4rem;
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
 }
 h2 span {
   color: #5c5856;
@@ -63,13 +66,21 @@ h2 span {
   font-size: 1.4rem;
   color: #605f5e;
 }
+@media (max-width: 768px) {
+  nav {
+    margin: 1rem 1.5rem;
+    justify-content: space-between;
+  }
 
-main {
-  width: 100%;
+  .links {
+    display: none;
+  }
+}
+
+.section-main {
+  width: 80%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15rem;
+  margin: auto;
   margin-top: 3.2rem;
 }
 
@@ -77,7 +88,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  max-width: 20%;
+  max-width: 40%;
 }
 .heading {
   display: flex;
@@ -98,7 +109,7 @@ main {
 }
 
 h1 {
-  font-size: 5.5rem;
+  font-size: clamp(3.5rem, 6vw, 5.5rem);
   font-weight: 300;
   line-height: 0.8;
   color: #1f1d1d;
@@ -112,6 +123,7 @@ h1 {
 p {
   color: #727171e8;
   font-size: 1.17rem;
+  max-width: 70%;
 }
 .colors,
 .detail {
@@ -145,11 +157,13 @@ p {
 
 .material {
   display: flex;
-  gap: 2rem;
 }
 .usable {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 .material img {
   height: 3rem;
@@ -161,13 +175,14 @@ p {
 .usable p {
   color: #454444;
   font-weight: bold;
+  text-align: center;
 }
 
 .right-section {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  /* max-width: auto; */
+  max-width: 50%;
 }
 .right-section-first {
   display: flex;
@@ -177,18 +192,15 @@ p {
   color: #2f2e2e;
   font-size: 1.9rem;
 }
-.right-section-first .dash {
-  background-color: #454444;
-  height: 2px;
-  width: 80%;
-}
+
 .image-preview {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: relative;
 }
 .image-preview img {
-  width: 489px;
+  width: 104%;
   border-radius: 15px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -203,14 +215,14 @@ p {
   display: flex;
   gap: 0.2rem;
   position: absolute;
-  top: 20%;
-  left: 70%;
+  top: 7%;
+  left: 62%;
 }
 .image-preview h4 {
   font-size: 1.1rem;
   padding: 0.6rem 1rem;
-  top: 19.7%;
-  left: 51%;
+  top: 7%;
+  left: 7%;
 }
 .rating p {
   font-size: 1rem;
@@ -231,9 +243,9 @@ p {
   font-size: 1rem;
   border: none;
   border-radius: 50%;
-  padding: 2.2rem 1.7rem;
+  padding: 2.3rem 1.7rem;
   position: absolute;
-  left: 73.8%;
+  left: 70%;
   top: 65.5%;
 }
 .image-preview button i {
@@ -241,16 +253,21 @@ p {
 }
 .vertical {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   align-items: center;
   justify-content: flex-start;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
+
 .vertical .dash {
   transform: rotate(90deg);
   width: 100%;
   margin-top: 1rem;
+  background-color: #454444;
+  height: 2px;
+  text-align: center;
+  margin-right: 19px;
 }
 .vertical p {
   font-size: 1.67rem;
@@ -273,11 +290,9 @@ p {
   background-color: #fdfbf9;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   align-items: center;
-  justify-content: center;
-  padding: 0 1rem;
+  justify-content: end;
+  padding: 0 0.5rem;
   border-radius: 20px;
-
-  gap: 0.4rem;
 }
 .about img {
   height: 4rem;
@@ -296,5 +311,108 @@ p {
   font-weight: 700;
   font-size: 0.9rem;
   margin: auto;
-  /* margin-top: 1.5rem; */
+}
+
+@media (max-width: 768px) {
+  .section-main {
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: 4rem;
+  }
+
+  .left-section {
+    max-width: 100%;
+  }
+  .heading {
+    top: 7.8%;
+    left: 5%;
+  }
+
+  .right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 4rem;
+    max-width: 100%;
+  }
+  .right-section-first {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .image-preview img {
+    width: 100%;
+  }
+  .image-preview h4,
+  .rating {
+    top: 7%;
+    left: 48%;
+  }
+  .image-preview h4 {
+    top: 7%;
+    left: 6%;
+  }
+  .rating p {
+    font-size: 1rem;
+    color: #1f1d1d;
+    margin-right: 8px;
+  }
+
+  .image-preview button {
+    padding: 1.1rem 0.7rem;
+    left: 70%;
+    top: 63%;
+  }
+  .image-preview button i {
+    font-size: 1.5rem;
+  }
+  .vertical {
+    gap: 0.2rem;
+    align-items: center;
+    justify-content: center;
+    writing-mode: horizontal-tb;
+    white-space: nowrap;
+    transform: rotate(360deg);
+  }
+
+  .vertical .dash {
+    transform: rotate(180deg);
+    max-width: 20%;
+    margin-top: 1rem;
+    text-align: left;
+    margin-right: 4px;
+  }
+  .vertical p {
+    font-size: 1.6rem;
+  }
+
+  .right-section-second {
+    flex-direction: row;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .about {
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 2.7rem 0;
+    padding: 0.5rem 5rem;
+  }
+  .about img {
+    height: 3.8rem;
+    width: 3.8rem;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content p {
+    font-size: 0.8rem;
+  }
 }
