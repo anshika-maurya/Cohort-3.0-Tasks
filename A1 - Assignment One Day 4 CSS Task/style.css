@@ -573,6 +573,9 @@ p {
   .image-preview button i {
     font-size: 2rem;
   }
+  .about {
+    max-width: 100%;
+  }
 }
 @media (min-width: 420px) and (max-width: 620px) {
   .image-preview h4,
@@ -593,4 +596,5 @@ p {
   .image-preview button i {
     font-size: 1rem;
   }
+  
 }
