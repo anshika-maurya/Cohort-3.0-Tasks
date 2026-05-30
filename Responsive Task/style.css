@@ -58,15 +58,18 @@ main {
   text-transform: uppercase;
 }
 nav {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
   border: 1px solid var(--primary-black-color);
-  border-radius: 15px;
-  margin: 1rem;
   background-color: var(--primary-white-color);
 }
+
 .about {
   display: flex;
   gap: 2rem;
@@ -162,7 +165,6 @@ nav .logo {
   align-items: center;
   justify-content: center;
   gap: 8rem;
-
   max-width: 50%;
   margin: 0 auto;
 }
@@ -182,7 +184,10 @@ nav .logo {
   font-family: Reckless;
 }
 .mid-content span,
-.section3 span {
+.section3 span,
+.section5 span,
+.chai-latte span,
+.journal span{
   font-style: italic;
 }
 .mid-content h2,
@@ -224,7 +229,6 @@ nav .logo {
   min-width: 20%;
   flex-direction: column;
   gap: 1.5rem;
-
   height: 100%;
 }
 .wrapper .prev,
@@ -235,11 +239,9 @@ nav .logo {
   background-color: var(--primary-white-color);
   color: var(--primary-black-color);
   border: 1px solid var(--primary-black-color);
-
   padding: 1rem 1rem;
   font-size: 1.2rem;
   position: absolute;
-
   border-radius: 50%;
 }
 .wrapper .prev {
@@ -297,7 +299,6 @@ nav .logo {
   color: var(--primary-black-color);
   border: 1px solid var(--primary-black-color);
   border-radius: 5px;
-
   font-weight: 100;
   font-family: midnight;
   text-transform: uppercase;
@@ -779,10 +780,14 @@ nav .logo {
 .journal-cards {
   display: flex;
   gap: 1rem;
-  overflow: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
   width: 100%;
   padding: 2rem;
   z-index: 1;
+}
+.journal-cards::-webkit-scrollbar {
+  display: none;
 }
 
 .section7 .wrapper .prev,
@@ -883,8 +888,8 @@ footer {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 5rem 0;
-  /* gap: rem; */
+  padding-top: 4.5rem;
+ 
 }
 .email {
   display: flex;

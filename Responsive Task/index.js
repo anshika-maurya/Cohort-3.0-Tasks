@@ -1,9 +1,16 @@
-const carousel = document.querySelector(".card-section");
+document.querySelectorAll(".wrapper").forEach((wrapper) => {
+  const carousel = wrapper.querySelector(
+    ".card-section, .chai-masala, .journal-cards"
+  );
 
-document.querySelector(".next").onclick = () => {
-  carousel.scrollLeft += 250;
-};
+  const next = wrapper.querySelector(".next");
+  const prev = wrapper.querySelector(".prev");
 
-document.querySelector(".prev").onclick = () => {
-  carousel.scrollLeft -= 250;
-};
+  next.addEventListener("click", () => {
+    carousel.scrollLeft += 250;
+  });
+
+  prev.addEventListener("click", () => {
+    carousel.scrollLeft -= 250;
+  });
+});
