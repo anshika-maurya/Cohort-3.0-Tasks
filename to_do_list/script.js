@@ -46,7 +46,7 @@ button.addEventListener("click", () => {
     `;
 
   const title = todo.querySelector("h3");
-
+  
   todo.querySelector(".edit").addEventListener("click", () => {
     input.value = title.textContent;
     todo.remove();
@@ -65,4 +65,3 @@ button.addEventListener("click", () => {
 
 
 
-// live-> https://cohort-3-0-tasks-z5lg.vercel.app/
