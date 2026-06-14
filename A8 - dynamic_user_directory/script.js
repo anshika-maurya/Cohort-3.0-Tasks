@@ -63,7 +63,7 @@ renderUsers();
 
 // Add / Update User
 
-btn.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const newUser = {
