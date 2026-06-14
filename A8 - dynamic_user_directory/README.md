@@ -21,7 +21,7 @@ A dynamic user directory built using **HTML**, **CSS**, and **JavaScript**. The 
 
 ## 🌐 Live Demo
 
-🔗 Live Link: https://cohort-3-0-tasks-z5lg.vercel.app/
+🔗 Live Link: https://cohort-3-0-tasks-6pjs.vercel.app/
 
 ## 📂 Project Structure
 
