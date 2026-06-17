@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <aside class="workspace">
+        <div class="logo-heading">
+          <img src="./Images/logo.png" alt="logo-img" />
+          <h1>NextTask</h1>
+        </div>
+
+        <div class="search-box">
+          <i class="ri-search-line"></i>
+          <input type="text" placeholder="Searching for..." />
+        </div>
+
+        <div class="menu-section">
+          <button class="menu-title">
+            <span>Projects</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </button>
+
+          <ul class="menu-list show sidebar-projects">
+          </ul>
+          <button class="add-project">
+            <i class="ri-add-line"></i> Add a new project
+          </button>
+        </div>
+
+        <div class="menu-section">
+          <button class="menu-title">
+            <span>Tasks</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </button>
+
+          <ul class="menu-list show task-filters">
+            <li data-filter="all">
+              All (<span class="all-count">0</span>)
+            </li>
+
+            <li data-filter="progress">
+              In Progress (<span class="progress-count">0</span>)
+            </li>
+
+            <li data-filter="completed">
+              Done (<span class="done-count">0</span>)
+            </li>
+          </ul>
+
+          <button class="add-task-menu">
+            <i class="ri-add-line"></i> Add a new task
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="top-bar">
+          <h3>Today, 24 July</h3>
+          <i class="ri-moon-line"></i>
+        </div>
+
+        <section class="banner">
+          <div class="banner-content">
+            <p class="welcome">Welcome back</p>
+
+            <h2>
+              Let's <span class="highlight">get things done</span> today.
+            </h2>
+          </div>
+
+          <div class="banner-image">
+            <img src="./Images/banner.png" alt="banner-img" />
+          </div>
+        </section>
+
+        <section class="stats">
+          <div class="stat-card">
+            <p>Total Tasks</p>
+            <h2 class="total-tasks">16</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>In Progress</p>
+            <h2 class="progress-tasks">2</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Completed</p>
+            <h2 class="completed-tasks">14</h2>
+          </div>
+        </section>
+
+        <section class="dashboard-grid">
+
+          <div class="projects-column">
+
+            <div class="section-head">
+              <h2>Recent Projects</h2>
+              <span>View All</span>
+            </div>
+
+            <div class="projects"></div>
+
+          </div>
+
+          <div class="tasks-column">
+
+
+            <div class="section-head">
+
+              <h2 class="task-heading">
+                Current Tasks (0)
+              </h2>
+
+              <span class="view-all-tasks">
+                View All
+              </span>
+
+            </div>
+
+
+            <div class="tasks"></div>
+
+          </div>
+
+        </section>
+      </main>
+    </div>
+  </main>
+  <div class="modal-overlay hidden">
+    <div class="modal">
+
+      <button class="close-modal">
+        <i class="ri-close-line"></i>
+      </button>
+
+      <h2>Add Task</h2>
+
+      <form id="task-form">
+
+        <input type="text" id="task-title" placeholder="Task Name" required>
+
+        <select id="task-project"></select>
+
+        <select id="task-status">
+          <option value="pending">Pending</option>
+          <option value="progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+
+        <button type="submit">
+          Create Task
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="project-modal-overlay hidden">
+
+    <div class="project-modal">
+
+      <button class="close-project-modal">
+        <i class="ri-close-line"></i>
+      </button>
+
+      <h2>Add Project</h2>
+
+      <form id="project-form">
+
+        <input type="text" id="project-name" placeholder="Project Name" required>
+
+        <input type="text" id="project-description" placeholder="Project Description" required>
+
+        <select id="project-color">
+          <option value="pink">Pink</option>
+          <option value="yellow">Yellow</option>
+        </select>
+
+        <button type="submit">
+          Create Project
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
