@@ -1,4 +1,8 @@
+const themeToggle =
+  document.querySelector(".theme-toggle");
+
 const menuTitles = document.querySelectorAll(".menu-title");
+
 
 menuTitles.forEach((title) => {
   title.addEventListener("click", () => {
@@ -6,6 +10,12 @@ menuTitles.forEach((title) => {
   });
 });
 
+
+const currentDate =
+  document.querySelector(".current-date");
+
+
+  
 const projectsContainer = document.querySelector(".projects");
 const tasksContainer = document.querySelector(".tasks");
 const sidebarProjects = document.querySelector(".sidebar-projects");
@@ -540,6 +550,54 @@ document.querySelector(".view-all-tasks").addEventListener("click", () => {
   renderTasks();
 });
 
+function toggleTheme() {
+
+  document.body.classList.toggle("dark");
+
+  if (
+    document.body.classList.contains("dark")
+  ) {
+
+    themeToggle.classList.remove(
+      "ri-moon-line"
+    );
+
+    themeToggle.classList.add(
+      "ri-sun-line"
+    );
+
+  } else {
+
+    themeToggle.classList.remove(
+      "ri-sun-line"
+    );
+
+    themeToggle.classList.add(
+      "ri-moon-line"
+    );
+  }
+}
+
+themeToggle.addEventListener(
+  "click",
+  toggleTheme
+);
+function showDate() {
+
+  const today = new Date();
+
+  const options = {
+    day: "numeric",
+    month: "long",
+  };
+
+  currentDate.textContent =
+    `Today, ${today.toLocaleDateString(
+      "en-GB",
+      options
+    )}`;
+}
+
 // ---------------------
 // Init
 // ---------------------
@@ -550,3 +608,4 @@ renderProjects();
 renderSidebarProjects();
 renderTasks();
 updateStats();
+showDate();
