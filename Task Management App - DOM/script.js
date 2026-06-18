@@ -1,8 +1,6 @@
-const themeToggle =
-  document.querySelector(".theme-toggle");
+const themeToggle = document.querySelector(".theme-toggle");
 
 const menuTitles = document.querySelectorAll(".menu-title");
-
 
 menuTitles.forEach((title) => {
   title.addEventListener("click", () => {
@@ -10,12 +8,8 @@ menuTitles.forEach((title) => {
   });
 });
 
+const currentDate = document.querySelector(".current-date");
 
-const currentDate =
-  document.querySelector(".current-date");
-
-
-  
 const projectsContainer = document.querySelector(".projects");
 const tasksContainer = document.querySelector(".tasks");
 const sidebarProjects = document.querySelector(".sidebar-projects");
@@ -57,10 +51,7 @@ const projectName = document.querySelector("#project-name");
 const projectDescription = document.querySelector("#project-description");
 
 const projectColor = document.querySelector("#project-color");
-
-// ---------------------
-// Data
-// ---------------------
+const bannerImg = document.querySelector("#banner-img");
 
 let projects = [
   {
@@ -101,18 +92,10 @@ let tasks = [
   },
 ];
 
-// ---------------------
-// State
-// ---------------------
-
 let selectedProject = null;
 let selectedFilter = "all";
 let searchValue = "";
 let showAllTasks = false;
-
-// ---------------------
-// Stats
-// ---------------------
 
 function updateStats() {
   totalTasks.textContent = tasks.length;
@@ -136,10 +119,6 @@ function updateStats() {
   ).length;
 }
 
-// ---------------------
-// Get Filtered Tasks
-// ---------------------
-
 function getFilteredTasks() {
   let filtered = [...tasks];
 
@@ -159,10 +138,6 @@ function getFilteredTasks() {
 
   return filtered;
 }
-
-// ---------------------
-// Render Sidebar Projects
-// ---------------------
 
 function renderSidebarProjects() {
   let html = `
@@ -189,10 +164,6 @@ function renderSidebarProjects() {
 
   sidebarProjects.innerHTML = html;
 }
-
-// ---------------------
-// Render Projects
-// ---------------------
 
 function renderProjects() {
   let html = "";
@@ -255,10 +226,6 @@ function renderProjects() {
 
   projectsContainer.innerHTML = html;
 }
-
-// ---------------------
-// Render Tasks
-// ---------------------
 
 function renderTasks() {
   const filteredTasks = getFilteredTasks();
@@ -329,8 +296,6 @@ function renderTasks() {
   tasksContainer.innerHTML = html;
 }
 
-// Populate Projects in Select
-
 function populateProjectSelect() {
   let html = "";
 
@@ -344,8 +309,6 @@ function populateProjectSelect() {
 
   taskProject.innerHTML = html;
 }
-
-// Modal Functions
 
 function openModal() {
   modalOverlay.classList.remove("hidden");
@@ -443,11 +406,8 @@ projectForm.addEventListener("submit", (e) => {
   addProject(name, description, color);
 });
 
-//model open
-
 addTaskMenuBtn.addEventListener("click", openModal);
 
-//close
 closeModalBtn.addEventListener("click", closeModal);
 
 modalOverlay.addEventListener("click", (e) => {
@@ -456,7 +416,6 @@ modalOverlay.addEventListener("click", (e) => {
   }
 });
 
-// submit form
 taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -471,10 +430,6 @@ taskForm.addEventListener("submit", (e) => {
   addTask(title, projectId, status);
 });
 
-// ---------------------
-// Search
-// ---------------------
-
 searchInput.addEventListener("input", (e) => {
   searchValue = e.target.value.toLowerCase();
 
@@ -488,10 +443,6 @@ document.addEventListener("change", (e) => {
   toggleTask(Number(checkbox.dataset.id));
 });
 
-// ---------------------
-// Filters
-// ---------------------
-
 filterContainer.addEventListener("click", (e) => {
   const filter = e.target.dataset.filter;
 
@@ -501,10 +452,6 @@ filterContainer.addEventListener("click", (e) => {
 
   renderTasks();
 });
-
-// ---------------------
-// Project Selection
-// ---------------------
 
 document.addEventListener("click", (e) => {
   const projectCard = e.target.closest(".project-card");
@@ -550,40 +497,7 @@ document.querySelector(".view-all-tasks").addEventListener("click", () => {
   renderTasks();
 });
 
-function toggleTheme() {
-
-  document.body.classList.toggle("dark");
-
-  if (
-    document.body.classList.contains("dark")
-  ) {
-
-    themeToggle.classList.remove(
-      "ri-moon-line"
-    );
-
-    themeToggle.classList.add(
-      "ri-sun-line"
-    );
-
-  } else {
-
-    themeToggle.classList.remove(
-      "ri-sun-line"
-    );
-
-    themeToggle.classList.add(
-      "ri-moon-line"
-    );
-  }
-}
-
-themeToggle.addEventListener(
-  "click",
-  toggleTheme
-);
 function showDate() {
-
   const today = new Date();
 
   const options = {
@@ -591,16 +505,33 @@ function showDate() {
     month: "long",
   };
 
-  currentDate.textContent =
-    `Today, ${today.toLocaleDateString(
-      "en-GB",
-      options
-    )}`;
+  currentDate.textContent = `Today, ${today.toLocaleDateString(
+    "en-GB",
+    options,
+  )}`;
 }
 
-// ---------------------
-// Init
-// ---------------------
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+
+  const isDark = document.body.classList.contains("dark");
+
+  if (isDark) {
+    bannerImg.src = "./Images/banner2.png";
+
+    themeToggle.classList.remove("ri-moon-line");
+
+    themeToggle.classList.add("ri-sun-line");
+  } else {
+    bannerImg.src = "./Images/banner.png";
+
+    themeToggle.classList.remove("ri-sun-line");
+
+    themeToggle.classList.add("ri-moon-line");
+  }
+}
+
+themeToggle.addEventListener("click", toggleTheme);
 
 populateProjectSelect();
 
