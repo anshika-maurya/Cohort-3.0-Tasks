@@ -53,7 +53,7 @@ const projectDescription = document.querySelector("#project-description");
 const projectColor = document.querySelector("#project-color");
 const bannerImg = document.querySelector("#banner-img");
 
-let projects = [
+let projects = JSON.parse(localStorage.getItem("projects")) || [
   {
     id: 1,
     name: "Next Task",
@@ -69,7 +69,7 @@ let projects = [
   },
 ];
 
-let tasks = [
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [
   {
     id: 1,
     projectId: 1,
@@ -96,6 +96,12 @@ let selectedProject = null;
 let selectedFilter = "all";
 let searchValue = "";
 let showAllTasks = false;
+
+function saveData() {
+  localStorage.setItem("projects", JSON.stringify(projects));
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 function updateStats() {
   totalTasks.textContent = tasks.length;
@@ -336,18 +342,17 @@ function addTask(title, projectId, status) {
     projectId: Number(projectId),
     status,
   });
-
+  saveData();
   renderProjects();
   renderSidebarProjects();
   renderTasks();
   updateStats();
-
   closeModal();
 }
 
 function deleteTask(id) {
   tasks = tasks.filter((task) => task.id !== id);
-
+  saveData();
   renderProjects();
   renderSidebarProjects();
   renderTasks();
@@ -360,7 +365,7 @@ function toggleTask(id) {
   if (!task) return;
 
   task.status = task.status === "completed" ? "pending" : "completed";
-
+  saveData();
   renderProjects();
   renderSidebarProjects();
   renderTasks();
@@ -374,7 +379,7 @@ function addProject(name, description, color) {
     description,
     color,
   });
-
+  saveData();
   renderProjects();
   renderSidebarProjects();
   populateProjectSelect();
@@ -529,9 +534,22 @@ function toggleTheme() {
 
     themeToggle.classList.add("ri-moon-line");
   }
+
+  localStorage.setItem("theme", isDark ? "dark" : "light");
 }
 
 themeToggle.addEventListener("click", toggleTheme);
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+  document.body.classList.add("dark");
+
+  bannerImg.src = "./Images/banner2.png";
+
+  themeToggle.classList.remove("ri-moon-line");
+
+  themeToggle.classList.add("ri-sun-line");
+}
 
 populateProjectSelect();
 

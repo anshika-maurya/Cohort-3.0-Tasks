@@ -14,6 +14,7 @@ Track projects, manage tasks, monitor progress, and stay productive through a cl
 * Responsive Design
 * Modal-Based Forms
 * Vanilla JavaScript CRUD Operations
+* Local Storage Persistence
 
 ### 🛠️ Tech Stack
 

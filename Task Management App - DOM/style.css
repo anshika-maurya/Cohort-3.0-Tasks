@@ -497,167 +497,131 @@ h2 {
   cursor: pointer;
 }
 
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.45);
-  backdrop-filter:blur(8px);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-}
-
-.hidden{
-  display:none;
-}
-
-.modal{
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  width:500px;
-  background-color: #fffefb;
-  border-radius:10px;
-  padding:2rem;
-  position:relative;
-  box-shadow:
-    0 20px 50px rgba(0,0,0,.12),
-    0 8px 20px rgba(0,0,0,.08);
-
-  animation:modalOpen .25s ease;
-}
-
-@keyframes modalOpen{
-
-  from{
-    opacity:0;
-    transform:translateY(20px) scale(.95);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
-
-}
-.modal h2{
-  font-size:1.5rem;
-  font-weight:700;
-  margin-bottom:1.5rem;
-  color:#201c1a;
-  
-
-}
-.close-modal{
-  margin-left: auto;
-  width:38px;
-  height:38px;
-  border:none;
-  border-radius:50%;
-  background:#f4f4f6;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:.3s;
-}
-
-
-
-.close-modal i{
-  font-size:1.2rem;
-}
-
-#task-form{
-  display:flex;
-  flex-direction:column;
-  gap:1rem;
-}
-
-#task-form input,
-#task-form select{
-
-  width:100%;
-  height:52px;
-  border:2px solid #201c1ac2;
-  border-radius:25px;
-  padding:0 1rem;
-  color: #201c1a;
-  background-color:transparent;
-  font-size:.95rem;
-  transition:.3s;
-}
-
-#task-form input:focus,
-#task-form select:focus{
-  outline:none;
-  border-color:#ff7f31;
-  background:#fff;
-  box-shadow:
-    0 0 0 4px rgba(255,127,49,.15);
-}
-
-#task-form button{
-
-  height:54px;
-  border:none;
-  border-radius:25px;
-  background:#ff7f31;
-  color:white;
-  font-size:1rem;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
-}
-
-
+.modal-overlay,
 .project-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 1000;
 }
 
+.hidden {
+  display: none;
+}
+
+.modal,
 .project-modal {
-  width: 400px;
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 18px;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  width: 500px;
+  background-color: #fffefb;
+  border-radius: 10px;
+  padding: 2rem;
+  position: relative;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.08);
+
+  animation: modalOpen 0.25s ease;
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.modal h2,
+.project-modal h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #201c1a;
+}
+.close-modal,
+.close-project-modal {
+  margin-left: auto;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #f4f4f6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.close-modal i {
+  font-size: 1.2rem;
+}
+
+#task-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.close-project-modal {
-  align-self: flex-end;
+#task-form input,
+#task-form select,
+#project-form input,
+#project-form select {
+  width: 100%;
+  height: 52px;
+  border: 2px solid #201c1ac2;
+  border-radius: 25px;
+  padding: 0 1rem;
+  color: #201c1a;
+  background-color: transparent;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+#task-form input:focus,
+#task-form select:focus {
+  outline: none;
+  border-color: #ff7f31;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(255, 127, 49, 0.15);
+}
+
+#task-form button,
+#project-form button {
+  height: 54px;
   border: none;
-  background: none;
+  border-radius: 25px;
+  background: #ff7f31;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  font-size: 1.3rem;
+  transition: 0.3s;
 }
 
 #project-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-}
-
-#project-form input,
-#project-form select {
-  padding: 0.8rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-}
-
-#project-form button {
-  padding: 0.9rem;
-  border: none;
-  border-radius: 10px;
-  background: #252e3b;
-  color: white;
-  cursor: pointer;
 }
 
 .view-all-tasks {
@@ -685,71 +649,71 @@ h2 {
 
 .dark {
   background: #292b2f;
-  color: #fffefb;
+  color: #f4f4f4;
 }
 
 .dark .workspace {
-  background-color: #1c1c1d;
-  color: #fffefb;
+  background-color: #323232;
+  color: #f4f4f4;
   border-right: 1px solid #333;
 }
 
 .dark .search-box {
   background-color: transparent;
-  border: 2px solid #fffefbf8;
-  color: #fffefb;
+  border: 2px solid #f4f4f4;
+  color: #f4f4f4;
 }
 
 .dark .search-box input {
-  color: #fffefb;
+  color: #f4f4f4;
 }
 .dark .search-box input::placeholder {
-  color: #fffefb;
+  color: #f4f4f4;
 }
 
 .dark .menu-title {
-  color: #fffefb;
+  color: #f4f4f4;
 }
 
 .dark .menu-list {
-  color: #fffefb;
+  color: #f4f4f4;
 }
 
 .dark .add-project,
 .dark .add-task-menu {
-  border: none;
-  color: #201c1a;
-  background-color: #fffefb;
+  border: 2px solid #f4f4f4;
+  color: #f4f4f4;
+  background-color: transparent;
 }
 .dark .add-project i,
 .dark .add-task-menu i {
-  background-color: #201c1a;
-  color: #fffefb;
+  background-color: #f4f4f4;
+  color: #201c1a;
+  font-weight: bold;
 }
 
 .dark .main-content {
-  background-color: #030303;
+  background-color: #000000;
 }
 
 .dark .task-card,
 .dark .modal,
 .dark .project-modal {
   background: #1c1c1d;
-  color: #fffefb;
+  color: #f4f4f4;
   border-color: #333;
 }
 .dark .top-bar {
-  color: #fffefb;
-  width: 90%;
+  color: #f4f4f4;
 }
 
 .dark .logo-heading h1 {
-  color: #fffefb;
+  color: #f4f4f4;
 }
 
 .dark .add-task-btn {
   background: #1f1f1f;
-  color: #fff;
+  color: #f4f4f4;
 }
 
 .dark .stat-card p,
@@ -763,22 +727,36 @@ h2 {
   font-size: 1.4rem;
 }
 
-.dark .banner {
-  border: 3px solid #fffefb;
-  width: 90%;
+.dark .banner-image {
+  position: absolute;
+  right: 0px;
+  top: -5px;
+  width: 99%;
+  height: 105%;
+  z-index: 1;
 }
-.dark .banner img {
-  border-radius: 15px;
+
+.dark .banner-image img {
   width: fit-content;
+  height: 100%;
+  object-fit: cover;
+  border: none;
+  border-radius: 20px;
+  transform: rotate(1deg);
+}
+
+.dark .banner {
+  border: 2px solid #f4f4f490;
+  width: 100%;
 }
 
 .dark .stat-card {
-  border-left: 3px solid #95d84d;
+  border-left: 2px solid #5a5b5a7b;
 }
 
 .dark .stat-card p,
 .dark .stat-card h2 {
-  color: #f8f8fa;
+  color: #f4f4f4;
 }
 
 .dark .pink {
@@ -786,7 +764,7 @@ h2 {
 }
 
 .dark .yellow {
-  background: #ff4633;
+  background: #f0a06d;
 }
 .dark .projects-column {
   color: #fffefb;
@@ -795,54 +773,60 @@ h2 {
   color: #fffefb;
 }
 
-
 .dark .pending {
-  background: #f1b7c9;
-  color: #111;
+  background: #eaaf50;
+
   font-weight: 700;
 }
 
 .dark .status.progress {
-  background: #a18113;
+  background: #616f39;
 }
 
 .dark .completed {
   background: #3f51b6;
 }
 
+.dark .pending .dot {
+  background: #fbb4a5;
+}
+
 .dark .delete-btn {
   background-color: transparent;
   color: #fffefbe7;
 }
-.dark .modal{
+.dark .modal,
+.dark .project-modal {
   background-color: #030303;
 }
 
-
-.dark .modal h2{
-  color:#fffefb;
+.dark .modal h2,
+.dark .project-modal h2 {
+  color: #f4f4f4;
 }
 
 .dark #task-form input,
-.dark #task-form select{
-  border:3px solid #fffefb;
-  border-radius:25px;
+.dark #task-form select,
+.dark #project-form input,
+.dark #project-form select {
+  border: 3px solid #f4f4f4;
+  border-radius: 25px;
   color: #fffefb;
   background-color: transparent;
 }
 
 .dark #task-form input:focus,
-.dark #task-form select:focus{
-  outline:none;
-  border-color:#3F51B6;
+.dark #task-form select:focus {
+  outline: none;
+  border-color: #3f51b6;
   background: #030303;
-  box-shadow:
-    0 0 0 4px rgba(31, 104, 205, 0.15);
+  box-shadow: 0 0 0 4px rgba(31, 104, 205, 0.15);
 }
 
-.dark #task-form button{
-  background:#3F51B6;
-  color:white;
+.dark #task-form button,
+.dark #project-form button {
+  background: #3f51b6;
+  color: #f4f4f4;
 }
 
 .add-task-btn:hover,
@@ -874,7 +858,10 @@ body,
   }
 
   .banner-image {
-    width: 101%;
+    width: 100%;
+  }
+  .banner-content h2 {
+    font-size: 1.9rem;
   }
 }
 
@@ -989,6 +976,9 @@ body,
   .banner-content h2 {
     font-size: 1.25rem;
   }
+  .dark .banner-content h2 {
+    color: #f4f4f4;
+  }
 
   .section-head h2 {
     font-size: 1.5rem;
@@ -997,12 +987,9 @@ body,
   .banner-image {
     display: none;
   }
-  
 
-  .modal{
-    width:92%;
-    padding:1.5rem;
+  .modal {
+    width: 92%;
+    padding: 1.5rem;
   }
-
 }
-
