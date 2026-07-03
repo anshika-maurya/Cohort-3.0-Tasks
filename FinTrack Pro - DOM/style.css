@@ -37,7 +37,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #f4f7f6;
-  display: none;
+  /* display: none; */
 }
 form {
   height: 400px;
@@ -85,7 +85,8 @@ form p span {
 .dashboard {
   width: 100%;
   height: 100%;
-  display: flex;
+  /* display: flex; */
+  display: none;
 }
 aside {
   height: 100%;
@@ -127,16 +128,11 @@ aside {
   flex-direction: column;
   gap: 2.5rem;
 }
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
 .content button,
 .add-transaction {
   border: none;
   color: gray;
-  background-color: transparent;
+  background: transparent;
   text-align: left;
   font-size: 1.05rem;
   padding: 0.7rem;
@@ -144,11 +140,8 @@ aside {
   width: 210px;
   cursor: pointer;
 }
-.content button i,
-.add-transaction i {
-  font-size: 1.2rem;
-}
-.content button {
+
+.content button.active {
   color: #1e40af;
   background-color: #dbeafe;
 }
@@ -502,6 +495,7 @@ tbody td {
 .settings-header p {
   font-size: 1rem;
   color: var(--grey-color);
+  margin-bottom: 1rem;
 }
 
 .settings-card {
@@ -617,14 +611,12 @@ tbody td {
   border-radius: 18px;
   padding: 30px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
- 
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
 
 .modal-header h2 {
@@ -634,7 +626,6 @@ tbody td {
 }
 
 .close-btn {
-  
   border: none;
   background: none;
   cursor: pointer;
@@ -660,12 +651,12 @@ tbody td {
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: .7rem 1rem;
+  padding: 0.7rem 1rem;
   border: 1px solid #d9dee7;
   border-radius: 10px;
   outline: none;
-  background: #F8F9FB;
-  font-size: .9rem;
+  background: #f8f9fb;
+  font-size: 0.9rem;
   transition: 0.2s;
 }
 
@@ -691,7 +682,7 @@ tbody td {
   border-radius: 10px;
   background: var(--primary-black-color);
   color: var(--primary-white-color);
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.25s;
@@ -700,7 +691,230 @@ tbody td {
 .save-btn:hover {
   background: #1f2937;
 }
+.food {
+  background: #fef3c7;
+  color: #92400e;
+}
 
+.shopping {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.salary {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.recharge-bills {
+  background: #f3e8ff;
+  color: #7c3aed;
+}
+
+/* dark mode */
+
+body.dark-mode {
+  background: #111827;
+  color: #f9fafb;
+}
+
+body.dark-mode aside {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+body.dark-mode .logo-title h3,
+body.dark-mode .logo-title p,
+body.dark-mode .content button {
+  color: #f9fafb;
+}
+
+body.dark-mode .add-transaction {
+  background-color: #f9fafb;
+  color: #000000;
+}
+
+body.dark-mode .content button.active {
+  background: #2563eb;
+  color: white;
+}
+
+body.dark-mode nav {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+body.dark-mode nav button,
+body.dark-mode .user-name {
+  color: white;
+  border-color: #374151;
+}
+
+body.dark-mode main,
+body.dark-mode .settings-page {
+  background: #111827;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode label,
+body.dark-mode strong {
+  color: white;
+}
+
+body.dark-mode p {
+  color: #cbd5e1;
+}
+
+body.dark-mode .card,
+body.dark-mode .chart-card,
+body.dark-mode .transactions,
+body.dark-mode .preference-card,
+body.dark-mode .settings-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+body.dark-mode .chart-wrapper {
+  background: #111827;
+}
+
+body.dark-mode .search-box {
+  background: #374151;
+}
+
+body.dark-mode .search-box input {
+  background: transparent;
+  color: white;
+}
+
+body.dark-mode .search-box input::placeholder {
+  color: #94a3b8;
+}
+
+/* Select */
+
+body.dark-mode select,
+body.dark-mode input {
+  background: #374151;
+  color: white;
+  border-color: #4b5563;
+}
+
+body.dark-mode input::placeholder {
+  color: #94a3b8;
+}
+
+body.dark-mode table {
+  background: #1f2937;
+}
+
+body.dark-mode thead th {
+  color: #cbd5e1;
+}
+
+body.dark-mode tbody td {
+  color: #f9fafb;
+  border-color: #374151;
+}
+
+body.dark-mode .category {
+  background: #374151;
+  color: white;
+}
+
+body.dark-mode .modal-box {
+  background: #1f2937;
+}
+
+body.dark-mode .modal-header h2 {
+  color: white;
+}
+
+body.dark-mode .close-btn i {
+  color: white;
+}
+
+body.dark-mode nav button {
+  border-color: #4b5563;
+}
+
+body.dark-mode nav button:hover {
+  background: #374151;
+}
+
+body.dark-mode .reset-btn {
+  background: #3b1d1da3;
+  border-color: #7f1d1d;
+}
+
+body.dark-mode .save-btn {
+  background: #2563eb;
+}
+
+body.dark-mode .save-btn:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode .form-container {
+  background: #111827;
+}
+
+body.dark-mode form {
+  background: #1f2937;
+  border: 1px solid #374151;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+body.dark-mode form h2 {
+  color: #f9fafb;
+}
+
+body.dark-mode #heading {
+  color: #cbd5e1;
+}
+
+body.dark-mode .input-fields label {
+  color: #f9fafb;
+}
+
+body.dark-mode .input-fields input {
+  background: #374151;
+  border: 1px solid #4b5563;
+  color: #f9fafb;
+}
+
+body.dark-mode .input-fields input::placeholder {
+  color: #94a3b8;
+}
+
+body.dark-mode .input-fields input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+body.dark-mode form button {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+body.dark-mode form button:hover {
+  background: #1d4ed8;
+}
+
+body.dark-mode #register {
+  color: #cbd5e1;
+}
+
+body.dark-mode #register span {
+  color: #60a5fa;
+}
+
+body.dark-mode #register span:hover {
+  color: #93c5fd;
+}
 @media (max-width: 600px) {
   .modal-box {
     width: 92%;
