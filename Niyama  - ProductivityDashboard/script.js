@@ -4,10 +4,35 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   initClock();
+
   initThemeToggle();
+
   initQuoteRefresh();
+
+  initTasksPage();
+
+  initPlannerPage();
+
+  initFocusPage();
+
+  initGoalsPage();
+
+  initSettingsPage();
 });
 
+function hideAllPages() {
+  document.getElementById("dashboardPage")?.classList.add("hidden");
+
+  document.getElementById("tasksPage")?.classList.add("hidden");
+
+  document.getElementById("plannerPage")?.classList.add("hidden");
+
+  document.getElementById("focusPage")?.classList.add("hidden");
+
+  document.getElementById("goalsPage")?.classList.add("hidden");
+
+  document.getElementById("settingsPage")?.classList.add("hidden");
+}
 /* --- Live clock -------------------------------------------------------- */
 
 function initClock() {
@@ -60,6 +85,22 @@ function initThemeToggle() {
     }
   });
 }
+
+// function hideAllPages(){
+
+//     document.getElementById("dashboardPage")?.classList.add("hidden");
+
+//     document.getElementById("tasksPage")?.classList.add("hidden");
+
+//     document.getElementById("plannerPage")?.classList.add("hidden");
+
+//     document.getElementById("focusPage")?.classList.add("hidden");
+
+//     document.getElementById("goalsPage")?.classList.add("hidden");
+
+//     document.getElementById("settingsPage")?.classList.add("hidden");
+
+// }
 
 /* --- Motivational quote refresh ----------------------------------------- */
 
@@ -118,13 +159,6 @@ function initQuoteRefresh() {
    Settings Page
 ========================================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-  initSettingsPage();
-  initProfilePreview();
-  initSaveProfile();
-  initResetModal();
-});
-
 /* --------------------------------------------------------------------------
    Show / Hide Settings Page
 --------------------------------------------------------------------------- */
@@ -140,8 +174,9 @@ function initSettingsPage() {
   function showSettings() {
     if (!dashboard || !settings) return;
 
-    dashboard.classList.add("hidden");
-    settings.classList.remove("hidden");
+    hideAllPages();
+
+    document.getElementById("settingsPage")?.classList.remove("hidden");
 
     window.scrollTo({
       top: 0,
@@ -152,8 +187,9 @@ function initSettingsPage() {
   function showDashboard() {
     if (!dashboard || !settings) return;
 
-    settings.classList.add("hidden");
-    dashboard.classList.remove("hidden");
+    hideAllPages();
+
+    document.getElementById("dashboardPage")?.classList.remove("hidden");
 
     window.scrollTo({
       top: 0,
@@ -260,22 +296,12 @@ function initResetModal() {
     closeModal();
 
     alert("All data has been reset.");
-
-    // Future:
-    // localStorage.clear();
-    // tasks = [];
-    // goals = [];
-    // planner = [];
   });
 }
 
 /* ==========================================================================
    Tasks Page
 ========================================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-  initTasksPage();
-});
 
 /* --------------------------------------------------------------------------
    Task Data
@@ -336,8 +362,9 @@ function initTasksPage() {
   function showTasks(e) {
     e.preventDefault();
 
-    dashboard.classList.add("hidden");
-    tasksPage.classList.remove("hidden");
+    hideAllPages();
+
+    document.getElementById("tasksPage")?.classList.remove("hidden");
 
     window.scrollTo({
       top: 0,
@@ -556,10 +583,8 @@ function saveTasks() {
 
 const HOURS = [];
 
-for(let i=0;i<24;i++){
-
-    HOURS.push(i);
-
+for (let i = 0; i < 24; i++) {
+  HOURS.push(i);
 }
 
 /* --------------------------------------------------------------------------
@@ -623,10 +648,6 @@ let plannerNotes;
    Initialize
 --------------------------------------------------------------------------- */
 
-document.addEventListener("DOMContentLoaded", () => {
-  initPlannerPage();
-});
-
 function initPlannerPage() {
   plannerPage = document.getElementById("plannerPage");
 
@@ -688,35 +709,28 @@ function bindPlannerEvents() {
 --------------------------------------------------------------------------- */
 
 function showPlanner(e) {
+  e?.preventDefault();
 
-    e?.preventDefault();
+  hideAllPages();
 
-    dashboardPage.classList.add("hidden");
-    plannerPage.classList.remove("hidden");
+  document.getElementById("plannerPage")?.classList.remove("hidden");
 
-    updatePlannerDate();
-    loadPlannerNotes();
+  updatePlannerDate();
+  loadPlannerNotes();
 
-    renderTimeline();
-   updateNowLine();
-    requestAnimationFrame(() => {
+  renderTimeline();
+  updateNowLine();
+  requestAnimationFrame(() => {
+    const currentHour = new Date().getHours();
 
-        const currentHour = new Date().getHours();
+    const row = timeline.querySelector(`[data-hour="${currentHour}"]`);
 
-        const row = timeline.querySelector(
-            `[data-hour="${currentHour}"]`
-        );
+    row?.scrollIntoView({
+      behavior: "smooth",
 
-        row?.scrollIntoView({
-
-            behavior: "smooth",
-
-            block: "center"
-
-        });
-
+      block: "center",
     });
-
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -735,14 +749,12 @@ function hidePlanner() {
    Planner Modal
 --------------------------------------------------------------------------- */
 
-function openPlannerModal(){
+function openPlannerModal() {
+  editingPlannerId = null;
 
-    editingPlannerId = null;
+  clearPlannerForm();
 
-    clearPlannerForm();
-
-    plannerModal.classList.remove("hidden");
-
+  plannerModal.classList.remove("hidden");
 }
 
 function closePlannerModal() {
@@ -957,20 +969,16 @@ function createEmptyRow(hour) {
    Format Hour
 --------------------------------------------------------------------------- */
 
-function formatHour(hour){
+function formatHour(hour) {
+  const suffix = hour >= 12 ? "PM" : "AM";
 
-    const suffix = hour >= 12 ? "PM" : "AM";
+  let h = hour % 12;
 
-    let h = hour % 12;
+  if (h === 0) {
+    h = 12;
+  }
 
-    if(h===0){
-
-        h=12;
-
-    }
-
-    return `${h}:00 ${suffix}`;
-
+  return `${h}:00 ${suffix}`;
 }
 /* --------------------------------------------------------------------------
    Event Badge
@@ -1095,12 +1103,7 @@ function handleTimelineClick(e) {
 }
 
 function savePlannerEvents() {
-
-    localStorage.setItem(
-        "niyamaPlannerEvents",
-        JSON.stringify(plannerEvents)
-    );
-
+  localStorage.setItem("niyamaPlannerEvents", JSON.stringify(plannerEvents));
 }
 
 /* --------------------------------------------------------------------------
@@ -1141,25 +1144,13 @@ function stopFocus(id) {
    Save Planner Event
 --------------------------------------------------------------------------- */
 
-document
-.getElementById("savePlannerEvent")
-.addEventListener("click",()=>{
-
-    if(editingPlannerId){
-
-        updatePlannerEvent();
-
-    }
-
-    else{
-
-        savePlannerEvent();
-
-    }
-
+document.getElementById("savePlannerEvent").addEventListener("click", () => {
+  if (editingPlannerId) {
+    updatePlannerEvent();
+  } else {
+    savePlannerEvent();
+  }
 });
-
-
 
 /* --------------------------------------------------------------------------
    Edit Planner Event
@@ -1292,18 +1283,16 @@ function savePlannerEvent() {
    Clear Form
 --------------------------------------------------------------------------- */
 
-function clearPlannerForm(){
+function clearPlannerForm() {
+  document.getElementById("plannerModalTitle").textContent = "Add Event";
 
-    document.getElementById("plannerModalTitle").textContent="Add Event";
+  document.getElementById("eventTitle").value = "";
 
-    document.getElementById("eventTitle").value="";
+  document.getElementById("eventDescription").value = "";
 
-    document.getElementById("eventDescription").value="";
+  document.getElementById("eventStatus").value = "scheduled";
 
-    document.getElementById("eventStatus").value="scheduled";
-
-    document.getElementById("eventHour").selectedIndex=0;
-
+  document.getElementById("eventHour").selectedIndex = 0;
 }
 /* --------------------------------------------------------------------------
    Populate Hours
@@ -1332,36 +1321,30 @@ function populateHourSelect() {
 --------------------------------------------------------------------------- */
 
 function updateNowLine() {
-
   const timeline = document.getElementById("timeline");
-    const nowLine = document.getElementById("nowLine");
+  const nowLine = document.getElementById("nowLine");
 
-    if (!timeline || !nowLine) return;
+  if (!timeline || !nowLine) return;
 
-    const currentHour = new Date().getHours();
+  const currentHour = new Date().getHours();
 
-    const currentMinute = new Date().getMinutes();
+  const currentMinute = new Date().getMinutes();
 
-    const row = timeline.querySelector(
-        `[data-hour="${currentHour}"]`
-    );
+  const row = timeline.querySelector(`[data-hour="${currentHour}"]`);
 
-    if (!row) {
+  if (!row) {
+    nowLine.style.display = "none";
 
-        nowLine.style.display = "none";
+    return;
+  }
 
-        return;
+  nowLine.style.display = "block";
 
-    }
+  const rowTop = row.offsetTop;
 
-    nowLine.style.display = "block";
+  const rowHeight = row.offsetHeight;
 
-    const rowTop = row.offsetTop;
-
-    const rowHeight = row.offsetHeight;
-
-    nowLine.style.top = `${rowTop + rowHeight / 2}px`;
-
+  nowLine.style.top = `${rowTop + rowHeight / 2}px`;
 }
 
 /* --------------------------------------------------------------------------
@@ -1484,3 +1467,1113 @@ deletePlannerModal?.addEventListener("click", (e) => {
 refreshPlanner();
 
 console.log("Planner Loaded Successfully");
+
+/* ==========================================================================
+   FOCUS TIMER
+========================================================================== */
+
+/* -------------------------------------------------------
+   Focus Variables
+------------------------------------------------------- */
+
+let focusPage;
+let focusTimer;
+
+let timerDisplay;
+let timerStatus;
+let progressCircle;
+
+let playPauseBtn;
+let playPauseIcon;
+
+let resetBtn;
+let skipBtn;
+
+let focusTabs;
+
+let currentMode = "focus";
+
+let isRunning = false;
+
+let timer = null;
+
+/* -------------------------------------------------------
+   Default Durations
+------------------------------------------------------- */
+
+let durations = {
+  focus: 25,
+
+  short: 5,
+
+  long: 15,
+};
+
+let totalSeconds = durations.focus * 60;
+
+let remainingSeconds = totalSeconds;
+
+let completedSessions = Number(localStorage.getItem("focusSessions")) || 0;
+
+let focusedMinutes = Number(localStorage.getItem("focusMinutes")) || 0;
+
+/* -------------------------------------------------------
+   Initialize
+------------------------------------------------------- */
+
+function initFocusPage() {
+  focusPage = document.getElementById("focusPage");
+
+  timerDisplay = document.getElementById("timerDisplay");
+
+  timerStatus = document.getElementById("timerStatus");
+
+  progressCircle = document.getElementById("progressCircle");
+  progressCircle.style.strokeDasharray = PROGRESS_LENGTH;
+
+  playPauseBtn = document.getElementById("playPauseTimer");
+
+  playPauseIcon = document.getElementById("playPauseIcon");
+
+  resetBtn = document.getElementById("resetTimer");
+
+  skipBtn = document.getElementById("skipTimer");
+
+  focusTabs = document.querySelectorAll(".focus-tab");
+
+  bindFocusEvents();
+
+  restoreFocusData();
+
+  refreshFocusUI();
+
+  updateTimerDisplay();
+
+  console.log("Focus Timer Loaded");
+}
+/* -------------------------------------------------------
+   Event Listeners
+------------------------------------------------------- */
+
+function bindFocusEvents() {
+  const openFocusCard = document.getElementById("openFocusCard");
+
+  const openFocus = document.getElementById("openFocus");
+
+  const openFocusMobile = document.getElementById("openFocusMobile");
+
+  const backBtn = document.getElementById("backFromFocus");
+
+  openFocusCard?.addEventListener("click", showFocusPage);
+
+  openFocus?.addEventListener("click", showFocusPage);
+
+  openFocusMobile?.addEventListener("click", showFocusPage);
+
+  backBtn?.addEventListener("click", hideFocusPage);
+
+  playPauseBtn?.addEventListener("click", toggleTimer);
+
+  resetBtn?.addEventListener("click", resetTimer);
+
+  skipBtn?.addEventListener("click", skipTimer);
+
+  focusTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      switchMode(tab.dataset.mode);
+    });
+  });
+}
+
+/* -------------------------------------------------------
+   Open Focus Page
+------------------------------------------------------- */
+
+function showFocusPage(e) {
+  e?.preventDefault();
+
+  hideAllPages();
+
+  document.getElementById("focusPage")?.classList.remove("hidden");
+
+  updateTimerDisplay();
+
+  updateProgressRing();
+
+  loadFocusStats();
+
+  window.scrollTo({
+    top: 0,
+
+    behavior: "smooth",
+  });
+}
+
+/* -------------------------------------------------------
+   Back To Dashboard
+------------------------------------------------------- */
+
+function hideFocusPage() {
+  focusPage.classList.add("hidden");
+
+  dashboardPage.classList.remove("hidden");
+}
+
+/* -------------------------------------------------------
+   Load Stats
+------------------------------------------------------- */
+
+function loadFocusStats() {
+  document.getElementById("sessionCount").textContent = completedSessions;
+
+  document.getElementById("focusHours").textContent = (
+    focusedMinutes / 60
+  ).toFixed(1);
+}
+
+/* -------------------------------------------------------
+   Toggle Timer
+------------------------------------------------------- */
+
+function toggleTimer() {
+  if (isRunning) {
+    pauseTimer();
+  } else {
+    startTimer();
+  }
+}
+
+/* -------------------------------------------------------
+   Start Timer
+------------------------------------------------------- */
+
+function startTimer() {
+  if (isRunning) return;
+
+  isRunning = true;
+
+  playPauseIcon.textContent = "pause";
+
+  timer = setInterval(() => {
+    if (remainingSeconds <= 0) {
+      completeSession();
+      return;
+    }
+
+    remainingSeconds--;
+
+    updateTimerDisplay();
+    updateProgressRing();
+  }, 1000);
+}
+
+/* -------------------------------------------------------
+   Pause Timer
+------------------------------------------------------- */
+
+function pauseTimer() {
+  clearInterval(timer);
+
+  timer = null;
+
+  isRunning = false;
+
+  playPauseIcon.textContent = "play_arrow";
+}
+
+/* -------------------------------------------------------
+   Reset Timer
+------------------------------------------------------- */
+
+function resetTimer() {
+  pauseTimer();
+
+  remainingSeconds = totalSeconds;
+
+  updateTimerDisplay();
+
+  updateProgressRing();
+
+  switchMode(currentMode);
+}
+
+/* -------------------------------------------------------
+   Skip Timer
+------------------------------------------------------- */
+
+function skipTimer() {
+  pauseTimer();
+
+  if (currentMode === "focus") {
+    switchMode("short");
+  } else if (currentMode === "short") {
+    switchMode("long");
+  } else {
+    switchMode("focus");
+  }
+}
+
+/* -------------------------------------------------------
+   Timer Display
+------------------------------------------------------- */
+
+function updateTimerDisplay() {
+  const minutes = Math.floor(remainingSeconds / 60);
+
+  const seconds = remainingSeconds % 60;
+
+  timerDisplay.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+/* -------------------------------------------------------
+   Progress Ring
+------------------------------------------------------- */
+
+const PROGRESS_RADIUS = 160;
+const PROGRESS_LENGTH = 2 * Math.PI * PROGRESS_RADIUS;
+
+function updateProgressRing() {
+  const progress = remainingSeconds / totalSeconds;
+
+  const offset = PROGRESS_LENGTH - progress * PROGRESS_LENGTH;
+
+  progressCircle.style.strokeDashoffset = offset;
+}
+
+/* -------------------------------------------------------
+   Complete Session
+------------------------------------------------------- */
+
+function completeSession() {
+  pauseTimer();
+
+  remainingSeconds = 0;
+
+  updateTimerDisplay();
+
+  updateProgressRing();
+
+  if (currentMode === "focus") {
+    completedSessions++;
+
+    focusedMinutes += durations.focus;
+
+    saveFocusStats();
+
+    loadFocusStats();
+
+    alert("🎉 Focus Session Completed!");
+
+    switchMode("short");
+  } else if (currentMode === "short") {
+    alert("☕ Break Finished!");
+
+    switchMode("focus");
+  } else {
+    alert("🌿 Long Break Finished!");
+
+    switchMode("focus");
+  }
+}
+
+/* -------------------------------------------------------
+   Save Stats
+------------------------------------------------------- */
+
+function saveFocusStats() {
+  localStorage.setItem(
+    "focusSessions",
+
+    completedSessions,
+  );
+
+  localStorage.setItem(
+    "focusMinutes",
+
+    focusedMinutes,
+  );
+}
+/* -------------------------------------------------------
+   Switch Timer Mode
+------------------------------------------------------- */
+
+function switchMode(mode) {
+  pauseTimer();
+
+  currentMode = mode;
+
+  focusTabs.forEach((tab) => {
+    tab.classList.toggle(
+      "active",
+
+      tab.dataset.mode === mode,
+    );
+  });
+
+  switch (mode) {
+    case "focus":
+      totalSeconds = durations.focus * 60;
+
+      timerStatus.textContent = "TIME TO FOCUS";
+
+      break;
+
+    case "short":
+      totalSeconds = durations.short * 60;
+
+      timerStatus.textContent = "SHORT BREAK";
+
+      break;
+
+    case "long":
+      totalSeconds = durations.long * 60;
+
+      timerStatus.textContent = "LONG BREAK";
+
+      break;
+  }
+
+  remainingSeconds = totalSeconds;
+
+  updateTimerDisplay();
+
+  updateProgressRing();
+}
+
+/* -------------------------------------------------------
+   Duration Buttons
+------------------------------------------------------- */
+
+document.querySelectorAll(".duration-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const type = btn.dataset.type;
+
+    const action = btn.dataset.action;
+
+    changeDuration(type, action);
+  });
+});
+
+/* -------------------------------------------------------
+   Change Duration
+------------------------------------------------------- */
+
+function changeDuration(type, action) {
+  const step = type === "focus" ? 5 : 1;
+
+  if (action === "increase") {
+    durations[type] += step;
+  } else {
+    durations[type] = Math.max(
+      step,
+
+      durations[type] - step,
+    );
+  }
+  saveDurations();
+
+  document.getElementById(`${type}Duration`).textContent = durations[type];
+
+  if (currentMode === type) {
+    totalSeconds = durations[type] * 60;
+
+    remainingSeconds = totalSeconds;
+
+    updateTimerDisplay();
+
+    updateProgressRing();
+  }
+}
+
+/* -------------------------------------------------------
+   Update Active Tab
+------------------------------------------------------- */
+
+function updateActiveTab() {
+  focusTabs.forEach((tab) => {
+    tab.classList.toggle(
+      "active",
+
+      tab.dataset.mode === currentMode,
+    );
+  });
+}
+
+/* -------------------------------------------------------
+   Ambient Background
+------------------------------------------------------- */
+
+function updateFocusTheme() {
+  const page = document.getElementById("focusPage");
+
+  if (!page) return;
+
+  page.classList.remove("mode-focus", "mode-short", "mode-long");
+
+  page.classList.add(`mode-${currentMode}`);
+}
+
+/* -------------------------------------------------------
+   Timer Finished
+------------------------------------------------------- */
+
+function playNotification() {
+  try {
+    const audio = new Audio("assets/sounds/notification.mp3");
+
+    audio.play();
+  } catch (error) {
+    console.log("Notification sound not found.");
+  }
+}
+
+/* -------------------------------------------------------
+   Auto Continue
+------------------------------------------------------- */
+
+function autoNextMode() {
+  if (currentMode === "focus") {
+    playNotification();
+
+    autoNextMode();
+    // switchMode("short");
+  } else if (currentMode === "short") {
+    switchMode("focus");
+  } else {
+    switchMode("focus");
+  }
+}
+
+/* -------------------------------------------------------
+   Update UI
+------------------------------------------------------- */
+
+function refreshFocusUI() {
+  updateTimerDisplay();
+
+  updateProgressRing();
+
+  updateActiveTab();
+
+  updateFocusTheme();
+}
+
+/* -------------------------------------------------------
+   Save Durations
+------------------------------------------------------- */
+
+function saveDurations() {
+  localStorage.setItem(
+    "focusDurations",
+
+    JSON.stringify(durations),
+  );
+}
+
+/* -------------------------------------------------------
+   Load Durations
+------------------------------------------------------- */
+
+function loadDurations() {
+  const saved = JSON.parse(localStorage.getItem("focusDurations"));
+
+  if (!saved) return;
+
+  durations = saved;
+
+  document.getElementById("focusDuration").textContent = durations.focus;
+
+  document.getElementById("shortDuration").textContent = durations.short;
+
+  document.getElementById("longDuration").textContent = durations.long;
+}
+/* -------------------------------------------------------
+   Keyboard Shortcut
+------------------------------------------------------- */
+
+document.addEventListener("keydown", (e) => {
+  if (focusPage.classList.contains("hidden")) return;
+
+  if (e.code === "Space") {
+    e.preventDefault();
+
+    toggleTimer();
+  }
+});
+
+/* -------------------------------------------------------
+   Restore Focus Data
+------------------------------------------------------- */
+
+function restoreFocusData() {
+  loadDurations();
+
+  loadFocusStats();
+
+  switchMode(currentMode);
+}
+
+/* -------------------------------------------------------
+   Reset Daily Stats
+------------------------------------------------------- */
+
+function resetFocusStats() {
+  completedSessions = 0;
+
+  focusedMinutes = 0;
+
+  saveFocusStats();
+
+  loadFocusStats();
+}
+
+/* -------------------------------------------------------
+   Page Cleanup
+------------------------------------------------------- */
+
+function cleanupFocusTimer() {
+  pauseTimer();
+}
+
+/* -------------------------------------------------------
+   Window Events
+------------------------------------------------------- */
+
+window.addEventListener("beforeunload", () => {
+  saveDurations();
+
+  saveFocusStats();
+});
+
+/* ==========================================================================
+   DAILY GOALS
+========================================================================== */
+
+/* -------------------------------------------------------
+   DOM Elements
+------------------------------------------------------- */
+
+let goalsPage;
+
+let goalInput;
+
+let addGoalBtn;
+
+let goalList;
+
+let goalProgressCircle;
+
+let goalProgressText;
+
+let goalMotivation;
+
+let goals = [];
+
+/* -------------------------------------------------------
+   Initialize
+------------------------------------------------------- */
+
+function initGoalsPage() {
+  goalsPage = document.getElementById("goalsPage");
+
+  goalInput = document.getElementById("goalInput");
+
+  addGoalBtn = document.getElementById("addGoalBtn");
+
+  goalList = document.getElementById("goalList");
+
+  goalProgressCircle = document.getElementById("goalProgressCircle");
+
+  goalProgressText = document.getElementById("goalProgressText");
+
+  goalMotivation = document.getElementById("goalMotivation");
+
+  bindGoalEvents();
+  setupGoalRing();
+
+  initializeGoals();
+
+  loadGoals();
+}
+
+/* -------------------------------------------------------
+   Navigation
+------------------------------------------------------- */
+
+function bindGoalEvents() {
+  document
+    .getElementById("openGoalsCard")
+    ?.addEventListener("click", showGoalsPage);
+
+  document
+    .getElementById("openGoals")
+    ?.addEventListener("click", showGoalsPage);
+
+  document
+    .getElementById("backFromGoals")
+    ?.addEventListener("click", hideGoalsPage);
+}
+
+/* -------------------------------------------------------
+   Open Goals Page
+------------------------------------------------------- */
+
+function showGoalsPage(e) {
+  e?.preventDefault();
+
+  hideAllPages();
+
+  document.getElementById("goalsPage")?.classList.remove("hidden");
+
+  loadGoals();
+}
+
+/* -------------------------------------------------------
+   Back To Dashboard
+------------------------------------------------------- */
+
+function hideGoalsPage() {
+  document.getElementById("goalsPage")?.classList.add("hidden");
+
+  document.getElementById("dashboardPage")?.classList.remove("hidden");
+}
+/* -------------------------------------------------------
+   Local Storage
+------------------------------------------------------- */
+
+const GOALS_KEY = "niyamaDailyGoals";
+
+/* -------------------------------------------------------
+   Default Goals
+------------------------------------------------------- */
+
+const defaultGoals = [
+  {
+    id: Date.now() + 1,
+    title: "Review quarterly marketing strategy",
+    completed: false,
+  },
+
+  {
+    id: Date.now() + 2,
+    title: "Complete focus timer for 4 sessions",
+    completed: true,
+  },
+
+  {
+    id: Date.now() + 3,
+    title: "Clean up email inbox",
+    completed: true,
+  },
+];
+
+/* -------------------------------------------------------
+   Load Goals
+------------------------------------------------------- */
+
+function loadGoals() {
+  const saved = localStorage.getItem(GOALS_KEY);
+
+  if (saved) {
+    goals = JSON.parse(saved);
+  } else {
+    goals = [...defaultGoals];
+
+    saveGoals();
+  }
+
+  renderGoals();
+
+  updateGoalProgress();
+}
+
+/* -------------------------------------------------------
+   Save Goals
+------------------------------------------------------- */
+
+function saveGoals() {
+  localStorage.setItem(
+    GOALS_KEY,
+
+    JSON.stringify(goals),
+  );
+}
+
+/* -------------------------------------------------------
+   Progress Ring Setup
+------------------------------------------------------- */
+
+const GOAL_RADIUS = 110;
+
+const GOAL_CIRCUMFERENCE = 2 * Math.PI * GOAL_RADIUS;
+
+function setupGoalRing() {
+  if (!goalProgressCircle) return;
+
+  goalProgressCircle.style.strokeDasharray = GOAL_CIRCUMFERENCE;
+
+  goalProgressCircle.style.strokeDashoffset = GOAL_CIRCUMFERENCE;
+}
+
+/* -------------------------------------------------------
+   Render Goals
+------------------------------------------------------- */
+
+function renderGoals() {
+  if (!goalList) return;
+
+  goalList.innerHTML = "";
+
+  goals.forEach((goal) => {
+    const article = document.createElement("article");
+
+    article.className = `goal-item ${goal.completed ? "completed" : ""}`;
+
+    article.dataset.id = goal.id;
+
+    article.innerHTML = `
+
+            <button class="goal-check ${goal.completed ? "checked" : ""}">
+
+                <span class="material-symbols-outlined">
+
+                    check
+
+                </span>
+
+            </button>
+
+            <div class="goal-info">
+
+                <h4>
+
+                    ${goal.title}
+
+                </h4>
+
+            </div>
+
+            <button class="goal-delete">
+
+                <span class="material-symbols-outlined">
+
+                    delete
+
+                </span>
+
+            </button>
+
+        `;
+
+    goalList.appendChild(article);
+  });
+}
+
+/* -------------------------------------------------------
+   Progress
+------------------------------------------------------- */
+
+function updateGoalProgress() {
+  if (!goalProgressText || !goalProgressCircle || !goalMotivation) return;
+  const total = goals.length;
+
+  const completed = goals.filter((goal) => goal.completed).length;
+
+  goalProgressText.textContent = `${completed}/${total}`;
+
+  const progress = total === 0 ? 0 : completed / total;
+
+  const offset = GOAL_CIRCUMFERENCE - progress * GOAL_CIRCUMFERENCE;
+
+  goalProgressCircle.style.strokeDashoffset = offset;
+
+  updateMotivation(completed, total);
+}
+
+/* -------------------------------------------------------
+   Motivation
+------------------------------------------------------- */
+
+function updateMotivation(completed, total) {
+  if (total === 0) {
+    goalMotivation.textContent = "Start by adding your first goal.";
+
+    return;
+  }
+
+  if (completed === total) {
+    goalMotivation.textContent = "🎉 Amazing! All your goals are completed.";
+
+    return;
+  }
+
+  if (completed >= total / 2) {
+    goalMotivation.textContent = "🔥 Great progress! Keep going.";
+
+    return;
+  }
+
+  goalMotivation.textContent = "You're making great progress today!";
+}
+
+/* -------------------------------------------------------
+   Add Goal
+------------------------------------------------------- */
+
+addGoalBtn?.addEventListener(
+  "click",
+
+  addGoal,
+);
+
+goalInput?.addEventListener(
+  "keydown",
+
+  (e) => {
+    if (e.key === "Enter") {
+      addGoal();
+    }
+  },
+);
+
+function addGoal() {
+  const title = goalInput.value.trim();
+
+  if (!title) return;
+
+  goals.unshift({
+    id: Date.now(),
+
+    title,
+
+    completed: false,
+  });
+
+  goalInput.value = "";
+
+  saveGoals();
+
+  renderGoals();
+
+  updateGoalProgress();
+}
+
+/* -------------------------------------------------------
+   Goal List Events
+------------------------------------------------------- */
+
+goalList?.addEventListener(
+  "click",
+
+  handleGoalClick,
+);
+
+function handleGoalClick(e) {
+  const item = e.target.closest(".goal-item");
+
+  if (!item) return;
+
+  const id = Number(item.dataset.id);
+
+  if (e.target.closest(".goal-check")) {
+    toggleGoal(id);
+
+    return;
+  }
+
+  if (e.target.closest(".goal-delete")) {
+    deleteGoal(id);
+  }
+}
+
+/* -------------------------------------------------------
+   Delete Goal
+------------------------------------------------------- */
+
+function deleteGoal(id) {
+  const card = goalList.querySelector(`[data-id="${id}"]`);
+
+  if (card) {
+    card.style.opacity = ".3";
+
+    card.style.transform = "translateX(20px)";
+
+    setTimeout(() => {
+      goals = goals.filter((goal) => goal.id !== id);
+
+      saveGoals();
+
+      renderGoals();
+
+      updateGoalProgress();
+    }, 250);
+  }
+}
+/* -------------------------------------------------------
+   Toggle Goal
+------------------------------------------------------- */
+
+function toggleGoal(id) {
+  goals = goals.map((goal) => {
+    if (goal.id === id) {
+      return {
+        ...goal,
+
+        completed: !goal.completed,
+      };
+    }
+
+    return goal;
+  });
+
+  saveGoals();
+
+  renderGoals();
+
+  updateGoalProgress();
+
+  checkGoalCompletion();
+}
+
+/* -------------------------------------------------------
+   Goal Completion
+------------------------------------------------------- */
+
+function checkGoalCompletion() {
+  if (goals.length === 0) return;
+
+  const completed = goals.filter((goal) => goal.completed).length;
+
+  if (completed === goals.length) {
+    celebrateGoals();
+  }
+}
+
+/* -------------------------------------------------------
+   Celebration
+------------------------------------------------------- */
+
+function celebrateGoals() {
+  const card = document.querySelector(".goal-progress-card");
+
+  if (!card) return;
+
+  card.classList.add("celebration");
+
+  setTimeout(() => {
+    card.classList.remove("celebration");
+  }, 1500);
+}
+
+/* -------------------------------------------------------
+   Progress Percentage
+------------------------------------------------------- */
+
+function getGoalPercentage() {
+  if (goals.length === 0) return 0;
+
+  return Math.round(
+    (goals.filter((goal) => goal.completed).length / goals.length) * 100,
+  );
+}
+
+/* -------------------------------------------------------
+   Today's Summary
+------------------------------------------------------- */
+
+function updateGoalSummary() {
+  const completed = goals.filter((goal) => goal.completed).length;
+
+  console.log(`Today's Progress : ${completed}/${goals.length}`);
+}
+
+/* -------------------------------------------------------
+   Edit Goal
+------------------------------------------------------- */
+
+goalList?.addEventListener("dblclick", (e) => {
+  const item = e.target.closest(".goal-item");
+
+  if (!item) return;
+
+  const id = Number(item.dataset.id);
+
+  const goal = goals.find((g) => g.id === id);
+
+  if (!goal) return;
+
+  const title = prompt(
+    "Edit Goal",
+
+    goal.title,
+  );
+
+  if (title === null) return;
+
+  if (title.trim() === "") return;
+
+  goal.title = title.trim();
+
+  saveGoals();
+
+  renderGoals();
+
+  updateGoalProgress();
+});
+
+/* -------------------------------------------------------
+   Delete Confirmation
+------------------------------------------------------- */
+
+function confirmDelete(id) {
+  const ok = confirm("Delete this goal?");
+
+  if (!ok) return;
+
+  confirmDelete(id);
+}
+
+/* -------------------------------------------------------
+   Restore Goals
+------------------------------------------------------- */
+
+function restoreGoals() {
+  if (!goalList) return;
+
+  loadGoals();
+}
+
+/* -------------------------------------------------------
+   Reset Daily Goals
+------------------------------------------------------- */
+
+function resetGoals() {
+  goals = [];
+
+  saveGoals();
+
+  renderGoals();
+
+  updateGoalProgress();
+}
+
+/* -------------------------------------------------------
+   Page Initialization
+------------------------------------------------------- */
+
+function initializeGoals() {
+  restoreGoals();
+
+  updateGoalProgress();
+}
+
+/* -------------------------------------------------------
+   Window Save
+------------------------------------------------------- */
+
+window.addEventListener(
+  "beforeunload",
+
+  () => {
+    saveGoals();
+  },
+);
