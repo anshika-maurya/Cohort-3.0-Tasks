@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niyama | Dashboard</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <!-- ===== Top Bar ===== -->
+  <header class="topbar">
+    <div class="topbar__logo">Niyama</div>
+    <div class="topbar__actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+        <span class="material-symbols-outlined">wb_sunny</span>
+      </button>
+      <button class="avatar" aria-label="Account">
+        <img
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFtRgWdaILE2xbatQfwUgwmXbVJVKV4M3dlWKLA5gcQUttIxMceKTGTfWBy88qW3KJEToTIBE6oKH4zYgPOHnaM85L0ef_hNHkM86LpDt6y9qv9Q3c2LLBg4HL-D0ju_dL05knGvuLhUNP81LFy48KawoeQf0LwEmthxIw0RW4Klzf9oNUwIsn3nG1RDspYBB2NaUfKHVrrfhnVoE7CiDuYFOwUnih_dPKMIsjBng8B34wt1aMztt8Lw"
+          alt="User avatar">
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Side Nav (desktop) ===== -->
+  <aside class="sidebar">
+    <nav class="sidebar__nav" aria-label="Primary">
+      <a class="nav-item is-active" href="index.html">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a class="nav-item" href="#" id="openTasks">
+        <span class="material-symbols-outlined">check_circle</span>
+        <span>Tasks</span>
+      </a>
+     <a
+    href="#"
+    class="nav-item"
+    id="openPlanner">
+
+    <span class="material-symbols-outlined">
+        calendar_today
+    </span>
+
+    <span>
+        Planner
+    </span>
+
+</a>
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined">timer</span>
+        <span>Focus Timer</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="material-symbols-outlined">flag</span>
+        <span>Goals</span>
+      </a>
+      <a class="nav-item" href="#" id="openSettings">
+
+        <span class="material-symbols-outlined">
+          settings
+        </span>
+
+        <span>
+          Settings
+        </span>
+
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ===== Main Content ===== -->
+  <main class="main">
+    <section id="dashboardPage">
+      <!-- Date / Time + Weather -->
+      <section class="hero-row">
+        <div>
+          <h1 class="clock" id="currentTime">05:06 PM</h1>
+          <p class="date" id="currentDate">Tuesday, July 7</p>
+        </div>
+
+        <div class="weather-card card">
+          <div class="weather-card__temp">
+            <span class="material-symbols-outlined weather-card__icon">wb_sunny</span>
+            <div>
+              <span class="weather-card__deg">72°F</span>
+              <span class="weather-card__label">Sunny</span>
+            </div>
+          </div>
+          <div class="weather-card__divider"></div>
+          <div>
+            <span class="weather-card__city">San Francisco</span>
+            <span class="weather-card__range">Low: 64° High: 78°</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quote -->
+      <section class="quote-card card">
+        <button class="icon-btn quote-card__refresh" id="refreshQuote" aria-label="New quote">
+          <span class="material-symbols-outlined">refresh</span>
+        </button>
+        <span class="material-symbols-outlined quote-card__mark">format_quote</span>
+        <p class="quote-card__text" id="quoteText">"The secret of getting ahead is getting started."</p>
+        <p class="quote-card__author" id="quoteAuthor">— MARK TWAIN</p>
+      </section>
+
+      <!-- Bento Grid -->
+      <section class="bento-grid">
+
+        <article class="bento-card card" id="openTasksCard">
+          <div class="bento-card__top">
+            <span class="bento-card__icon bento-card__icon--primary">
+              <span class="material-symbols-outlined">checklist</span>
+            </span>
+            <span class="pill pill--danger">High Priority</span>
+          </div>
+          <h3 class="bento-card__title">Task Manager</h3>
+          <p class="bento-card__desc">3 tasks remaining for today</p>
+          <div class="segmented-bar">
+            <span class="segmented-bar__seg is-filled"></span>
+            <span class="segmented-bar__seg is-filled"></span>
+            <span class="segmented-bar__seg"></span>
+          </div>
+        </article>
+
+        <article
+    class="bento-card card"
+    id="openPlannerCard">
+          <div class="bento-card__top">
+            <span class="bento-card__icon bento-card__icon--secondary">
+              <span class="material-symbols-outlined">calendar_today</span>
+            </span>
+            <span class="pill pill--neutral">Next: 2:00 PM</span>
+          </div>
+          <h3 class="bento-card__title">Daily Planner</h3>
+          <p class="bento-card__desc">Project Review Meeting</p>
+          <div class="avatar-stack">
+            <span class="avatar-stack__item avatar-stack__item--a"></span>
+            <span class="avatar-stack__item avatar-stack__item--b"></span>
+            <span class="avatar-stack__item avatar-stack__item--c"></span>
+            <span class="avatar-stack__item avatar-stack__item--more">+2</span>
+          </div>
+        </article>
+
+        <article class="bento-card card">
+          <div class="bento-card__top">
+            <span class="bento-card__icon bento-card__icon--tertiary">
+              <span class="material-symbols-outlined">hourglass_empty</span>
+            </span>
+            <span class="ring-btn">
+              <span class="material-symbols-outlined">play_arrow</span>
+            </span>
+          </div>
+          <h3 class="bento-card__title">Focus Timer</h3>
+          <p class="bento-card__desc">Current Goal: 25:00 Session</p>
+          <div class="progress-track">
+            <div class="progress-track__fill progress-track__fill--tertiary" style="width:45%"></div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Daily Goals -->
+      <section class="goals-card card">
+        <div class="goals-card__header">
+          <div class="goals-card__title">
+            <span class="material-symbols-outlined">rocket_launch</span>
+            <h2>Daily Goals</h2>
+          </div>
+          <span class="goals-card__percent">75% Complete</span>
+        </div>
+
+        <div class="goals-grid">
+          <ul class="goal-list">
+            <li class="goal-item">
+              <span class="material-symbols-outlined goal-item__check is-done">check_circle</span>
+              <div class="goal-item__body">
+                <p>Complete UX Audit</p>
+                <div class="progress-track progress-track--thin">
+                  <div class="progress-track__fill" style="width:100%"></div>
+                </div>
+              </div>
+            </li>
+            <li class="goal-item">
+              <span class="material-symbols-outlined goal-item__check is-done">check_circle</span>
+              <div class="goal-item__body">
+                <p>Daily Standup</p>
+                <div class="progress-track progress-track--thin">
+                  <div class="progress-track__fill" style="width:100%"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="goal-list">
+            <li class="goal-item">
+              <span class="material-symbols-outlined goal-item__check">radio_button_unchecked</span>
+              <div class="goal-item__body">
+                <p>Draft Newsletter</p>
+                <div class="progress-track progress-track--thin">
+                  <div class="progress-track__fill" style="width:20%; opacity:.4"></div>
+                </div>
+              </div>
+            </li>
+            <li class="goal-item">
+              <span class="material-symbols-outlined goal-item__check is-done">check_circle</span>
+              <div class="goal-item__body">
+                <p>Exercise - 30m</p>
+                <div class="progress-track progress-track--thin">
+                  <div class="progress-track__fill" style="width:100%"></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="overall-progress">
+          <div class="overall-progress__row">
+            <span>Overall Progress</span>
+            <span>3 / 4 Goals</span>
+          </div>
+          <div class="progress-track progress-track--lg">
+            <div class="progress-track__fill" style="width:75%"></div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ======================================================
+     TASKS PAGE
+====================================================== -->
+    <section id="tasksPage" class="tasks-page hidden">
+
+      <!-- ===== Page Header ===== -->
+      <div class="tasks-header">
+
+        <button class="back-btn" id="backFromTasks">
+          <span class="material-symbols-outlined">arrow_back</span>
+          <span>Back to Dashboard</span>
+        </button>
+
+        <div class="tasks-heading">
+          <h1>Daily Tasks</h1>
+          <p>
+            Streamline your performance and hit your flow state.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- ===== Add Task Card ===== -->
+
+      <section class="card add-task-card">
+
+        <div class="task-input">
+
+          <input type="text" id="taskInput" placeholder="Add new task...">
+
+        </div>
+
+
+        <div class="task-options">
+
+          <label class="toggle">
+
+            <input type="checkbox" id="importantTask">
+
+            <span class="toggle-slider"></span>
+
+          </label>
+
+          <span class="toggle-text">
+            Mark Important
+          </span>
+
+        </div>
+
+
+        <button class="btn-primary" id="addTaskBtn">
+
+          <span class="material-symbols-outlined">
+            add
+          </span>
+
+          Add Task
+
+        </button>
+
+      </section>
+
+
+
+      <!-- ===== Active Tasks ===== -->
+
+      <section class="tasks-list-section">
+
+        <div class="tasks-title">
+
+          <h2>
+            Active Tasks
+          </h2>
+
+          <span id="taskCount">
+            (0)
+          </span>
+
+        </div>
+
+
+        <div class="tasks-list" id="tasksList">
+
+          <!-- Tasks generated by JavaScript -->
+
+        </div>
+
+
+        <!-- ===== Empty State ===== -->
+
+        <div class="empty-tasks hidden" id="emptyTasks">
+
+          <span class="material-symbols-outlined">
+            task_alt
+          </span>
+
+          <h3>
+            No Tasks Yet
+          </h3>
+
+          <p>
+            Add your first task to get started.
+          </p>
+
+        </div>
+
+      </section>
+
+    </section>
+    <!-- ================= End Tasks Page ================= -->
+
+    <!-- ======================================================
+     PLANNER PAGE
+====================================================== -->
+
+    <section id="plannerPage" class="planner-page hidden">
+
+      <!-- ==========================================
+         Header
+    =========================================== -->
+
+      <header class="planner-header">
+
+        <button class="back-btn" id="backFromPlanner">
+
+          <span class="material-symbols-outlined">
+            arrow_back
+          </span>
+
+          <span>
+            Back to Dashboard
+          </span>
+
+        </button>
+
+        <div class="planner-title">
+
+          <h1>
+            Daily Planner
+          </h1>
+
+          <p>
+            Organize your day and stay focused.
+          </p>
+
+        </div>
+
+      </header>
+
+
+
+      <!-- ==========================================
+         Planner Layout
+    =========================================== -->
+
+      <div class="planner-layout">
+
+
+
+        <!-- ==========================================
+             Sidebar
+        =========================================== -->
+
+        <aside class="planner-sidebar">
+
+
+
+          <!-- Today's Focus -->
+
+          <section class="card planner-focus">
+
+            <span class="planner-focus__label">
+
+              Today's Focus
+
+            </span>
+
+            <h2 id="plannerDay">
+
+              Monday
+
+            </h2>
+
+            <p id="plannerDate">
+
+              October 14, 2024
+
+            </p>
+
+          </section>
+
+
+
+
+
+          <!-- ==========================================
+                 Top Priorities
+            =========================================== -->
+
+          <section class="card priority-card">
+
+            <div class="section-header">
+
+              <h3>
+
+                Top Priorities
+
+              </h3>
+
+              <button class="icon-btn" id="addPriority">
+
+                <span class="material-symbols-outlined">
+
+                  add
+
+                </span>
+
+              </button>
+
+            </div>
+
+
+
+            <ul class="priority-list" id="priorityList">
+
+              <!-- Generated by JS -->
+
+            </ul>
+
+          </section>
+
+
+
+
+
+          <!-- ==========================================
+                 Quick Notes
+            =========================================== -->
+
+          <section class="card notes-card">
+
+            <div class="section-header">
+
+              <h3>
+
+                Quick Notes
+
+              </h3>
+
+            </div>
+
+
+
+            <textarea id="plannerNotes" placeholder="Write notes here...">
+
+                </textarea>
+
+          </section>
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             Timeline
+        =========================================== -->
+
+        <section class="card timeline-card">
+
+          <div class="timeline-header">
+
+            <div>
+
+              <h2>
+
+                Timeline
+
+              </h2>
+
+              <p>
+
+                Schedule your day hour by hour
+
+              </p>
+
+            </div>
+
+            <button class="timeline-view">
+
+              Day
+
+            </button>
+
+          </div>
+
+
+
+          <!-- Timeline Container -->
+
+          <div class="timeline" id="timeline">
+
+
+            <div class="now-line" id="nowLine">
+
+              <span class="now-dot"></span>
+
+              <span class="now-label">
+
+                NOW
+
+              </span>
+
+            </div>
+
+            <!-- Timeline Rows Generated by JavaScript -->
+
+          </div>
+
+        </section>
+
+      </div>
+
+
+
+      <!-- ==========================================
+         Floating Action Button
+    =========================================== -->
+
+      <button class="planner-fab" id="plannerFab" aria-label="Add Event">
+
+        <span class="material-symbols-outlined">
+
+          add
+
+        </span>
+
+      </button>
+
+
+
+      <!-- ==========================================
+         Add / Edit Event Modal
+    =========================================== -->
+
+      <div class="planner-modal hidden" id="plannerModal">
+
+        <div class="planner-modal__content card">
+
+          <div class="planner-modal__header">
+
+            <h2 id="plannerModalTitle">
+
+              Add Event
+
+            </h2>
+
+            <button class="icon-btn" id="closePlannerModal">
+
+              <span class="material-symbols-outlined">
+
+                close
+
+              </span>
+
+            </button>
+
+          </div>
+
+
+
+          <div class="planner-form">
+
+            <div class="form-group">
+
+              <label>
+
+                Title
+
+              </label>
+
+              <input type="text" id="eventTitle" placeholder="Enter title">
+
+            </div>
+
+
+
+            <div class="form-group">
+
+              <label>
+
+                Description
+
+              </label>
+
+              <textarea id="eventDescription" placeholder="Enter description">
+
+                    </textarea>
+
+            </div>
+
+
+
+            <div class="planner-form__row">
+
+              <div class="form-group">
+
+                <label>
+
+                  Time
+
+                </label>
+
+                <select id="eventHour">
+
+                  <!-- JS -->
+
+                </select>
+
+              </div>
+
+
+
+              <div class="form-group">
+
+                <label>
+
+                  Status
+
+                </label>
+
+                <select id="eventStatus">
+
+                  <option value="scheduled">
+
+                    Scheduled
+
+                  </option>
+
+                  <option value="active">
+
+                    Active
+
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+
+            <div class="planner-form__actions">
+
+              <button class="btn-secondary" id="cancelPlanner">
+
+                Cancel
+
+              </button>
+
+              <button class="btn-primary" id="savePlannerEvent">
+
+                Save Event
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- ==========================================
+         Empty Timeline State
+    =========================================== -->
+
+      <template id="timelineTemplate">
+
+        <article class="timeline-item">
+
+          <!-- Time -->
+
+          <div class="timeline-time">
+
+            <span class="timeline-hour"></span>
+
+          </div>
+
+
+
+          <!-- Event -->
+
+          <div class="timeline-event">
+
+            <div class="event-left">
+
+              <h3 class="event-title"></h3>
+
+              <p class="event-description"></p>
+
+              <button class="btn-focus">
+
+                <span class="material-symbols-outlined">
+
+                  play_arrow
+
+                </span>
+
+                <span>
+
+                  Start Focus
+
+                </span>
+
+              </button>
+
+            </div>
+
+
+
+            <div class="event-right">
+
+              <div class="event-actions">
+
+                <button class="icon-btn edit-event" title="Edit">
+
+                  <span class="material-symbols-outlined">
+
+                    edit
+
+                  </span>
+
+                </button>
+
+                <button class="icon-btn delete-event" title="Delete">
+
+                  <span class="material-symbols-outlined">
+
+                    delete
+
+                  </span>
+
+                </button>
+
+              </div>
+
+
+
+              <span class="event-badge">
+
+                Scheduled
+
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </template>
+
+
+
+      <!-- ==========================================
+         Empty Slot Template
+    =========================================== -->
+
+      <template id="emptyTimelineTemplate">
+
+        <article class="timeline-item empty">
+
+          <div class="timeline-time">
+
+            <span class="timeline-hour"></span>
+
+          </div>
+
+          <button class="timeline-empty">
+
+            <span class="material-symbols-outlined">
+
+              add_circle
+
+            </span>
+
+            <span>
+
+              Add Task or Note
+
+            </span>
+
+          </button>
+
+        </article>
+
+      </template>
+
+
+
+      <!-- ==========================================
+         Delete Modal
+    =========================================== -->
+
+      <div class="planner-modal hidden" id="deletePlannerModal">
+
+        <div class="planner-modal__content card planner-delete">
+
+          <span class="material-symbols-outlined delete-icon">
+
+            delete
+
+          </span>
+
+          <h2>
+
+            Delete Event?
+
+          </h2>
+
+          <p>
+
+            This action cannot be undone.
+
+          </p>
+
+          <div class="planner-form__actions">
+
+            <button class="btn-secondary" id="cancelDelete">
+
+              Cancel
+
+            </button>
+
+            <button class="btn-danger" id="confirmDelete">
+
+              Delete
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= End Planner ================= -->
+
+    <!-- ======================================================
+     SETTINGS PAGE
+====================================================== -->
+    <section id="settingsPage" class="settings-page hidden">
+
+      <!-- ===== Settings Header ===== -->
+      <div class="settings-header">
+
+        <button class="back-btn" id="backToDashboard">
+          <span class="material-symbols-outlined">arrow_back</span>
+          <span>Back to Dashboard</span>
+        </button>
+
+        <div class="settings-heading">
+          <h1>Profile Settings</h1>
+          <p>
+            Manage how you appear on Niyama and update your details.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- ===== Profile Card ===== -->
+      <section class="card settings-card">
+
+        <div class="profile-photo">
+
+          <div class="profile-photo__image">
+            <img id="profilePreview"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCshWSHvFm3SoWpmVBjEkk9CZFzrk-BgDuxJYIgsyd5BUykJMuKu3lSwM4M1rkifBABCL6ADwAToMRtIF9HE3nXmbKqC_UaIAceHkxBnVhbGcPketORw6ZXfviWzPb4jWh2evWsNsVLxArDifTD71w-W5k2kfjaSr_vJOMQlvsYjiQbTDw94mYr_367PVLNctTaa4JrRt8baJIAsfnWjoEkovLdRjT_QlQfvBS4qDocnf88icSCTQfaRA"
+              alt="Profile">
+          </div>
+
+          <div class="profile-photo__content">
+
+            <label for="profileInput" class="btn-primary">
+              Upload New Photo
+            </label>
+
+            <input type="file" id="profileInput" accept="image/*" hidden>
+
+            <p>
+              At least 400×400px.
+              JPG or PNG format.
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ===== Profile Form ===== -->
+        <form class="settings-form">
+
+          <!-- Display Name -->
+          <div class="form-group">
+
+            <label for="displayName">
+              Display Name
+            </label>
+
+            <input type="text" id="displayName" placeholder="Enter your name" value="Alex Sterling">
+
+            <small>
+              This is how your name appears across the app.
+            </small>
+
+          </div>
+
+
+          <!-- Email -->
+          <div class="form-group">
+
+            <label>Email Address</label>
+
+            <div class="input-disabled">
+
+              <span>
+                alex.sterling@niyama.io
+              </span>
+
+              <span class="material-symbols-outlined">
+                lock
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Save Button -->
+          <div class="form-actions">
+
+            <button type="button" id="saveProfile" class="btn-primary">
+
+              Save Changes
+
+            </button>
+
+          </div>
+
+        </form>
+
+      </section>
+
+
+
+      <!-- ===== Data Management ===== -->
+      <section class="card settings-card danger-card">
+
+        <div class="danger-card__content">
+
+          <div class="danger-card__title">
+
+            <span class="material-symbols-outlined">
+              warning
+            </span>
+
+            <h2>Reset All Data</h2>
+
+          </div>
+
+          <p>
+            This action permanently deletes all tasks,
+            planner history and daily goals.
+            This cannot be undone.
+          </p>
+
+        </div>
+
+        <button class="btn-danger" id="resetData">
+
+          Reset Data
+
+        </button>
+
+      </section>
+
+      <!-- =====================================================
+       Reset Confirmation Modal
+  ====================================================== -->
+      <div class="modal hidden" id="resetModal">
+
+        <div class="modal__card card">
+
+          <div class="modal__header">
+
+            <span class="material-symbols-outlined modal__icon">
+              warning
+            </span>
+
+            <h2>Reset All Data?</h2>
+
+          </div>
+
+          <p class="modal__text">
+            This action will permanently delete all your tasks,
+            planner history and goal progress.
+            This action cannot be undone.
+          </p>
+
+          <div class="modal__actions">
+
+            <button type="button" class="btn-secondary" id="cancelReset">
+
+              Cancel
+
+            </button>
+
+            <button type="button" class="btn-danger" id="confirmReset">
+
+              Yes, Reset
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =====================================================
+       Success Toast
+  ====================================================== -->
+      <div class="toast" id="saveToast">
+
+        <span class="material-symbols-outlined">
+          check_circle
+        </span>
+
+        <span>
+          Changes saved successfully.
+        </span>
+
+      </div>
+
+    </section>
+    <!-- =============== End Settings Page =============== -->
+
+
+
+
+  </main>
+
+  <!-- ===== Bottom Nav (mobile) ===== -->
+  <nav class="bottom-nav" aria-label="Primary mobile">
+    <a class="bottom-nav__item is-active" href="index.html">
+      <span class="material-symbols-outlined">dashboard</span>
+      <span>Home</span>
+    </a>
+    <a class="bottom-nav__item" href="#">
+      <span class="material-symbols-outlined">event_note</span>
+      <span>Plan</span>
+    </a>
+    <a class="bottom-nav__item" href="#">
+      <span class="material-symbols-outlined">schedule</span>
+      <span>Timer</span>
+    </a>
+    <a class="bottom-nav__item" href="#">
+      <span class="material-symbols-outlined">bar_chart</span>
+      <span>Stats</span>
+    </a>
+  </nav>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
