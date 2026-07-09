@@ -1,89 +1,73 @@
-/* ==========================================================================
-   Niyama Dashboard — Design Tokens
-   Change --color-primary here to re-theme the whole product.
-   ========================================================================== */
-
 :root {
-  /* Brand */
-  --color-primary: #4646d8;
-  --color-primary-dark: #2f2ebe;
-  --color-primary-light: #e1e0ff;
-
-  /* Secondary / Tertiary accents */
-  --color-secondary: #4f6ea8;
-  --color-secondary-light: #e7eefc;
-  --color-tertiary: #8a5a2b;
-  --color-tertiary-light: #f6e8d6;
-
-  /* Status */
-  --color-danger: #c0392b;
-  --color-danger-light: #fbdedb;
-
-  /* Neutrals */
-  --color-bg-start: #e9ebfd;
-  --color-bg-end: #eef3fb;
+  --color-primary: #1e3a8a;
+  --color-primary-dark: #172554;
+  --color-primary-light: #dbeafe;
+  --color-secondary: #2563eb;
+  --color-secondary-light: #e0f2fe;
+  --color-tertiary: #d4af37;
+  --color-tertiary-light: #fff7d6;
+  --color-success: #059669;
+  --color-danger: #dc2626;
+  --color-danger-light: #fee2e2;
+  --color-bg-start: #f8fafc;
+  --color-bg-end: #edf4ff;
   --color-surface: #ffffff;
-  --color-surface-muted: #eef0f4;
-  --color-border: #e2e4ec;
-  --color-text: #1c1d26;
-  --color-text-muted: #6b6d7c;
-  --color-text-faint: #9799a8;
-
-  /* Elevation */
-  --shadow-card: 0 4px 20px rgba(30, 30, 60, 0.06);
-  --shadow-card-hover: 0 10px 25px rgba(30, 30, 60, 0.1);
-
-  /* Radius */
+  --color-surface-muted: #f4f7fc;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-text-muted: #64748b;
+  --color-text-faint: #94a3b8;
+  --shadow-card: 0 8px 24px rgba(30, 58, 138, 0.08);
+  --shadow-card-hover: 0 18px 40px rgba(30, 58, 138, 0.14);
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-full: 999px;
-
-  /* Spacing */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
   --space-lg: 24px;
   --space-xl: 40px;
-
-  /* Layout */
   --sidebar-width: 260px;
   --topbar-height: 76px;
-
-  /* Type */
   --font-base: "Inter", system-ui, sans-serif;
+  --color-warning: #f59e0b;
+  --color-warning-light: #fef3c7;
+  --color-info: #0ea5e9;
+  --color-info-light: #e0f2fe;
+  --color-active: #1d4ed8;
 }
 
-/* Dark theme override — toggled via [data-theme="dark"] on <html> */
+/* Dark theme */
 [data-theme="dark"] {
-  --color-bg-start: #1b1c2e;
-  --color-bg-end: #14151f;
-  --color-surface: #22232f;
-  --color-surface-muted: #2b2c3a;
-  --color-border: #34354a;
-  --color-text: #f1f2f8;
-  --color-text-muted: #a9abbd;
-  --color-text-faint: #6f7186;
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  --color-secondary: #38bdf8;
+  --color-secondary-light: #0f2c4f;
+  --color-tertiary: #f59e0b;
+  --color-tertiary-light: #4a3200;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-danger-light: #4c1d1d;
+  --color-bg-start: #05070d;
+  --color-bg-end: #0a0f18;
+  --color-surface: #111827;
+  --color-surface-muted: #1b2435;
+  --color-border: #2d3748;
+  --color-text: #f8fafc;
+  --color-text-muted: #cbd5e1;
+  --color-text-faint: #94a3b8;
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-card-hover: 0 18px 45px rgba(59, 130, 246, 0.18);
 }
 
 [data-theme="dark"] .card {
-  background: rgba(34, 35, 47, 0.75);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
-
-[data-theme="dark"] .card:hover {
-  background: rgba(34, 35, 47, 0.92);
-}
-
-[data-theme="dark"] .topbar,
-[data-theme="dark"] .sidebar,
-[data-theme="dark"] .bottom-nav {
-  background: rgba(20, 21, 31, 0.8);
-}
-
-/* ==========================================================================
-   Reset
-   ========================================================================== */
 
 * {
   box-sizing: border-box;
@@ -143,9 +127,7 @@ ul {
   outline-offset: 2px;
 }
 
-/* ==========================================================================
-   Shared components
-   ========================================================================== */
+/* Shared components */
 
 .card {
   background: rgba(255, 255, 255, 0.75);
@@ -252,9 +234,7 @@ ul {
   background: var(--color-primary);
 }
 
-/* ==========================================================================
-   Top bar
-   ========================================================================== */
+/* Top bar */
 
 .topbar {
   position: fixed;
@@ -275,6 +255,10 @@ ul {
   font-weight: 800;
   color: var(--color-primary);
   letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
 }
 
 .topbar__actions {
@@ -296,10 +280,11 @@ ul {
   height: 100%;
   object-fit: cover;
 }
+#themeToggle {
+  color: #03060d;
+}
 
-/* ==========================================================================
-   Sidebar
-   ========================================================================== */
+/* Sidebar */
 
 .sidebar {
   position: fixed;
@@ -346,9 +331,7 @@ ul {
   border-left-color: var(--color-primary);
 }
 
-/* ==========================================================================
-   Main content
-   ========================================================================== */
+/* Main content */
 
 .main {
   padding: calc(var(--topbar-height) + var(--space-lg)) var(--space-md)
@@ -426,6 +409,19 @@ ul {
   display: block;
   font-size: 11px;
   color: var(--color-text-muted);
+}
+.weather-card__icon-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.weather-card__extra {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
 }
 
 /* Quote */
@@ -554,41 +550,110 @@ ul {
   align-items: center;
   justify-content: center;
 }
+.bento-card__time{
 
-.avatar-stack {
-  display: flex;
-  margin-top: var(--space-sm);
-}
+    margin-top:6px;
 
-.avatar-stack__item {
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-full);
-  border: 2px solid var(--color-surface);
-  margin-left: -8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
+    font-size:.85rem;
+
+    color:var(--color-text-muted);
+
 }
 
-.avatar-stack__item:first-child {
-  margin-left: 0;
-}
+.pill--success{
 
-.avatar-stack__item--a {
-  background: var(--color-primary-light);
+    background:#DCFCE7;
+
+    color:#166534;
+
+    border:1px solid #86EFAC;
+
 }
-.avatar-stack__item--b {
-  background: var(--color-secondary-light);
+.pill--primary{
+
+    background:#DBEAFE;
+
+    color:#1D4ED8;
+
+    border:1px solid #93C5FD;
+
 }
-.avatar-stack__item--c {
-  background: var(--color-tertiary-light);
+.pill--warning{
+
+    background:#FEF3C7;
+
+    color:#B45309;
+
+    border:1px solid #FCD34D;
+
 }
-.avatar-stack__item--more {
-  background: var(--color-surface-muted);
-  color: var(--color-text-muted);
+.pill--danger{
+
+    background:#FEE2E2;
+
+    color:#B91C1C;
+
+    border:1px solid #FCA5A5;
+
+}
+.pill{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-size:.78rem;
+
+    font-weight:600;
+
+    letter-spacing:.3px;
+
+    backdrop-filter:blur(12px);
+
+    transition:all .3s ease;
+
+}
+[data-theme="dark"] .pill--success{
+
+    background:rgba(34,197,94,.18);
+
+    color:#86EFAC;
+
+    border-color:rgba(34,197,94,.35);
+
+}
+[data-theme="dark"] .pill--primary{
+
+    background:rgba(59,130,246,.18);
+
+    color:#93C5FD;
+
+    border-color:rgba(59,130,246,.35);
+
+}
+[data-theme="dark"] .pill--warning{
+
+    background:rgba(245,158,11,.18);
+
+    color:#FCD34D;
+
+    border-color:rgba(245,158,11,.35);
+
+}
+[data-theme="dark"] .pill--danger{
+
+    background:rgba(239,68,68,.18);
+
+    color:#FCA5A5;
+
+    border-color:rgba(239,68,68,.35);
+
 }
 
 /* Goals */
@@ -1360,9 +1425,7 @@ ul {
    PLANNER PAGE
 ========================================================================== */
 
-/* ======================================================
-   Layout
-====================================================== */
+/* Layout */
 
 .planner-page {
   display: flex;
@@ -1464,49 +1527,7 @@ ul {
   font-weight: 700;
 }
 
-/* ======================================================
-   Priority
-====================================================== */
 
-.priority-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  list-style: none;
-}
-
-.priority-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px;
-  border-radius: 16px;
-  transition: 0.25s;
-  cursor: pointer;
-}
-
-.priority-item:hover {
-  background: var(--color-surface-muted);
-}
-
-.priority-item.active {
-  border-left: 4px solid var(--color-primary);
-  background: #eef0ff;
-}
-
-.priority-item input {
-  accent-color: var(--color-primary);
-}
-
-.priority-item span {
-  flex: 1;
-  font-size: 0.95rem;
-}
-
-.priority-item.completed span {
-  text-decoration: line-through;
-  opacity: 0.55;
-}
 
 /* ======================================================
    Notes

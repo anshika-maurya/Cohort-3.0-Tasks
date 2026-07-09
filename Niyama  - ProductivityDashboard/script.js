@@ -33,6 +33,22 @@ function hideAllPages() {
 
   document.getElementById("settingsPage")?.classList.add("hidden");
 }
+
+function setActiveNav(activeId){
+
+    document
+        .querySelectorAll(".sidebar .nav-item")
+        .forEach(item => {
+
+            item.classList.remove("is-active");
+
+        });
+
+    document
+        .getElementById(activeId)
+        ?.classList.add("is-active");
+
+}
 /* --- Live clock -------------------------------------------------------- */
 
 function initClock() {
@@ -86,21 +102,7 @@ function initThemeToggle() {
   });
 }
 
-// function hideAllPages(){
 
-//     document.getElementById("dashboardPage")?.classList.add("hidden");
-
-//     document.getElementById("tasksPage")?.classList.add("hidden");
-
-//     document.getElementById("plannerPage")?.classList.add("hidden");
-
-//     document.getElementById("focusPage")?.classList.add("hidden");
-
-//     document.getElementById("goalsPage")?.classList.add("hidden");
-
-//     document.getElementById("settingsPage")?.classList.add("hidden");
-
-// }
 
 /* --- Motivational quote refresh ----------------------------------------- */
 
@@ -177,6 +179,8 @@ function initSettingsPage() {
     hideAllPages();
 
     document.getElementById("settingsPage")?.classList.remove("hidden");
+     setActiveNav("openSettings");
+  
 
     window.scrollTo({
       top: 0,
@@ -190,6 +194,8 @@ function initSettingsPage() {
     hideAllPages();
 
     document.getElementById("dashboardPage")?.classList.remove("hidden");
+    setActiveNav("dashboard-active");
+    
 
     window.scrollTo({
       top: 0,
@@ -306,28 +312,53 @@ function initResetModal() {
 /* --------------------------------------------------------------------------
    Task Data
 --------------------------------------------------------------------------- */
+function getTimeAgo(timestamp) {
+
+    if (!timestamp) return "Just now";
+
+    const seconds = Math.floor((Date.now() - timestamp) / 1000);
+
+    if (seconds < 60) return "Just now";
+
+    const minutes = Math.floor(seconds / 60);
+
+    if (minutes < 60)
+        return `${minutes} min${minutes > 1 ? "s" : ""} ago`;
+
+    const hours = Math.floor(minutes / 60);
+
+    if (hours < 24)
+        return `${hours} hour${hours > 1 ? "s" : ""} ago`;
+
+    const days = Math.floor(hours / 24);
+
+    if (days === 1) return "Yesterday";
+
+    return `${days} days ago`;
+
+}
 
 let tasks = JSON.parse(localStorage.getItem("niyamaTasks")) || [
   {
     id: Date.now(),
-    title: "Finalize quarterly performance reports",
-    important: false,
+    title: "Complete today's top class task",
+    important: true,
     completed: false,
-    time: "2 hours ago",
+    createdAt: Date.now() - (30 * 60 * 1000)
   },
   {
     id: Date.now() + 1,
-    title: "Review client feedback for FocusFlow UI",
-    important: true,
+    title: "Review upcoming concepts",
+    important: false,
     completed: false,
-    time: "5 hours ago",
+    createdAt: Date.now() - (2 * 60 * 60 * 1000)
   },
   {
     id: Date.now() + 2,
-    title: "Sync with development team",
+    title: "Finish one 25-minute focus session",
     important: false,
     completed: true,
-    time: "Completed",
+    createdAt: Date.now() - (5 * 60 * 60 * 1000)
   },
 ];
 
@@ -365,7 +396,10 @@ function initTasksPage() {
     hideAllPages();
 
     document.getElementById("tasksPage")?.classList.remove("hidden");
+   setActiveNav("openTasks");
 
+
+    
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -381,7 +415,11 @@ function initTasksPage() {
   });
 
   renderTasks();
+
+updateTaskDashboardCard();
+
 }
+
 
 /* --------------------------------------------------------------------------
    Add Task
@@ -404,7 +442,7 @@ function addTask() {
 
     completed: false,
 
-    time: "Just now",
+    createdAt: Date.now(),
   });
 
   input.value = "";
@@ -412,6 +450,7 @@ function addTask() {
 
   saveTasks();
   renderTasks();
+  updateTaskDashboardCard();
 }
 
 /* --------------------------------------------------------------------------
@@ -479,7 +518,15 @@ function renderTasks() {
 
               </h3>
 
-              <p>${task.time}</p>
+              <p>
+
+    ${
+        task.completed
+            ? "Completed"
+            : getTimeAgo(task.createdAt)
+    }
+
+</p>
 
           </div>
 
@@ -534,6 +581,7 @@ function toggleComplete(id) {
 
   saveTasks();
   renderTasks();
+  updateTaskDashboardCard();
 }
 
 /* --------------------------------------------------------------------------
@@ -563,6 +611,7 @@ function deleteTask(id) {
   saveTasks();
 
   renderTasks();
+  updateTaskDashboardCard();
 }
 
 /* --------------------------------------------------------------------------
@@ -573,13 +622,186 @@ function saveTasks() {
   localStorage.setItem("niyamaTasks", JSON.stringify(tasks));
 }
 
+/* ==========================================
+   Dashboard Task Card
+========================================== */
+
+const taskCardStatus =
+document.getElementById("taskCardStatus");
+
+const taskCardDescription =
+document.getElementById("taskCardDescription");
+
+const taskCardProgress =
+document.getElementById("taskCardProgress");
+
+function updateTaskDashboardCard(){
+
+    const totalTasks = tasks.length;
+
+    const completedTasks =
+    tasks.filter(task => task.completed).length;
+
+    const remainingTasks =
+    totalTasks - completedTasks;
+
+    updateTaskStatus(remainingTasks);
+
+   updateTaskDescription(
+
+    totalTasks,
+
+    completedTasks,
+
+    remainingTasks
+
+);
+
+    updateTaskProgress(
+        totalTasks,
+        completedTasks
+    );
+
+}
+
+function updateTaskStatus(remaining){
+
+    taskCardStatus.className = "pill";
+
+    if(remaining === 0){
+
+        taskCardStatus.classList.add("pill--success");
+
+        taskCardStatus.textContent = "Completed";
+
+    }
+
+    else if(remaining <= 2){
+
+        taskCardStatus.classList.add("pill--primary");
+
+        taskCardStatus.textContent = "On Track";
+
+    }
+
+    else if(remaining <= 5){
+
+        taskCardStatus.classList.add("pill--warning");
+
+        taskCardStatus.textContent = "Busy";
+
+    }
+
+    else{
+
+        taskCardStatus.classList.add("pill--danger");
+
+        taskCardStatus.textContent = "High Priority";
+
+    }
+
+}
+function updateTaskDescription(total, completed, remaining){
+
+    if(total === 0){
+
+        taskCardDescription.textContent =
+        "Start planning your day.";
+
+        return;
+
+    }
+
+    if(remaining === 0){
+
+        taskCardDescription.textContent =
+        `Completed all ${total} tasks 🎉`;
+
+        return;
+
+    }
+
+    taskCardDescription.textContent =
+    `${completed} Completed • ${remaining} Remaining`;
+
+}
+
+function updateTaskProgress(total, completed){
+
+    const segments =
+    taskCardProgress.querySelectorAll(
+        ".segmented-bar__seg"
+    );
+
+    segments.forEach(segment=>{
+
+        segment.classList.remove("is-filled");
+
+    });
+
+    if(total === 0){
+
+        return;
+
+    }
+
+    const percentage =
+    completed / total;
+
+    let filled = 0;
+
+    if(percentage > 0){
+
+        filled = 1;
+
+    }
+
+    if(percentage >= 0.50){
+
+        filled = 2;
+
+    }
+
+    if(percentage >= 1){
+
+        filled = 3;
+
+    }
+
+    for(let i=0;i<filled;i++){
+
+        segments[i].classList.add("is-filled");
+
+    }
+
+}
+
+
+
 /* ==========================================================================
    PLANNER PAGE
 ========================================================================== */
 
+/* ==========================================
+   Dashboard Planner Card
+========================================== */
+
+const plannerCardStatus =
+document.getElementById("plannerCardStatus");
+
+const plannerCardDescription =
+document.getElementById("plannerCardDescription");
+
+const plannerCardFooter =
+document.getElementById("plannerCardFooter");
+
+const plannerCardTime =
+document.getElementById("plannerCardTime");
 /* --------------------------------------------------------------------------
    Planner Hours
 --------------------------------------------------------------------------- */
+
+
 
 const HOURS = [];
 
@@ -714,11 +936,13 @@ function showPlanner(e) {
   hideAllPages();
 
   document.getElementById("plannerPage")?.classList.remove("hidden");
+   setActiveNav("openPlanner");
 
   updatePlannerDate();
   loadPlannerNotes();
 
   renderTimeline();
+  updatePlannerDashboardCard();
   updateNowLine();
   requestAnimationFrame(() => {
     const currentHour = new Date().getHours();
@@ -1120,6 +1344,7 @@ function startFocus(id) {
   savePlannerEvents();
 
   renderTimeline();
+  updatePlannerDashboardCard();
 }
 
 /* --------------------------------------------------------------------------
@@ -1206,6 +1431,7 @@ function updatePlannerEvent() {
   savePlannerEvents();
 
   renderTimeline();
+  updatePlannerDashboardCard();
 
   clearPlannerForm();
 
@@ -1238,6 +1464,7 @@ document.getElementById("confirmDelete")?.addEventListener("click", () => {
   savePlannerEvents();
 
   renderTimeline();
+  updatePlannerDashboardCard();
 
   deletePlannerModal.classList.add("hidden");
 });
@@ -1404,14 +1631,17 @@ window.addEventListener("beforeunload", () => {
    Planner Refresh
 --------------------------------------------------------------------------- */
 
-function refreshPlanner() {
-  renderTimeline();
+function refreshPlanner(){
 
-  updateCurrentHour();
+    renderTimeline();
 
-  updateNowLine();
+    updateCurrentHour();
+
+    updateNowLine();
+
+    updatePlannerDashboardCard();
+
 }
-
 /* --------------------------------------------------------------------------
    Utilities
 --------------------------------------------------------------------------- */
@@ -1466,7 +1696,108 @@ deletePlannerModal?.addEventListener("click", (e) => {
 
 refreshPlanner();
 
-console.log("Planner Loaded Successfully");
+/* ==========================================
+   Dashboard Planner Card
+========================================== */
+
+function updatePlannerDashboardCard() {
+
+    if (
+        !plannerCardStatus ||
+        !plannerCardDescription ||
+        !plannerCardTime
+    ) return;
+
+    const now = new Date();
+
+    const currentHour = now.getHours();
+
+    const currentMinute = now.getMinutes();
+
+    const activeEvent = plannerEvents.find(
+        event => event.status === "active"
+    );
+
+    if (activeEvent) {
+
+        plannerCardStatus.className =
+        "pill pill--primary";
+
+        plannerCardStatus.textContent =
+        "In Progress";
+
+        plannerCardDescription.textContent =
+        activeEvent.title;
+
+        plannerCardTime.textContent =
+        "Ends this hour";
+
+        return;
+
+    }
+
+    const nextEvent = plannerEvents.find(
+        event => event.hour >= currentHour
+    );
+
+    if (nextEvent) {
+
+        const minutesRemaining =
+        ((nextEvent.hour - currentHour) * 60)
+        - currentMinute;
+
+        plannerCardStatus.className =
+        "pill pill--neutral";
+
+        plannerCardStatus.textContent =
+        `Next • ${formatHour(nextEvent.hour)}`;
+
+        plannerCardDescription.textContent =
+        nextEvent.title;
+
+        if(minutesRemaining <= 0){
+
+            plannerCardTime.textContent =
+            "Starting now";
+
+        }
+
+        else if(minutesRemaining < 60){
+
+            plannerCardTime.textContent =
+            `Starts in ${minutesRemaining} mins`;
+
+        }
+
+        else{
+
+            const hours =
+            Math.floor(minutesRemaining/60);
+
+            plannerCardTime.textContent =
+            `Starts in ${hours} hr${hours>1?"s":""}`;
+
+        }
+
+        return;
+
+    }
+
+    plannerCardStatus.className =
+    "pill pill--success";
+
+    plannerCardStatus.textContent =
+    "Free Day";
+
+    plannerCardDescription.textContent =
+    "No upcoming events";
+
+    plannerCardTime.textContent =
+    "Enjoy your schedule 🌿";
+
+}
+
+
 
 /* ==========================================================================
    FOCUS TIMER
@@ -1595,6 +1926,7 @@ function showFocusPage(e) {
   hideAllPages();
 
   document.getElementById("focusPage")?.classList.remove("hidden");
+   setActiveNav("openFocus");
 
   updateTimerDisplay();
 
@@ -2123,6 +2455,7 @@ function showGoalsPage(e) {
   hideAllPages();
 
   document.getElementById("goalsPage")?.classList.remove("hidden");
+ setActiveNav("openGoals");
 
   loadGoals();
 }
@@ -2576,4 +2909,361 @@ window.addEventListener(
   () => {
     saveGoals();
   },
+);
+
+/* ======================================================
+   WEATHER WIDGET
+====================================================== */
+
+const WEATHER_API_KEY = "168771779c71f3d64106d8a88376808a";
+
+/* -------------------------
+   DOM
+-------------------------- */
+
+
+const weatherCard = document.getElementById("weatherCard");
+
+const weatherTemp = document.getElementById("weatherTemp");
+
+const weatherCondition = document.getElementById("weatherCondition");
+
+const weatherCity = document.getElementById("weatherCity");
+
+const weatherDetails = document.getElementById("weatherDetails");
+
+const weatherIcon = document.getElementById("weatherIcon");
+
+const weatherSunrise =
+    document.getElementById("weatherSunrise");
+
+const weatherSunset =
+    document.getElementById("weatherSunset");
+
+function showWeatherLoading() {
+
+    weatherTemp.textContent = "--°";
+
+    weatherCondition.textContent = "Loading...";
+
+    weatherCity.textContent = "Fetching location...";
+
+    weatherDetails.textContent = "Please wait";
+
+}
+function showWeatherError(message) {
+
+    weatherTemp.textContent = "--°";
+
+    weatherCondition.textContent = "Unavailable";
+
+    weatherCity.textContent = message;
+
+    weatherDetails.textContent = "";
+
+    weatherIcon.src = "";
+
+}
+
+function getWeatherEmoji(condition){
+
+    switch(condition){
+
+        case "Clear":
+            return "☀️";
+
+        case "Clouds":
+            return "☁️";
+
+        case "Rain":
+        case "Drizzle":
+            return "🌧️";
+
+        case "Thunderstorm":
+            return "⛈️";
+
+        case "Snow":
+            return "❄️";
+
+        case "Mist":
+        case "Fog":
+            return "🌫️";
+
+        default:
+            return "🌤️";
+
+    }
+
+}
+
+/* -------------------------------------------------------
+   Update Weather UI
+------------------------------------------------------- */
+
+function updateWeatherUI(data) {
+
+    const temperature = Math.round(data.main.temp);
+
+    const feelsLike = Math.round(data.main.feels_like);
+
+    const humidity = data.main.humidity;
+
+    const wind = Math.round(data.wind.speed);
+
+    const city = data.name;
+
+    const condition = data.weather[0].main;
+
+    const description = data.weather[0].description;
+
+    const icon = data.weather[0].icon;
+
+    weatherTemp.textContent =
+        `${temperature}°C`;
+
+    weatherCondition.textContent =
+`${getWeatherEmoji(condition)} ${capitalize(description)}`;
+
+    weatherCity.textContent =
+        city;
+
+    weatherDetails.textContent =
+        `Feels ${feelsLike}° • Humidity ${humidity}% • Wind ${wind} km/h`;
+
+    weatherIcon.src =
+        `https://openweathermap.org/img/wn/${icon}@2x.png`;
+
+    weatherIcon.alt =
+        description;
+
+    changeWeatherTheme(condition);
+
+}
+
+loadWeather();
+
+/* -------------------------------------------------------
+   Get Current Location
+------------------------------------------------------- */
+
+function loadWeather() {
+
+    showWeatherLoading();
+
+    if (!navigator.geolocation) {
+
+        loadDefaultCity();
+
+        return;
+
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        getCurrentWeather,
+
+        () => {
+
+            loadDefaultCity();
+
+        }
+
+    );
+
+}
+/* -------------------------------------------------------
+   Weather using Current Location
+------------------------------------------------------- */
+
+async function getCurrentWeather(position) {
+
+    try {
+
+        const latitude = position.coords.latitude;
+
+        const longitude = position.coords.longitude;
+
+        const response = await fetch(
+
+            `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${WEATHER_API_KEY}&units=metric`
+
+        );
+
+        if (!response.ok) {
+
+            throw new Error("Weather fetch failed");
+
+        }
+
+        const data = await response.json();
+
+        console.log("Current Weather", data);
+
+        updateWeatherUI(data);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        loadDefaultCity();
+
+    }
+
+}
+
+/* -------------------------------------------------------
+   Default City
+------------------------------------------------------- */
+
+async function loadDefaultCity() {
+
+    try {
+
+        const city = "Dehradun";
+
+        const response = await fetch(
+
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`
+
+        );
+
+        if (!response.ok) {
+
+            throw new Error("City not found");
+
+        }
+
+        const data = await response.json();
+
+        console.log("Default City", data);
+
+        updateWeatherUI(data);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        showWeatherError("Unable to load weather");
+
+    }
+
+}
+
+/* -------------------------------------------------------
+   Capitalize
+------------------------------------------------------- */
+
+function capitalize(text){
+
+    return text.replace(
+
+        /\b\w/g,
+
+        letter => letter.toUpperCase()
+
+    );
+
+}
+/* -------------------------------------------------------
+   Dynamic Theme
+------------------------------------------------------- */
+
+function changeWeatherTheme(condition){
+
+    weatherCard.classList.remove(
+
+        "weather-clear",
+
+        "weather-clouds",
+
+        "weather-rain",
+
+        "weather-thunder",
+
+        "weather-snow",
+
+        "weather-mist"
+
+    );
+
+    switch(condition){
+
+        case "Clear":
+
+            weatherCard.classList.add("weather-clear");
+
+            break;
+
+        case "Clouds":
+
+            weatherCard.classList.add("weather-clouds");
+
+            break;
+
+        case "Rain":
+
+        case "Drizzle":
+
+            weatherCard.classList.add("weather-rain");
+
+            break;
+
+        case "Thunderstorm":
+
+            weatherCard.classList.add("weather-thunder");
+
+            break;
+
+        case "Snow":
+
+            weatherCard.classList.add("weather-snow");
+
+            break;
+
+        default:
+
+            weatherCard.classList.add("weather-mist");
+
+    }
+
+}
+/* -------------------------------------
+   Format Time
+-------------------------------------- */
+
+function formatTime(unix){
+
+    return new Date(
+
+        unix * 1000
+
+    ).toLocaleTimeString(
+
+        [],
+
+        {
+
+            hour:"2-digit",
+
+            minute:"2-digit"
+
+        }
+
+    );
+
+}
+/* -------------------------------------
+   Auto Refresh
+-------------------------------------- */
+
+setInterval(
+
+    loadWeather,
+
+    1800000
+
 );
