@@ -9,6 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
   initFocusPage();
   initGoalsPage();
   initSettingsPage();
+
+  continueSessionBtn?.addEventListener("click", () => {
+    stopNotification();
+
+    document.getElementById("alarmModal")?.classList.add("hidden");
+
+    if (nextSessionMode) {
+      switchMode(nextSessionMode);
+
+      nextSessionMode = null;
+    }
+  });
 });
 
 function hideAllPages() {
@@ -170,7 +182,6 @@ function initSettingsPage() {
   initResetModal();
 }
 
-
 /* Profile Image Preview */
 
 function initProfilePreview() {
@@ -188,25 +199,44 @@ function initProfilePreview() {
   });
 }
 
+function showSaveToast(message = "Saved Successfully") {
+  const toast = document.getElementById("saveToast");
+
+  if (!toast) return;
+
+  toast.textContent = message;
+
+  toast.classList.remove("show");
+
+  requestAnimationFrame(() => {
+    toast.classList.add("show");
+  });
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
 /* Save Profile */
 function initSaveProfile() {
   const saveBtn = document.getElementById("saveProfile");
   const toast = document.getElementById("saveToast");
   if (!saveBtn || !toast) return;
   let toastTimer = null;
-  function showSaveToast() {
-    toast.classList.remove("show");
-    if (toastTimer) {
-      clearTimeout(toastTimer);
-    }
-    requestAnimationFrame(() => {
-      toast.classList.add("show");
-    });
-    toastTimer = window.setTimeout(() => {
-      toast.classList.remove("show");
-      toastTimer = null;
-    }, 2500);
-  }
+  showSaveToast();
+  // function showSaveToast() {
+  //   toast.classList.remove("show");
+  //   if (toastTimer) {
+  //     clearTimeout(toastTimer);
+  //   }
+  //   requestAnimationFrame(() => {
+  //     toast.classList.add("show");
+  //   });
+  //   toastTimer = window.setTimeout(() => {
+  //     toast.classList.remove("show");
+  //     toastTimer = null;
+  //   }, 2500);
+  // }
   saveBtn.addEventListener("click", () => {
     const name = document.getElementById("displayName").value.trim();
     const photo = document.getElementById("profilePreview").src;
@@ -337,7 +367,6 @@ function initResetModal() {
     resetDashboardData();
   });
 }
-
 
 /* Tasks Page */
 
@@ -602,7 +631,6 @@ function updateTaskProgress(total, completed) {
     segments[i].classList.add("is-filled");
   }
 }
-
 
 /* PLANNER PAGE */
 /* Dashboard Planner Card */
@@ -957,7 +985,7 @@ function editPlannerEvent(id) {
   document.getElementById("eventHour").value = event.hour;
   document.getElementById("eventStatus").value = event.status;
   plannerModal.classList.remove("hidden");
-} 
+}
 
 /* Update Planner Event */
 function updatePlannerEvent() {
@@ -1009,7 +1037,7 @@ function savePlannerEvent() {
   const title = document.getElementById("eventTitle").value.trim();
 
   if (!title) {
-    showToast("Please enter event title.");
+    showSaveToast("Please enter event title.");
     return;
   }
   plannerEvents.push({
@@ -1131,7 +1159,6 @@ deletePlannerModal?.addEventListener("click", (e) => {
 
 /* Planner Init */
 
-
 /* Dashboard Planner Card */
 function updatePlannerDashboardCard() {
   if (!plannerCardStatus || !plannerCardDescription || !plannerCardTime) return;
@@ -1185,6 +1212,8 @@ let currentMode = "focus";
 let isRunning = false;
 let timer = null;
 let focusCardStatus;
+let notificationAudio = null;
+let nextSessionMode = null;
 
 /* Dashboard Focus Card */
 const focusCardIcon = document.getElementById("focusCardIcon");
@@ -1326,20 +1355,32 @@ function toggleTimer() {
 
 /* Start Timer */
 function startTimer() {
+  stopNotification();
   if (isRunning) return;
   isRunning = true;
   saveFocusState();
   playPauseIcon.textContent = "pause";
   updateFocusDashboardCard();
   timer = setInterval(() => {
+    remainingSeconds--;
+
     if (remainingSeconds <= 0) {
+      remainingSeconds = 0;
+
+      updateTimerDisplay();
+      updateProgressRing();
+
       completeSession();
+
       return;
     }
-    remainingSeconds--;
+
     saveFocusState();
+
     updateTimerDisplay();
+
     updateProgressRing();
+
     updateFocusDashboardCard();
   }, 1000);
 }
@@ -1393,29 +1434,58 @@ function updateProgressRing() {
   progressCircle.style.strokeDashoffset = offset;
 }
 
-
-
 /* Complete Session */
 function completeSession() {
   pauseTimer();
+
   remainingSeconds = 0;
+
   updateTimerDisplay();
+
   updateProgressRing();
+
   updateFocusDashboardCard();
+
   playNotification();
+
+  const alarmMessage = document.getElementById("alarmMessage");
+
+  const nextSessionText = document.getElementById("nextSessionText");
+
+  const completedTime = document.getElementById("completedTime");
+
+  alarmMessage.textContent = "Excellent! Your focus session has ended.";
+
+  completedTime.textContent = `${durations.focus} Minutes Completed`;
+
+  nextSessionText.textContent = "Next: Short Break";
+
+  alarmMessage.textContent = "Break finished. Ready to focus again?";
+
+  completedTime.textContent = `${durations.short} Minute Break`;
+
+  nextSessionText.textContent = "Next: Focus Session";
+
   if (currentMode === "focus") {
     completedSessions++;
+
     focusedMinutes += durations.focus;
+
     saveFocusStats();
+
     loadFocusStats();
-    showToast("🎉 Focus Session Completed!");
-    switchMode("short");
+
+    showSaveToast("🎉 Focus Session Completed!");
+
+    nextSessionMode = "short";
   } else if (currentMode === "short") {
-   showToast("☕ Break Finished!");
-    switchMode("focus");
+    showSaveToast("☕ Break Finished!");
+
+    nextSessionMode = "focus";
   } else {
-    showToast("🌿 Long Break Finished!");
-    switchMode("focus");
+    showSaveToast("🌿 Long Break Finished!");
+
+    nextSessionMode = "focus";
   }
 }
 
@@ -1440,7 +1510,14 @@ function saveFocusState() {
 
 /* Switch Timer Mode */
 function switchMode(mode) {
-  pauseTimer();
+  clearInterval(timer);
+
+  timer = null;
+
+  isRunning = false;
+
+  playPauseIcon.textContent = "play_arrow";
+
   currentMode = mode;
   focusTabs.forEach((tab) => {
     tab.classList.toggle("active", tab.dataset.mode === mode);
@@ -1460,9 +1537,13 @@ function switchMode(mode) {
       break;
   }
   remainingSeconds = totalSeconds;
+
   saveFocusState();
+
   updateTimerDisplay();
+
   updateProgressRing();
+
   updateFocusDashboardCard();
 }
 
@@ -1511,16 +1592,25 @@ function updateFocusTheme() {
 }
 
 /* Timer Finished */
+// let notificationAudio = null;
+
 function playNotification() {
+  notificationAudio = new Audio("notification.mp3");
+  notificationAudio.pause();
 
-    const audio = new Audio("notification.mp3");
+  notificationAudio.currentTime = 0;
 
-    audio.play().catch(error => {
+  notificationAudio.play();
 
-        console.error(error);
+  document.getElementById("alarmModal")?.classList.remove("hidden");
+}
 
-    });
+function stopNotification() {
+  if (!notificationAudio) return;
 
+  notificationAudio.pause();
+
+  notificationAudio.currentTime = 0;
 }
 
 /* Update UI */
@@ -1595,7 +1685,6 @@ window.addEventListener("beforeunload", () => {
   saveFocusStats();
 });
 
-
 /* DAILY GOALS */
 /* DOM Elements */
 let goalsPage;
@@ -1631,7 +1720,6 @@ function initGoalsPage() {
   bindGoalEvents();
   setupGoalRing();
   initializeGoals();
-  
 }
 
 /* Navigation */
@@ -1851,7 +1939,6 @@ function getGoalPercentage() {
     (goals.filter((goal) => goal.completed).length / goals.length) * 100,
   );
 }
-
 
 /* Dashboard Goal Card */
 

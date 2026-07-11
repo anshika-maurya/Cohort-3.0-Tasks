@@ -36,16 +36,13 @@
     <div class="topbar__actions">
       <button id="themeToggle">
 
-    <span
-        id="themeIcon"
-        class="material-symbols-outlined">
-    </span>
+        <span id="themeIcon" class="material-symbols-outlined">
+        </span>
 
-</button>
+      </button>
       <div id="openSettingsProfile" class="profile-summary">
         <button class="avatar" aria-label="Account">
-          <img id="topbarAvatar" src=""
-            alt="Avatar" />
+          <img id="topbarAvatar" src="" alt="Avatar" />
         </button>
       </div>
     </div>
@@ -199,7 +196,7 @@
         <h3 class="bento-card__title">Daily Goals</h3>
 
         <p id="goalCardDescription" class="bento-card__desc">
-          
+
         </p>
 
         <div class="overall-progress">
@@ -655,6 +652,60 @@
             </div>
           </article>
         </section>
+
+        <div id="alarmModal" class="modal hidden">
+
+          <div class="modal__card card alarm-card">
+
+            <div class="alarm-icon-wrapper">
+              <span class="material-symbols-outlined alarm-icon">
+                celebration
+              </span>
+            </div>
+
+            <h2 class="alarm-title">
+              Session Complete!
+            </h2>
+
+            <p class="alarm-subtitle" id="alarmMessage">
+              Great job! You completed your Focus Session.
+            </p>
+
+            <div class="alarm-divider"></div>
+
+            <div class="alarm-info">
+
+              <div class="alarm-info-item">
+                <span class="material-symbols-outlined">
+                  timer
+                </span>
+
+                <span id="completedTime">
+                  25 Minutes Completed
+                </span>
+              </div>
+
+              <div class="alarm-info-item">
+                <span class="material-symbols-outlined">
+                  emoji_events
+                </span>
+
+                <span id="nextSessionText">
+                  Next: Short Break
+                </span>
+              </div>
+
+            </div>
+
+            <button id="continueSessionBtn" class="btn-primary alarm-btn">
+
+              Continue to Next Session →
+
+            </button>
+
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -875,6 +926,8 @@
       <span>Goals</span>
     </a>
   </nav>
+
+
 
   <script src="./script.js"></script>
 </body>

@@ -1097,6 +1097,90 @@ ul {
   color: #2ecc71;
 }
 
+.alarm-card {
+  max-width: 420px;
+
+  width: 90%;
+
+  text-align: center;
+
+  padding: 36px 32px;
+}
+
+.alarm-icon-wrapper {
+  width: 72px;
+
+  height: 72px;
+
+  margin: auto;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: rgba(96, 150, 255, 0.15);
+
+  margin-bottom: 18px;
+}
+
+.alarm-icon {
+  font-size: 42px;
+
+  color: #6096ff;
+}
+
+.alarm-title {
+  font-size: 1.6rem;
+
+  margin-bottom: 10px;
+}
+
+.alarm-subtitle {
+  color: var(--color-text-secondary);
+
+  margin-bottom: 22px;
+
+  line-height: 1.6;
+}
+
+.alarm-divider {
+  height: 1px;
+
+  background: var(--color-border);
+
+  margin: 22px 0;
+}
+
+.alarm-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+  margin-bottom: 28px;
+}
+
+.alarm-info-item {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  color: var(--color-text);
+}
+
+.alarm-btn {
+  width: 100%;
+}
+
 /* ======== Responsive ======== */
 
 @media (max-width: 768px) {
