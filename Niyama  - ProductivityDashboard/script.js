@@ -2060,11 +2060,17 @@ function showWeatherLoading() {
   weatherDetails.textContent = "Please wait";
 }
 function showWeatherError(message) {
+
   weatherTemp.textContent = "--°";
-  weatherCondition.textContent = "Unavailable";
+
+  weatherCondition.textContent = "Weather Unavailable";
+
   weatherCity.textContent = message;
-  weatherDetails.textContent = "";
+
+  weatherDetails.textContent = "Enable location access to view weather.";
+
   weatherIcon.src = "";
+
 }
 function getWeatherEmoji(condition) {
   switch (condition) {
@@ -2111,12 +2117,19 @@ loadWeather();
 function loadWeather() {
   showWeatherLoading();
   if (!navigator.geolocation) {
-    loadDefaultCity();
-    return;
+
+  showWeatherError("Geolocation not supported");
+
+  return;
+
+}
+
+navigator.geolocation.getCurrentPosition(
+  getCurrentWeather,
+  () => {
+    showWeatherError("Location permission denied");
   }
-  navigator.geolocation.getCurrentPosition(getCurrentWeather, () => {
-    loadDefaultCity();
-  });
+);
 }
 
 /* Weather using Current Location */
@@ -2138,23 +2151,10 @@ async function getCurrentWeather(position) {
     loadDefaultCity();
   }
 }
-/* Default City */
-async function loadDefaultCity() {
-  try {
-    const city = "Dehradun";
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${WEATHER_API_KEY}&units=metric`,
-    );
-    if (!response.ok) {
-      throw new Error("City not found");
-    }
-    const data = await response.json();
-    console.log("Default City", data);
-    updateWeatherUI(data);
-  } catch (error) {
-    console.error(error);
-    showWeatherError("Unable to load weather");
-  }
+function loadDefaultCity() {
+
+  showWeatherError("Location permission required");
+
 }
 
 /* Capitalize */
