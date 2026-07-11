@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Niyama | Calm Mind. Focused Life</title>
-  <link rel="shortcut icon" href="./lotus-fav.png" type="image/x-icon">
+  <link rel="shortcut icon" href="./lotus-fav.png" type="image/x-icon" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,6 +14,14 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL@20..48,100..700,0..1&display=swap"
     rel="stylesheet" />
 
+  <script>
+    const savedTheme = localStorage.getItem("niyama-theme");
+
+    if (savedTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+  </script>
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="./style.css" />
 </head>
@@ -21,15 +29,25 @@
 <body>
   <!-- ===== Top Bar ===== -->
   <header class="topbar">
-    <div class="topbar__logo"><img src="./Lotus.png" height="50px" width="50px" alt="logo-img"> Niyama</div>
+    <div class="topbar__logo">
+      <img src="./Lotus.png" height="50px" width="50px" alt="logo-img" />
+      Niyama
+    </div>
     <div class="topbar__actions">
-      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
-        <span class="material-symbols-outlined">wb_sunny</span>
-      </button>
-      <button class="avatar" aria-label="Account">
-        <img src="https://three.psbdigital.ca/wp-content/uploads/2024/03/6515859.webp?6bfec1&6bfec1"
-          alt="User avatar" />
-      </button>
+      <button id="themeToggle">
+
+    <span
+        id="themeIcon"
+        class="material-symbols-outlined">
+    </span>
+
+</button>
+      <div id="openSettingsProfile" class="profile-summary">
+        <button class="avatar" aria-label="Account">
+          <img id="topbarAvatar" src=""
+            alt="Avatar" />
+        </button>
+      </div>
     </div>
   </header>
 
@@ -76,47 +94,29 @@
         </div>
 
         <div class="weather-card card" id="weatherCard">
-
           <div class="weather-card__temp">
-
-            <img id="weatherIcon" class="weather-card__icon-img" src="" alt="Weather Icon">
+            <img id="weatherIcon" class="weather-card__icon-img" src="" alt="Weather Icon" />
 
             <div>
-
-              <span class="weather-card__deg" id="weatherTemp">
-
-                --°
-
-              </span>
+              <span class="weather-card__deg" id="weatherTemp"> --° </span>
 
               <span class="weather-card__label" id="weatherCondition">
-
                 Loading...
-
               </span>
-
             </div>
-
           </div>
 
           <div class="weather-card__divider"></div>
 
           <div class="weather-card__details">
-
             <span class="weather-card__city" id="weatherCity">
-
               Detecting location...
-
             </span>
 
             <span class="weather-card__range" id="weatherDetails">
-
               Humidity --% • Wind -- km/h
-
             </span>
-
           </div>
-
         </div>
       </section>
 
@@ -139,33 +139,17 @@
             <span class="bento-card__icon bento-card__icon--primary">
               <span class="material-symbols-outlined">checklist</span>
             </span>
-            <span
-    class="pill"
-    id="taskCardStatus">
-
-    Loading...
-
-</span>
+            <span class="pill" id="taskCardStatus"></span>
           </div>
           <h3 class="bento-card__title">Task Manager</h3>
-          <p
-    class="bento-card__desc"
-    id="taskCardDescription">
+          <p class="bento-card__desc" id="taskCardDescription">Loading...</p>
+          <div class="segmented-bar" id="taskCardProgress">
+            <span class="segmented-bar__seg"></span>
 
-    No tasks
+            <span class="segmented-bar__seg"></span>
 
-</p>
-          <div
-    class="segmented-bar"
-    id="taskCardProgress">
-
-    <span class="segmented-bar__seg"></span>
-
-    <span class="segmented-bar__seg"></span>
-
-    <span class="segmented-bar__seg"></span>
-
-</div>
+            <span class="segmented-bar__seg"></span>
+          </div>
         </article>
 
         <article class="bento-card card" id="openPlannerCard">
@@ -173,30 +157,14 @@
             <span class="bento-card__icon bento-card__icon--secondary">
               <span class="material-symbols-outlined">calendar_today</span>
             </span>
-            <span
-    class="pill pill--neutral"
-    id="plannerCardStatus">
-
-    Loading...
-
-</span>
+            <span class="pill pill--neutral" id="plannerCardStatus">
+            </span>
           </div>
           <h3 class="bento-card__title">Daily Planner</h3>
-          <p
-    class="bento-card__desc"
-    id="plannerCardDescription">
-
-    Loading...
-
-</p>
-<p
-    class="bento-card__time"
-    id="plannerCardTime">
-
-    Loading...
-
-</p>
-        
+          <p class="bento-card__desc" id="plannerCardDescription">
+            Loading...
+          </p>
+          <p class="bento-card__time" id="plannerCardTime">Loading...</p>
         </article>
 
         <article class="bento-card card" id="openFocusCard">
@@ -204,82 +172,45 @@
             <span class="bento-card__icon bento-card__icon--tertiary">
               <span class="material-symbols-outlined">hourglass_empty</span>
             </span>
-            <span class="ring-btn">
-              <span class="material-symbols-outlined">play_arrow</span>
-            </span>
+            <span class="pill pill--primary" id="focusCardStatus"></span>
+            <span id="focusCardIcon" class="material-symbols-outlined">play_arrow</span>
           </div>
           <h3 class="bento-card__title">Focus Timer</h3>
-          <p class="bento-card__desc">Current Goal: 25:00 Session</p>
-          <div class="progress-track">
-            <div class="progress-track__fill progress-track__fill--tertiary" style="width: 45%"></div>
+          <p class="bento-card__desc" id="focusCardDescription">Loading...</p>
+          <div class="progress-track" id="focusCardProgress">
+            <div class="progress-track__fill progress-track__fill--tertiary" style="width: 0%"></div>
           </div>
         </article>
-
-       
       </section>
 
       <!-- Daily Goals -->
 
       <article class="bento-card card" id="openGoalsCard">
-        <div class="goals-card__header">
-          <div class="goals-card__title">
-            <span class="material-symbols-outlined">rocket_launch</span>
-            <h2>Daily Goals</h2>
-          </div>
-          <span class="goals-card__percent">75% Complete</span>
+        <div class="bento-card__top">
+          <span class="bento-card__icon bento-card__icon--success">
+            <span class="material-symbols-outlined"> rocket_launch </span>
+          </span>
+
+          <span id="goalCardStatus" class="pill pill--primary">
+            0% Complete
+          </span>
         </div>
 
-        <div class="goals-grid">
-          <ul class="goal-list">
-            <li class="goal-item">
-              <span class="material-symbols-outlined goal-item__check is-done">check_circle</span>
-              <div class="goal-item__body">
-                <p>Complete UX Audit</p>
-                <div class="progress-track progress-track--thin">
-                  <div class="progress-track__fill" style="width: 100%"></div>
-                </div>
-              </div>
-            </li>
-            <li class="goal-item">
-              <span class="material-symbols-outlined goal-item__check is-done">check_circle</span>
-              <div class="goal-item__body">
-                <p>Daily Standup</p>
-                <div class="progress-track progress-track--thin">
-                  <div class="progress-track__fill" style="width: 100%"></div>
-                </div>
-              </div>
-            </li>
-          </ul>
+        <h3 class="bento-card__title">Daily Goals</h3>
 
-          <ul class="goal-list">
-            <li class="goal-item">
-              <span class="material-symbols-outlined goal-item__check">radio_button_unchecked</span>
-              <div class="goal-item__body">
-                <p>Draft Newsletter</p>
-                <div class="progress-track progress-track--thin">
-                  <div class="progress-track__fill" style="width: 20%; opacity: 0.4"></div>
-                </div>
-              </div>
-            </li>
-            <li class="goal-item">
-              <span class="material-symbols-outlined goal-item__check is-done">check_circle</span>
-              <div class="goal-item__body">
-                <p>Exercise - 30m</p>
-                <div class="progress-track progress-track--thin">
-                  <div class="progress-track__fill" style="width: 100%"></div>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <p id="goalCardDescription" class="bento-card__desc">
+          
+        </p>
 
         <div class="overall-progress">
           <div class="overall-progress__row">
-            <span>Overall Progress</span>
-            <span>3 / 4 Goals</span>
+            <span>Today's Progress</span>
+
+            <span id="goalCardCount">0 / 0 Goals</span>
           </div>
-          <div class="progress-track progress-track--lg">
-            <div class="progress-track__fill" style="width: 75%"></div>
+
+          <div class="progress-track">
+            <div id="goalCardProgress" class="progress-track__fill"></div>
           </div>
         </div>
       </article>
@@ -348,7 +279,6 @@
         </div>
       </section>
     </section>
-    
 
     <!-- PLANNER PAGE -->
 
@@ -563,11 +493,7 @@
       </div>
     </section>
 
-    <!-- ================= End Planner ================= -->
-
-    <!-- ======================================================
-     Focus Timer Page
-====================================================== -->
+    <!-- Focus Timer Page -->
 
     <section id="focusPage" class="page hidden">
       <!-- ========= Top Bar ========= -->
@@ -592,9 +518,7 @@
 
           <button class="focus-tab" data-mode="long">Long Break</button>
         </div>
-        <!-- ======================================================
-         Timer Circle
-    ====================================================== -->
+        <!-- Timer Circle -->
 
         <section class="focus-timer">
           <div class="timer-circle">
@@ -615,9 +539,7 @@
             </div>
           </div>
 
-          <!-- ======================================================
-           Controls
-      ====================================================== -->
+          <!-- Controls -->
 
           <div class="timer-controls">
             <button id="resetTimer" class="timer-btn secondary">
@@ -636,9 +558,7 @@
           </div>
         </section>
 
-        <!-- ======================================================
-         Bottom Cards
-    ====================================================== -->
+        <!-- Bottom Cards -->
 
         <section class="focus-bottom">
           <!-- ========= Durations ========= -->
@@ -738,12 +658,10 @@
       </div>
     </section>
 
-    <!-- ======================================================
-     Daily Goals Page
-====================================================== -->
+    <!-- Daily Goals Page -->
 
     <section id="goalsPage" class="page hidden">
-      <!-- ================= Header ================= -->
+      <!-- ======= Header ======= -->
 
       <header class="page-header">
         <button class="back-btn" id="backFromGoals">
@@ -753,11 +671,11 @@
         </button>
       </header>
 
-      <!-- ================= Main Layout ================= -->
+      <!-- ======= Main Layout ======= -->
 
       <div class="goals-page">
         <div class="goals-layout">
-          <!-- ================= Left Progress Card ================= -->
+          <!-- ======= Left Progress Card ======= -->
 
           <section class="goal-progress-card">
             <div class="goal-progress-circle">
@@ -779,12 +697,12 @@
             </p>
           </section>
 
-          <!-- ================= Right Panel ================= -->
+          <!-- ======== Right Panel ========= -->
 
           <section class="goals-content">
-            <!-- ============ Add Goal ============ -->
+            <!-- ======== Add Goal ======== -->
 
-            <div class="goal-input-card">
+            <div class="card goal-input-card">
               <div class="goal-input-wrapper">
                 <span class="material-symbols-outlined"> add_task </span>
 
@@ -794,64 +712,33 @@
               <button id="addGoalBtn" class="primary-btn">ADD GOAL</button>
             </div>
 
-            <!-- ============ Goal List ============ -->
+            <!-- ======= Goal List ======= -->
 
             <div class="goal-list" id="goalList">
               <!-- Goal Item -->
+              <!-- <article class="goal-item completed">
+                  <button class="goal-check checked">
+                    <span class="material-symbols-outlined"> check </span>
+                  </button>
 
-              <article class="goal-item">
-                <button class="goal-check">
-                  <span class="material-symbols-outlined"> check </span>
-                </button>
+                  <div class="goal-info">
+                    <h4>Clean up email inbox (Zero Inbox Goal)</h4>
+                  </div>
 
-                <div class="goal-info">
-                  <h4>Review quarterly marketing strategy</h4>
-                </div>
-
-                <button class="goal-delete">
-                  <span class="material-symbols-outlined"> delete </span>
-                </button>
-              </article>
-
-              <article class="goal-item completed">
-                <button class="goal-check checked">
-                  <span class="material-symbols-outlined"> check </span>
-                </button>
-
-                <div class="goal-info">
-                  <h4>Complete focus timer for 4 sessions</h4>
-                </div>
-
-                <button class="goal-delete">
-                  <span class="material-symbols-outlined"> delete </span>
-                </button>
-              </article>
-
-              <article class="goal-item completed">
-                <button class="goal-check checked">
-                  <span class="material-symbols-outlined"> check </span>
-                </button>
-
-                <div class="goal-info">
-                  <h4>Clean up email inbox (Zero Inbox Goal)</h4>
-                </div>
-
-                <button class="goal-delete">
-                  <span class="material-symbols-outlined"> delete </span>
-                </button>
-              </article>
+                  <button class="goal-delete">
+                    <span class="material-symbols-outlined"> delete </span>
+                  </button>
+                </article> -->
             </div>
-            <!-- End Goal List -->
+
           </section>
-          <!-- End Goals Content -->
+
         </div>
-        <!-- End Goals Layout -->
+
       </div>
     </section>
 
-    <!-- ======================================================
-     SETTINGS PAGE
-====================================================== -->
+    <!-- SETTINGS PAGE -->
     <section id="settingsPage" class="settings-page hidden">
       <!-- ===== Settings Header ===== -->
       <div class="settings-header">
@@ -871,8 +758,7 @@
         <div class="profile-photo">
           <div class="profile-photo__image">
             <img id="profilePreview"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCshWSHvFm3SoWpmVBjEkk9CZFzrk-BgDuxJYIgsyd5BUykJMuKu3lSwM4M1rkifBABCL6ADwAToMRtIF9HE3nXmbKqC_UaIAceHkxBnVhbGcPketORw6ZXfviWzPb4jWh2evWsNsVLxArDifTD71w-W5k2kfjaSr_vJOMQlvsYjiQbTDw94mYr_367PVLNctTaa4JrRt8baJIAsfnWjoEkovLdRjT_QlQfvBS4qDocnf88icSCTQfaRA"
-              alt="Profile" />
+              src="https://three.psbdigital.ca/wp-content/uploads/2024/03/6515859.webp?6bfec1&6bfec1" alt="Profile" />
           </div>
 
           <div class="profile-photo__content">
@@ -892,20 +778,9 @@
           <div class="form-group">
             <label for="displayName"> Display Name </label>
 
-            <input type="text" id="displayName" placeholder="Enter your name" value="Alex Sterling" />
+            <input type="text" id="displayName" placeholder="Enter your name" value="Anshu" />
 
             <small> This is how your name appears across the app. </small>
-          </div>
-
-          <!-- Email -->
-          <div class="form-group">
-            <label>Email Address</label>
-
-            <div class="input-disabled">
-              <span> alex.sterling@niyama.io </span>
-
-              <span class="material-symbols-outlined"> lock </span>
-            </div>
           </div>
 
           <!-- Save Button -->
@@ -935,9 +810,7 @@
         <button class="btn-danger" id="resetData">Reset Data</button>
       </section>
 
-      <!-- =====================================================
-       Reset Confirmation Modal
-  ====================================================== -->
+      <!-- Reset Confirmation Modal -->
       <div class="modal hidden" id="resetModal">
         <div class="modal__card card">
           <div class="modal__header">
@@ -965,35 +838,41 @@
         </div>
       </div>
 
-      <!-- =====================================================
-       Success Toast
-  ====================================================== -->
+      <!-- Success Toast -->
       <div class="toast" id="saveToast">
         <span class="material-symbols-outlined"> check_circle </span>
 
         <span> Changes saved successfully. </span>
       </div>
     </section>
-    <!-- =============== End Settings Page =============== -->
+    <!-- ======= End Settings Page ======== -->
   </main>
 
   <!-- ===== Bottom Nav (mobile) ===== -->
   <nav class="bottom-nav" aria-label="Primary mobile">
-    <a class="bottom-nav__item is-active" href="index.html">
+    <a class="bottom-nav__item is-active" id="dashboardMobile" href="index.html">
       <span class="material-symbols-outlined">dashboard</span>
       <span>Home</span>
     </a>
-    <a class="bottom-nav__item" href="#">
+
+    <a class="bottom-nav__item" id="openTasksMobile" href="#">
+      <span class="material-symbols-outlined">checklist</span>
+      <span>Tasks</span>
+    </a>
+
+    <a class="bottom-nav__item" id="openPlannerMobile" href="#">
       <span class="material-symbols-outlined">event_note</span>
       <span>Plan</span>
     </a>
-    <a class="bottom-nav__item" href="#">
-      <span class="material-symbols-outlined">schedule</span>
-      <span>Timer</span>
+
+    <a class="bottom-nav__item" id="openFocusMobile" href="#">
+      <span class="material-symbols-outlined">timer</span>
+      <span>Focus</span>
     </a>
-    <a class="bottom-nav__item" href="#">
-      <span class="material-symbols-outlined">bar_chart</span>
-      <span>Stats</span>
+
+    <a class="bottom-nav__item" id="openGoalsMobile" href="#">
+      <span class="material-symbols-outlined">rocket_launch</span>
+      <span>Goals</span>
     </a>
   </nav>
 

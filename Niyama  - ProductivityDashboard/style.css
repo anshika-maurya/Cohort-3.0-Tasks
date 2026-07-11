@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --color-primary: #1e3a8a;
   --color-primary-dark: #172554;
   --color-primary-light: #dbeafe;
@@ -40,33 +40,131 @@
 
 /* Dark theme */
 [data-theme="dark"] {
-  --color-primary: #3b82f6;
-  --color-primary-dark: #2563eb;
-  --color-primary-light: #60a5fa;
-  --color-secondary: #38bdf8;
-  --color-secondary-light: #0f2c4f;
-  --color-tertiary: #f59e0b;
-  --color-tertiary-light: #4a3200;
-  --color-success: #22c55e;
-  --color-danger: #ef4444;
-  --color-danger-light: #4c1d1d;
-  --color-bg-start: #05070d;
-  --color-bg-end: #0a0f18;
-  --color-surface: #111827;
-  --color-surface-muted: #1b2435;
-  --color-border: #2d3748;
-  --color-text: #f8fafc;
-  --color-text-muted: #cbd5e1;
-  --color-text-faint: #94a3b8;
-  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --shadow-card-hover: 0 18px 45px rgba(59, 130, 246, 0.18);
+  --color-primary: #6096ff;
+  --color-primary-dark: #4a84f7;
+  --color-primary-light: #a8c6ff;
+  --color-bg-start: #03060d;
+  --color-bg-end: #03060d;
+  --color-surface: #171e34;
+  --color-surface-muted: #282e37;
+  --color-border: #282e37;
+  --color-text: #eef2f9;
+  --color-text-muted: #818181;
+  --color-text-faint: #818181;
+  --shadow-card: 0 10px 35px rgba(0, 0, 0, 0.45);
+  --shadow-card-hover: 0 18px 45px rgba(0, 0, 0, 0.65);
+}
+
+[data-theme="dark"] body {
+  background: #03060d;
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .sidebar {
+  background: #171e34;
+  border-right: 1px solid #282e37;
+}
+
+[data-theme="dark"] .topbar {
+  background: rgba(23, 30, 52, 0.92);
+  border-bottom: 1px solid #282e37;
+  backdrop-filter: blur(18px);
+}
+[data-theme="dark"] .icon-btn span {
+  color: #eef2f9;
 }
 
 [data-theme="dark"] .card {
-  background: rgba(17, 24, 39, 0.92);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  background: #171e34;
+  border: 1px solid #282e37;
+  transition: 0.3s ease;
+}
+
+[data-theme="dark"] .card:hover {
+  background: #171e34;
+  border-color: #6096ff;
+  box-shadow:
+    0 0 0 1px rgba(96, 150, 255, 0.15),
+    0 18px 40px rgba(0, 0, 0, 0.55);
+  transform: translateY(-4px);
+}
+
+[data-theme="dark"] .btn-primary {
+  background: #6096ff;
+  color: #eef2f9;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+  background: #4a84f7;
+  box-shadow: 0 0 18px rgba(96, 150, 255, 0.35);
+}
+
+[data-theme="dark"] .nav-item {
+  color: #818181;
+}
+
+[data-theme="dark"] .nav-item:hover {
+  color: #eef2f9;
+}
+
+[data-theme="dark"] .nav-item.is-active {
+  background: rgba(96, 150, 255, 0.12);
+  color: #6096ff;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: #282e37;
+  color: #eef2f9;
+  border: 1px solid #282e37;
+}
+[data-theme="dark"] .tasks-list .task-check,
+[data-theme="dark"] .star,
+[data-theme="dark"] .delete {
+  color: #eef2f9;
+}
+
+/* [data-theme="dark"] input:focus {
+  border-color: #6096ff;
+  box-shadow: 0 0 0 3px rgba(96, 150, 255, 0.15);
+} */
+
+[data-theme="dark"] .progress-track {
+  background: #282e37;
+}
+
+[data-theme="dark"] .progress-track__fill {
+  background: #6096ff;
+}
+
+[data-theme="dark"] .pill {
+  background: #282e37;
+  color: #eef2f9;
+}
+
+[data-theme="dark"] .pill--primary {
+  background: rgba(96, 150, 255, 0.15);
+  color: #6096ff;
+}
+
+[data-theme="dark"] button.timeline-empty,
+[data-theme="dark"] button.start-focus,
+[data-theme="dark"] h3.event-title,
+[data-theme="dark"] div.event-actions span {
+  /* background-color: #757D89; */
+  color: #03060d;
+}
+[data-theme="dark"] button.timeline-empty:hover,
+[data-theme="dark"] button.icon-btn:hover {
+  color: #1d3a8a;
+}
+[data-theme="dark"] #focusDuration,
+[data-theme="dark"] #shortDuration,
+[data-theme="dark"] #longDuration,
+[data-theme="dark"] #sessionCount,
+[data-theme="dark"] #focusHours {
+  color: #eef2f9;
 }
 
 * {
@@ -153,6 +251,7 @@ ul {
   justify-content: center;
   width: 40px;
   height: 40px;
+
   border-radius: var(--radius-full);
   color: var(--color-text-muted);
   transition:
@@ -174,11 +273,6 @@ ul {
   font-weight: 600;
   letter-spacing: 0.02em;
   white-space: nowrap;
-}
-
-.pill--danger {
-  background: var(--color-danger-light);
-  color: var(--color-danger);
 }
 
 .pill--neutral {
@@ -282,6 +376,9 @@ ul {
 }
 #themeToggle {
   color: #03060d;
+}
+[data-theme="dark"] #themeToggle {
+  color: #e0f2fe;
 }
 
 /* Sidebar */
@@ -550,110 +647,69 @@ ul {
   align-items: center;
   justify-content: center;
 }
-.bento-card__time{
+.bento-card__time {
+  margin-top: 6px;
 
-    margin-top:6px;
+  font-size: 0.85rem;
 
-    font-size:.85rem;
-
-    color:var(--color-text-muted);
-
+  color: var(--color-text-muted);
 }
 
-.pill--success{
-
-    background:#DCFCE7;
-
-    color:#166534;
-
-    border:1px solid #86EFAC;
-
+.pill--success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
 }
-.pill--primary{
-
-    background:#DBEAFE;
-
-    color:#1D4ED8;
-
-    border:1px solid #93C5FD;
-
+.pill--primary {
+  background: #dbeafe;
+  color: #1d4ed8;
+  border: 1px solid #93c5fd;
 }
-.pill--warning{
-
-    background:#FEF3C7;
-
-    color:#B45309;
-
-    border:1px solid #FCD34D;
-
+.pill--warning {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fcd34d;
 }
-.pill--danger{
-
-    background:#FEE2E2;
-
-    color:#B91C1C;
-
-    border:1px solid #FCA5A5;
-
+.pill--danger {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
 }
-.pill{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:6px 14px;
-
-    border-radius:999px;
-
-    font-size:.78rem;
-
-    font-weight:600;
-
-    letter-spacing:.3px;
-
-    backdrop-filter:blur(12px);
-
-    transition:all .3s ease;
-
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
 }
-[data-theme="dark"] .pill--success{
 
-    background:rgba(34,197,94,.18);
-
-    color:#86EFAC;
-
-    border-color:rgba(34,197,94,.35);
-
+[data-theme="dark"] .pill--success {
+  background: rgba(34, 197, 94, 0.18);
+  color: #86efac;
+  border-color: rgba(34, 197, 94, 0.35);
 }
-[data-theme="dark"] .pill--primary{
 
-    background:rgba(59,130,246,.18);
-
-    color:#93C5FD;
-
-    border-color:rgba(59,130,246,.35);
-
+[data-theme="dark"] .pill--primary {
+  background: rgba(59, 130, 246, 0.18);
+  color: #93c5fd;
+  border-color: rgba(59, 130, 246, 0.35);
 }
-[data-theme="dark"] .pill--warning{
 
-    background:rgba(245,158,11,.18);
-
-    color:#FCD34D;
-
-    border-color:rgba(245,158,11,.35);
-
+[data-theme="dark"] .pill--warning {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.35);
 }
-[data-theme="dark"] .pill--danger{
 
-    background:rgba(239,68,68,.18);
-
-    color:#FCA5A5;
-
-    border-color:rgba(239,68,68,.35);
-
+[data-theme="dark"] .pill--danger {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.35);
 }
 
 /* Goals */
@@ -693,29 +749,6 @@ ul {
   color: var(--color-primary);
 }
 
-.goals-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-lg);
-}
-
-.goal-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.goal-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
-}
-
-.goal-item__check {
-  color: var(--color-text-faint);
-  flex-shrink: 0;
-}
-
 .goal-item__check.is-done {
   color: var(--color-primary);
   font-variation-settings: "FILL" 1;
@@ -744,9 +777,20 @@ ul {
   margin-bottom: var(--space-xs);
 }
 
-/* ==========================================================================
-   Bottom nav (mobile)
-   ========================================================================== */
+[data-theme="dark"] #goalInput:focus,
+#taskInput:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .goal-list {
+  background-color: #0e111a;
+  border: 1px solid #6096ff;
+  border-radius: 15px;
+}
+
+/* Bottom nav (mobile) */
 
 .bottom-nav {
   position: fixed;
@@ -776,9 +820,7 @@ ul {
   color: var(--color-primary);
 }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
+/* Responsive */
 
 @media (min-width: 640px) {
   .hero-row {
@@ -820,15 +862,13 @@ ul {
   }
 }
 
-/* ======================================================
-   SETTINGS PAGE
-====================================================== */
+/* SETTINGS PAGE */
 
 .hidden {
   display: none !important;
 }
 
-/* ================= Header ================= */
+/* ========= Header ========= */
 
 .settings-page {
   display: flex;
@@ -870,13 +910,13 @@ ul {
   color: var(--color-text-muted);
 }
 
-/* ================= Card ================= */
+/* ======= Card ======= */
 
 .settings-card {
   padding: var(--space-lg);
 }
 
-/* ================= Profile ================= */
+/*======== Profile ======== */
 
 .profile-photo {
   display: flex;
@@ -912,7 +952,7 @@ ul {
   font-size: 13px;
 }
 
-/* ================= Buttons ================= */
+/* ========= Buttons ========= */
 
 .btn-primary,
 .btn-danger,
@@ -954,7 +994,7 @@ ul {
   background: var(--color-border);
 }
 
-/* ================= Form ================= */
+/* ========= Form ========= */
 
 .settings-form {
   display: flex;
@@ -962,53 +1002,11 @@ ul {
   gap: var(--space-lg);
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-group label {
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.form-group input {
-  width: 100%;
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-  font-family: inherit;
-  font-size: 15px;
-  transition: 0.25s;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: var(--color-primary);
-}
-
-.form-group small {
-  color: var(--color-text-muted);
-  font-size: 12px;
-}
-
-.input-disabled {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--color-surface-muted);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-  color: var(--color-text-muted);
-}
-
 .form-actions {
   margin-top: var(--space-sm);
 }
 
-/* ================= Danger ================= */
+/* ======== Danger ========= */
 
 .danger-card {
   display: flex;
@@ -1031,7 +1029,7 @@ ul {
   max-width: 520px;
 }
 
-/* ================= Modal ================= */
+/* ========= Modal ========= */
 
 .modal {
   position: fixed;
@@ -1071,7 +1069,7 @@ ul {
   margin-top: var(--space-lg);
 }
 
-/* ================= Toast ================= */
+/* ========= Toast ======== */
 
 .toast {
   position: fixed;
@@ -1099,7 +1097,7 @@ ul {
   color: #2ecc71;
 }
 
-/* ================= Responsive ================= */
+/* ======== Responsive ======== */
 
 @media (max-width: 768px) {
   .settings-heading h1 {
@@ -1133,9 +1131,7 @@ ul {
   }
 }
 
-/* ======================================================
-   TASKS PAGE
-====================================================== */
+/* TASKS PAGE */
 
 .tasks-page {
   display: flex;
@@ -1143,7 +1139,7 @@ ul {
   gap: var(--space-xl);
 }
 
-/* ================= Header ================= */
+/* ======== Header ========= */
 
 .tasks-header {
   display: flex;
@@ -1161,7 +1157,7 @@ ul {
   color: var(--color-text-muted);
 }
 
-/* ================= Add Task ================= */
+/* ========= Add Task ========= */
 
 .add-task-card {
   display: flex;
@@ -1198,7 +1194,7 @@ ul {
   border-left: 1px solid var(--color-border);
 }
 
-/* ================= Toggle ================= */
+/* ========= Toggle ========= */
 
 .toggle {
   position: relative;
@@ -1244,7 +1240,7 @@ ul {
   font-weight: 600;
 }
 
-/* ================= Button ================= */
+/* ======== Button ========= */
 
 .add-task-card .btn-primary {
   display: flex;
@@ -1252,7 +1248,7 @@ ul {
   gap: 8px;
 }
 
-/* ================= Active Tasks ================= */
+/* ======== Active Tasks ========= */
 
 .tasks-list-section {
   display: flex;
@@ -1277,7 +1273,7 @@ ul {
   color: var(--color-text-muted);
 }
 
-/* ================= Task Item ================= */
+/* ========= Task Item ========= */
 
 .task-item {
   display: flex;
@@ -1322,7 +1318,7 @@ ul {
   margin-top: 3px;
 }
 
-/* ================= Important ================= */
+/* ======== Important ========== */
 
 .task-item.important {
   border-color: rgba(181, 93, 0, 0.25);
@@ -1340,7 +1336,7 @@ ul {
   color: #9b5b09;
 }
 
-/* ================= Completed ================= */
+/* ======== Completed ========= */
 
 .task-item.completed {
   opacity: 0.6;
@@ -1350,7 +1346,7 @@ ul {
   text-decoration: line-through;
 }
 
-/* ================= Actions ================= */
+/* ========== Actions ======== */
 
 .task-actions {
   display: flex;
@@ -1380,7 +1376,7 @@ ul {
   color: var(--color-danger);
 }
 
-/* ================= Empty ================= */
+/* ======== Empty ======== */
 
 .empty-tasks {
   text-align: center;
@@ -1398,7 +1394,7 @@ ul {
   margin-bottom: 10px;
 }
 
-/* ================= Responsive ================= */
+/* ========= Responsive ========= */
 
 @media (max-width: 768px) {
   .add-task-card {
@@ -1421,9 +1417,7 @@ ul {
   }
 }
 
-/* ==========================================================================
-   PLANNER PAGE
-========================================================================== */
+/* PLANNER PAGE */
 
 /* Layout */
 
@@ -1458,9 +1452,7 @@ ul {
   align-items: start;
 }
 
-/* ======================================================
-   Sidebar
-====================================================== */
+/* Sidebar */
 
 .planner-sidebar {
   display: flex;
@@ -1468,9 +1460,7 @@ ul {
   gap: 24px;
 }
 
-/* ======================================================
-   Cards
-====================================================== */
+/* Cards */
 
 .planner-focus,
 .priority-card,
@@ -1480,13 +1470,10 @@ ul {
   border-radius: 24px;
 }
 
-/* ======================================================
-   Today's Focus
-====================================================== */
+/* Today's Focus */
 
 .planner-focus {
   background: linear-gradient(135deg, #5b5ef6, #7b7ef9);
-
   color: #fff;
 }
 
@@ -1511,9 +1498,7 @@ ul {
   opacity: 0.85;
 }
 
-/* ======================================================
-   Section Header
-====================================================== */
+/* Section Header */
 
 .section-header {
   display: flex;
@@ -1527,11 +1512,7 @@ ul {
   font-weight: 700;
 }
 
-
-
-/* ======================================================
-   Notes
-====================================================== */
+/* Notes */
 
 .notes-card textarea {
   width: 100%;
@@ -1550,9 +1531,7 @@ ul {
   color: var(--color-text-muted);
 }
 
-/* ======================================================
-   Timeline
-====================================================== */
+/* Timeline */
 
 .timeline-card {
   position: relative;
@@ -1594,9 +1573,7 @@ ul {
   transform: translateY(-2px);
 }
 
-/* ======================================================
-   Timeline Wrapper
-====================================================== */
+/* Timeline Wrapper */
 
 .timeline {
   position: relative;
@@ -1612,9 +1589,7 @@ ul {
   gap: 18px;
 }
 
-/* ======================================================
-   Timeline Item
-====================================================== */
+/* Timeline Item */
 
 .timeline-item {
   position: relative;
@@ -1643,9 +1618,7 @@ ul {
   display: none;
 }
 
-/* ======================================================
-   Time
-====================================================== */
+/* Time */
 
 .timeline-time {
   position: relative;
@@ -1673,9 +1646,7 @@ ul {
   background: var(--color-primary);
 }
 
-/* ======================================================
-   Event Card
-====================================================== */
+/* Event Card */
 
 .timeline-event {
   display: flex;
@@ -1721,9 +1692,7 @@ ul {
   font-size: 0.9rem;
 }
 
-/* ======================================================
-   Focus Button
-====================================================== */
+/* Focus Button */
 
 .btn-focus {
   display: inline-flex;
@@ -1743,9 +1712,7 @@ ul {
   color: #fff;
 }
 
-/* ======================================================
-   Right Section
-====================================================== */
+/* Right Section */
 
 .event-right {
   display: flex;
@@ -1754,9 +1721,7 @@ ul {
   gap: 14px;
 }
 
-/* ======================================================
-   Hover Actions
-====================================================== */
+/* Hover Actions */
 
 .event-actions {
   display: flex;
@@ -1771,9 +1736,7 @@ ul {
   transform: translateY(0);
 }
 
-/* ======================================================
-   Badges
-====================================================== */
+/* Badges */
 
 .event-badge {
   display: inline-flex;
@@ -1807,9 +1770,7 @@ ul {
   font-size: 16px;
 }
 
-/* ======================================================
-   Empty Slot
-====================================================== */
+/* Empty Slot */
 
 .timeline-empty {
   display: flex;
@@ -1830,38 +1791,24 @@ ul {
   color: var(--color-primary);
 }
 
-/* ======================================================
-   NOW Line
-====================================================== */
+/* NOW Line */
 
 .now-line {
   position: absolute;
-
   left: 72px;
-
   right: 20px;
-
   height: 3px;
-
   background: #4f46e5;
-
   z-index: 99999;
-
   pointer-events: none;
 }
 .now-dot {
   position: absolute;
-
   left: -5px;
-
   top: -5px;
-
   width: 12px;
-
   height: 12px;
-
   border-radius: 50%;
-
   background: #4f46e5;
 }
 
@@ -1877,9 +1824,7 @@ ul {
   font-weight: 700;
 }
 
-/* ======================================================
-   Floating Button
-====================================================== */
+/* Floating Button */
 
 .planner-fab {
   position: fixed;
@@ -1902,9 +1847,7 @@ ul {
   transform: scale(1.08);
 }
 
-/* ======================================================
-   Modal
-====================================================== */
+/* Modal */
 
 .planner-modal {
   position: fixed;
@@ -1972,10 +1915,28 @@ ul {
   gap: 12px;
   margin-top: 10px;
 }
+.planner-highlight {
+  animation: plannerFlash 0.9s ease;
+}
 
-/* ======================================================
-   Responsive
-====================================================== */
+@keyframes plannerFlash {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(37, 99, 235, 0);
+  }
+
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 24px rgba(37, 99, 235, 0.35);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+}
+
+/* Responsive */
 
 @media (max-width: 1024px) {
   .planner-layout {
@@ -2022,13 +1983,9 @@ ul {
   }
 }
 
-/* ==========================================================================
-   FOCUS TIMER PAGE
-========================================================================== */
+/* FOCUS TIMER PAGE */
 
-/* ======================================================
-   Page
-====================================================== */
+/* Page */
 
 .focus-page {
   display: flex;
@@ -2038,9 +1995,7 @@ ul {
   padding: 32px 0 60px;
 }
 
-/* ======================================================
-   Header
-====================================================== */
+/* Header */
 
 .page-header {
   display: flex;
@@ -2061,9 +2016,7 @@ ul {
   gap: 14px;
 }
 
-/* ======================================================
-   Tabs
-====================================================== */
+/* Tabs */
 
 .focus-tabs {
   display: flex;
@@ -2077,21 +2030,13 @@ ul {
 
 .focus-tab {
   border: none;
-
   background: none;
-
   cursor: pointer;
-
   padding: 10px 22px;
-
   border-radius: 999px;
-
   font-size: 0.9rem;
-
   font-weight: 600;
-
   color: var(--color-text-muted);
-
   transition: 0.3s;
 }
 
@@ -2101,57 +2046,39 @@ ul {
 
 .focus-tab.active {
   background: var(--color-primary);
-
   color: #fff;
 }
 
-/* ======================================================
-   Timer
-====================================================== */
+/* Timer */
 
 .focus-timer {
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   gap: 30px;
 }
 
-/* ======================================================
-   Circle
-====================================================== */
+/* Circle */
 
 .timer-circle {
   position: relative;
-
-  width: 360px;
-
-  height: 360px;
-
+  width: min(85vw, 360px);
+  height: min(85vw, 360px);
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 }
 
-/* ======================================================
-   Progress Ring
-====================================================== */
+/* Progress Ring */
 
 .progress-ring {
-  width: 360px;
-
-  height: 360px;
-
+  width: 100%;
+  height: 100%;
   transform: rotate(-90deg);
 }
 
 .progress-ring circle {
   fill: none;
-
   stroke-width: 8;
 }
 
@@ -2161,80 +2088,52 @@ ul {
 
 .progress-ring__progress {
   stroke: var(--color-primary);
-
   stroke-linecap: round;
-
   stroke-dasharray: 1005;
-
   stroke-dashoffset: 0;
-
   transition: stroke-dashoffset 0.5s linear;
 }
 
-/* ======================================================
-   Timer Text
-====================================================== */
+/* Timer Text */
 
 .timer-content {
   position: absolute;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
 }
 
 .timer-content h1 {
   font-size: 5rem;
-
   font-weight: 800;
-
   line-height: 1;
-
   color: var(--color-text);
 }
 
 .timer-content p {
   margin-top: 10px;
-
   font-size: 0.85rem;
-
   font-weight: 700;
-
   letter-spacing: 3px;
-
   text-transform: uppercase;
-
   color: var(--color-text-muted);
 }
-/* ======================================================
-   Timer Controls
-====================================================== */
+/* Timer Controls */
 
 .timer-controls {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 28px;
 }
 
 .timer-btn {
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   border: none;
-
   cursor: pointer;
-
   transition: 0.25s ease;
 }
 
@@ -2244,29 +2143,19 @@ ul {
 
 .timer-btn.secondary {
   width: 62px;
-
   height: 62px;
-
   border-radius: 50%;
-
   background: var(--color-surface);
-
   color: var(--color-text);
-
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .timer-btn.primary {
   width: 90px;
-
   height: 90px;
-
   border-radius: 50%;
-
   background: var(--color-primary);
-
   color: #fff;
-
   box-shadow: 0 16px 36px rgba(91, 94, 246, 0.3);
 }
 
@@ -2274,12 +2163,10 @@ ul {
   font-size: 32px;
 }
 
-/* ======================================================
-   Bottom Cards
-====================================================== */
+/* Bottom Cards */
 
 .focus-bottom {
-  width: 100%;
+  width: 80%;
 
   display: grid;
 
@@ -2290,9 +2177,7 @@ ul {
   margin-top: 20px;
 }
 
-/* ======================================================
-   Card Header
-====================================================== */
+/* Card Header */
 
 .card-header {
   display: flex;
@@ -2320,9 +2205,7 @@ ul {
   font-weight: 700;
 }
 
-/* ======================================================
-   Duration
-====================================================== */
+/* Duration */
 
 .duration-list {
   display: flex;
@@ -2392,9 +2275,7 @@ ul {
   color: #4f46e5;
 }
 
-/* ======================================================
-   Progress Card
-====================================================== */
+/* Progress Card */
 
 .progress-grid {
   display: grid;
@@ -2434,9 +2315,7 @@ ul {
 
   color: #6b7280;
 }
-/* ======================================================
-   Glass Effect
-====================================================== */
+/* Glass Effect */
 
 .duration-card,
 .progress-card {
@@ -2453,54 +2332,19 @@ ul {
   box-shadow: 0 12px 35px rgba(20, 20, 40, 0.05);
 }
 
-/* ======================================================
-   Animation
-====================================================== */
+/* Animation */
 
 .focus-tab,
 .timer-btn,
-.duration-btn,
-.card {
+.duration-btn {
   transition: 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-}
-
-/* ======================================================
-   Responsive
-====================================================== */
-
-@media (max-width: 992px) {
-  .timer-circle {
-    width: 300px;
-
-    height: 300px;
-  }
-
-  .progress-ring {
-    width: 300px;
-
-    height: 300px;
-  }
-
-  .timer-content h1 {
-    font-size: 4rem;
-  }
-}
+/* Responsive */
 
 @media (max-width: 768px) {
   .focus-bottom {
-    width: 700px;
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 28px;
-
-    margin-top: 28px;
+    grid-template-columns: 1fr;
   }
 
   .focus-tabs {
@@ -2526,13 +2370,9 @@ ul {
   }
 }
 
-/* ==========================================================================
-   DAILY GOALS
-========================================================================== */
+/* DAILY GOALS */
 
-/* ======================================================
-   Layout
-====================================================== */
+/* Layout */
 
 .goals-page {
   padding: 32px 0 60px;
@@ -2548,9 +2388,7 @@ ul {
   align-items: flex-start;
 }
 
-/* ======================================================
-   Progress Card
-====================================================== */
+/* Progress Card */
 
 .goal-progress-card {
   background: var(--card-bg);
@@ -2572,9 +2410,7 @@ ul {
   box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
 }
 
-/* ======================================================
-   Progress Ring
-====================================================== */
+/* Progress Ring */
 
 .goal-progress-circle {
   position: relative;
@@ -2620,9 +2456,7 @@ ul {
   transition: 0.5s;
 }
 
-/* ======================================================
-   Progress Content
-====================================================== */
+/* Progress Content */
 
 .goal-progress-content {
   position: absolute;
@@ -2658,9 +2492,7 @@ ul {
   color: var(--text-secondary);
 }
 
-/* ======================================================
-   Motivation
-====================================================== */
+/* Motivation */
 
 .goal-progress-message {
   margin-top: 28px;
@@ -2674,9 +2506,7 @@ ul {
   max-width: 260px;
 }
 
-/* ======================================================
-   Right Panel
-====================================================== */
+/* Right Panel */
 
 .goals-content {
   display: flex;
@@ -2686,9 +2516,7 @@ ul {
   gap: 24px;
 }
 
-/* ======================================================
-   Input Card
-====================================================== */
+/* Input Card */
 
 .goal-input-card {
   display: flex;
@@ -2776,9 +2604,7 @@ ul {
   box-shadow: 0 12px 28px rgba(79, 70, 229, 0.3);
 }
 
-/* ======================================================
-   Goal List
-====================================================== */
+/* Goal List */
 
 .goal-list {
   display: flex;
@@ -2788,9 +2614,7 @@ ul {
   gap: 18px;
 }
 
-/* ======================================================
-   Goal Card
-====================================================== */
+/* Goal Card */
 
 .goal-item {
   display: flex;
@@ -2818,9 +2642,7 @@ ul {
   box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
 }
 
-/* ======================================================
-   Checkbox
-====================================================== */
+/* Checkbox */
 
 .goal-check {
   width: 30px;
@@ -2862,9 +2684,7 @@ ul {
   transform: scale(1);
 }
 
-/* ======================================================
-   Goal Text
-====================================================== */
+/* Goal Text */
 
 .goal-info {
   flex: 1;
@@ -2886,9 +2706,7 @@ ul {
   opacity: 0.5;
 }
 
-/* ======================================================
-   Delete Button
-====================================================== */
+/* Delete Button */
 
 .goal-delete {
   width: 42px;
@@ -2938,9 +2756,7 @@ ul {
   }
 }
 
-/* ======================================================
-   Responsive
-====================================================== */
+/* Responsive */
 
 @media (max-width: 992px) {
   .goals-layout {
