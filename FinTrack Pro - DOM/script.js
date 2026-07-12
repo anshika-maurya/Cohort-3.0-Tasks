@@ -393,7 +393,7 @@ function renderTransactions() {
 
             <td class="${transaction.type === "Income" ? "income" : "expense"}">
 
-                ${transaction.type === "Income" ? "+" : "-"}${getCurrencySymbol()}${transaction.amount.toFixed(2)}}
+                ${transaction.type === "Income" ? "+" : "-"}${getCurrencySymbol()}${transaction.amount.toFixed(2)}
 
             </td>
 
